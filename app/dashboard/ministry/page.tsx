@@ -16,18 +16,18 @@ export default function MinistryDashboard() {
   const { user } = useAuth();
 
   return (
-    <div className="bg-[#FAF8F4] min-h-[calc(100vh-140px)] py-8 px-4 sm:px-8">
+    <div className="bg-[#FAF8F4] dark:bg-slate-950 min-h-[calc(100vh-140px)] py-8 px-4 sm:px-8 transition-colors">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Ministry Executive Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
           <div className="flex items-center space-x-4">
             <div className="w-14 h-14 rounded-2xl bg-purple-900 text-white flex items-center justify-center shadow-md">
               <Landmark className="w-7 h-7 text-white" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <h1 className="text-xl sm:text-2xl font-black text-slate-900">
+                <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                   Ministry Executive and Performance Analytics
                 </h1>
                 <span className="bg-purple-100 text-purple-900 text-xs font-bold px-2.5 py-0.5 rounded-full border border-purple-300">

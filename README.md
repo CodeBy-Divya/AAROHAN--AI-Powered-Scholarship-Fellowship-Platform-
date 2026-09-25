@@ -5,47 +5,68 @@ TribalScholar is an intelligent scholarship readiness, verification, and decisio
 
 ---
 
-## Key Features Implemented (Phase 1)
+## Website Navigation Order & Pages
 
-1. **Official MoTA Portal and Brand Experience**:
-   - Official branding, Ministry insignia, National Flag stripe, and bilingual toggle (English / Hindi).
-   - Accessibility toolbar: Text size scaling (`A`, `A+`, `A++`) and High Contrast mode.
-   - Flagship scheme explorer:
-     - **NFST** (National Fellowship for Scheduled Tribe Students)
-     - **NOS** (National Overseas Scholarship for ST Candidates)
-     - **Top Class Education Scheme** (IITs, IIMs, AIIMS, NITs)
-     - **Post-Matric Scholarship for ST Students**
-   - Interactive 3-point Eligibility Pre-checker Wizard.
-   - Transparent 8-Step Verification Journey (Discover -> Understand -> Prepare -> AI Verify -> Apply -> Fix -> Track -> Succeed).
+The header navigation is structured in the following order:
 
-2. **Unified Role-Based Authentication**:
-   - Single secure entrypoint with dedicated role tabs:
+1. **Home (`/`)**:
+   - Official MoTA header, National Flag strip, and Ministry insignia.
+   - Live national impact metrics (DBT Disbursed, Scholars Funded, Processing Turnaround).
+   - Preview of flagship schemes with direct application links.
+   - 8-step visual workflow architecture.
+
+2. **About Us (`/about`)**:
+   - Constitutional mandate under Article 46 and SIH 2026 Problem Statement 26239 background.
+   - Three operational pillars: AI Pre-submission, Explainable Scrutiny, and 100% Direct Benefit Transfer (DBT).
+   - Core governance objectives and institutional stakeholders.
+
+3. **Scholarships (`/scholarships`)**:
+   - Interactive multi-criteria eligibility filters:
+     - Keyword search (code, degree, title)
+     - Academic Level (Ph.D. / M.Phil, Master's, Undergraduate, Class 11-12 & Diploma)
+     - Scheme Type (Fellowship, Overseas, Premier Higher Ed, Post-Matric)
+     - Study Destination (In India, Abroad in Top 500 QS Universities)
+     - Annual Family Income (No limit, Up to Rs. 6.00 Lakh, Up to Rs. 2.50 Lakh)
+   - Real-time scheme match counter and one-click filter reset.
+
+4. **FAQ (`/faq`)**:
+   - Dedicated searchable FAQ directory.
+   - Categorized topics: Eligibility Criteria, AI Scrutiny, Documents, DBT & Payment, and General Portal inquiries.
+   - Expandable accordion answers with official guidelines.
+
+5. **Contact Us (`/contact`)**:
+   - National toll-free helpline numbers and official email addresses.
+   - MoTA Headquarters address (Shastri Bhawan, New Delhi).
+   - Interactive support request and grievance submission form with instant tracking token generation.
+   - State Tribal Welfare liaison directory (Jharkhand, Odisha, Madhya Pradesh, North East).
+
+6. **Login / Register (`/login`)**:
+   - Role selector tabs:
      - ST Student / Applicant
-     - Scrutiny Officer / Govt. Official
+     - Govt. Official / Scrutiny Verifier
      - Ministry Administrator
-   - **One-Click Demo Logins** with pre-seeded personas for seamless evaluation:
-     - **Student**: `student@demo.in` / `Student@2026` (Pooja Xalxo, Ph.D. Scholar, Jharkhand)
-     - **Officer**: `officer@demo.in` / `Officer@2026` (Dr. Arvind Meena, Senior Scrutiny Officer)
-     - **Ministry**: `ministry@demo.in` / `Ministry@2026` (Smt. R. Ananthalakshmi, IAS, Joint Secretary)
+   - One-Click Fast Track Demo Login buttons for instant evaluation.
+   - ST Student registration form.
 
-3. **Role-Based Professional Dashboards**:
-   - **Student Dashboard (`/dashboard/applicant`)**:
-     - **"Your Next Step" Action Card**: Highlights real-time deficiency resolutions.
-     - **AI Application Readiness Score Gauge** (86% with interactive re-scan simulation).
-     - **5-Stage Verification Lifecycle Tracker** (Submission -> Doc Scrutiny -> Eligibility -> Merit -> Sanction).
-     - **Document Vault**: Real-time status of Caste Certificate, Income Certificate, Admission Letter, Marksheet, and DBT Aadhaar Link.
-   - **Government Official / Scrutiny Console (`/dashboard/officer`)**:
-     - Scrutiny queue with filters by scheme, stage, and candidate search.
-     - AI Confidence scoring badges (High Fidelity OCR vs Human Review Recommended).
-     - **Split-View Verification Modal**: Left-side document preview with simulated OCR bounding boxes; right-side checklist, deficiency remark transmitter, and stage approval controls.
-   - **Ministry Executive Analytics (`/dashboard/ministry`)**:
-     - Macro metrics: Total Sanctions (18,450+), DBT Disbursed (Rs. 482.4 Cr), Turnaround time (14 days), Gender parity (48.6% female scholars).
-     - Scheme quota utilization progress bars (NFST 95%, NOS 90%, Top Class 92%).
-     - State-wise beneficiary breakdown and Process Bottleneck Intelligence.
+---
 
-4. **Multi-Step Application Wizard (`/apply/[schemeId]`)**:
-   - 4-step guided application for NFST and NOS schemes.
-   - Integrated AI Document Intelligence quality scoring and real-time deficiency re-scan.
+## Features
+
+- **Floating AI Assistant (Bottom Right Corner)**:
+  - Floating widget present on all pages.
+  - Powered by Google Gemini API with configurable API Key input in the settings drawer.
+  - Intelligent local fallback engine if no key is entered (runs 100% offline).
+  - Quick prompt chips for instant scheme guidance.
+
+- **Light / Dark Mode Support**:
+  - Sun/Moon toggle button in the header bar.
+  - Persists user preference in `localStorage`.
+  - Comprehensive Tailwind dark mode classes across all components, cards, tables, modals, and chatbots.
+
+- **Role-Based Dashboards**:
+  - **Student Dashboard (`/dashboard/applicant`)**: "Your Next Step" priority action card, circular readiness gauge (86% to 96%), 5-stage lifecycle tracker, and document vault.
+  - **Official Scrutiny Console (`/dashboard/officer`)**: Actionable scrutiny queue, AI confidence badges, and split-view document verification desk with OCR bounding box preview.
+  - **Ministry Executive Analytics (`/dashboard/ministry`)**: Macro KPIs, scheme quota utilization bars, state breakdown, and bottleneck diagnostic charts.
 
 ---
 
@@ -55,9 +76,9 @@ TribalScholar is an intelligent scholarship readiness, verification, and decisio
 # 1. Install dependencies
 npm install
 
-# 2. Run the development server
+# 2. Run development server
 npm run dev
 
 # 3. Open in your browser
-http://localhost:3000
+http://localhost:3001
 ```
