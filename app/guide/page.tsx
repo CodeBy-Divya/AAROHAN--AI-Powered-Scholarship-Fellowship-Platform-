@@ -1,69 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import {
   FileText,
   CheckCircle2,
   Clock,
-  AlertCircle,
-  HelpCircle,
   ArrowRight,
-  ShieldCheck,
-  Search,
   BookOpen,
   UserCheck,
-  Building,
   GraduationCap,
   Landmark,
   FileCheck,
-  Sparkles,
-  Info
+  Sparkles
 } from "lucide-react";
 
 export default function GuidePage() {
-  const [trackInput, setTrackInput] = useState("");
-  const [trackedResult, setTrackedResult] = useState<null | {
-    id: string;
-    scheme: string;
-    applicant: string;
-    currentStage: number;
-    status: string;
-    statusText: string;
-  }>(null);
-
-  const handleTrackSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!trackInput.trim()) return;
-    
-    // Sample mock status for demonstration
-    const upper = trackInput.trim().toUpperCase();
-    if (upper.includes("NOS")) {
-      setTrackedResult({
-        id: upper,
-        scheme: "National Overseas Scholarship (NOS)",
-        applicant: "Kiran Soren",
-        currentStage: 3,
-        status: "Scrutiny in Progress",
-        statusText: "Application has cleared AI pre-check with 98% OCR confidence. Assigned to Desk Officer for document scrutiny.",
-      });
-    } else {
-      setTrackedResult({
-        id: upper,
-        scheme: "National Fellowship for Scheduled Tribes (NFST)",
-        applicant: "Pooja Rameshwar",
-        currentStage: 2,
-        status: "AI Verification Completed - Ready for Scrutiny",
-        statusText: "All 5 mandatory documents verified for legibility and digital validity. Awaiting officer queue assignment.",
-      });
-    }
-  };
-
   const timelineStages = [
     {
       step: 1,
       title: "Online Registration & Submission",
-      description: "Applicant registers with Aadhaar OTP, fills academic and personal details, and uploads mandatory supporting certificates.",
+      description: "Applicant registers with Aadhaar OTP e-KYC, fills academic and personal details, and uploads mandatory supporting certificates.",
       statusBadge: "Submitted",
       role: "Applicant Action",
       duration: "Immediate upon submit",
@@ -192,65 +149,7 @@ export default function GuidePage() {
           </p>
         </div>
 
-        {/* Quick Application Status Tracker Widget */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs">
-          <div className="max-w-3xl mx-auto space-y-4">
-            <div className="flex items-center space-x-2 text-mota-navy dark:text-emerald-400 font-bold text-sm">
-              <Search className="w-4 h-4" />
-              <span>Track Application Status</span>
-            </div>
-            <p className="text-xs text-slate-600 dark:text-slate-400">
-              Enter your Application ID (e.g., <code className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-800 dark:text-slate-200 font-mono">NFST-2026-8821</code> or <code className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-800 dark:text-slate-200 font-mono">NOS-2026-4412</code>) to view your application status and current scrutiny stage.
-            </p>
-
-            <form onSubmit={handleTrackSubmit} className="flex flex-col sm:flex-row gap-3 pt-1">
-              <input
-                type="text"
-                placeholder="Enter Application ID..."
-                value={trackInput}
-                onChange={(e) => setTrackInput(e.target.value)}
-                className="flex-1 px-4 py-2.5 text-xs sm:text-sm border border-slate-300 dark:border-slate-700 rounded-xl dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy focus:outline-hidden"
-              />
-              <button
-                type="submit"
-                className="bg-mota-navy hover:bg-mota-navy-dark dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl transition-colors shadow-xs"
-              >
-                Track Status
-              </button>
-            </form>
-
-            {/* Tracked Result Box */}
-            {trackedResult && (
-              <div className="mt-4 p-5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-700 pb-3">
-                  <div>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Application ID</span>
-                    <span className="text-sm font-bold text-slate-900 dark:text-white font-mono">{trackedResult.id}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Scheme</span>
-                    <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">{trackedResult.scheme}</span>
-                  </div>
-                  <div className="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold px-3 py-1 rounded-full">
-                    {trackedResult.status}
-                  </div>
-                </div>
-
-                <div className="text-xs text-slate-600 dark:text-slate-300">
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">Current Progress: </span>
-                  {trackedResult.statusText}
-                </div>
-
-                <div className="flex items-center space-x-2 text-[11px] text-slate-500 dark:text-slate-400">
-                  <Clock className="w-3.5 h-3.5 text-mota-green dark:text-emerald-400" />
-                  <span>Stage {trackedResult.currentStage} of 5 completed. You will receive an SMS alert upon stage advancement.</span>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Section 1: How It Works & Eligibility */}
+        {/* Section: How It Works & Eligibility */}
         <section className="space-y-6">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
@@ -294,7 +193,7 @@ export default function GuidePage() {
           </div>
         </section>
 
-        {/* Section 2: Application Lifecycle & Status Timeline */}
+        {/* Section: Application Lifecycle & Status Timeline */}
         <section className="space-y-6">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
@@ -305,11 +204,12 @@ export default function GuidePage() {
             </p>
           </div>
 
-          <div className="relative border-l-2 border-slate-200 dark:border-slate-700 ml-4 sm:ml-6 pl-6 sm:pl-8 space-y-8">
+          {/* Timeline with circles accurately centered on the vertical line */}
+          <div className="relative border-l-2 border-slate-300 dark:border-slate-700 ml-5 sm:ml-6 space-y-8 pb-2">
             {timelineStages.map((stage) => (
-              <div key={stage.step} className="relative group">
-                {/* Dot Marker */}
-                <div className="absolute -left-[31px] sm:-left-[39px] top-1 w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-2 border-mota-navy dark:border-emerald-400 flex items-center justify-center text-xs font-bold text-mota-navy dark:text-emerald-400">
+              <div key={stage.step} className="relative pl-7 sm:pl-9">
+                {/* Dot Marker exactly centered on the 2px line (-left-[17px] centers a 32px circle) */}
+                <div className="absolute -left-[17px] top-4 w-8 h-8 rounded-full bg-white dark:bg-slate-900 border-2 border-mota-navy dark:border-emerald-400 flex items-center justify-center text-xs font-bold text-mota-navy dark:text-emerald-400 shadow-xs z-10">
                   {stage.step}
                 </div>
 
@@ -342,7 +242,7 @@ export default function GuidePage() {
           </div>
         </section>
 
-        {/* Section 3: Required Personal Information & Documents */}
+        {/* Section: Required Personal Information & Documents */}
         <section className="space-y-6">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">

@@ -17,15 +17,57 @@ import {
   Clock, 
   Eye, 
   FolderLock, 
-  HelpCircle,
-  PhoneCall
+  GraduationCap,
+  Globe2,
+  BookOpen,
+  Award,
+  HeartHandshake
 } from "lucide-react";
 
 export default function AboutUsPage() {
+  const socialImpactPillars = [
+    {
+      title: "Constitutional Safeguard & Social Justice",
+      description:
+        "Guided by Article 46 and the Fifth & Sixth Schedules of the Constitution of India, the Ministry actively protects Scheduled Tribes and historically disadvantaged communities from social injustice and economic exploitation through affirmative educational access.",
+      icon: Landmark,
+    },
+    {
+      title: "Creating First-Generation Leaders & Scholars",
+      description:
+        "By fully funding undergraduate, postgraduate, and doctoral degrees, MoTA enables youth from remote forest villages, Scheduled areas, and underserved hamlets to become university professors, scientists, civil servants, and institutional researchers.",
+      icon: GraduationCap,
+    },
+    {
+      title: "Global Academic Exposure (NOS Scheme)",
+      description:
+        "Through the National Overseas Scholarship, meritorious tribal candidates pursue Master's and Ph.D. programmes in top 500 QS/THE world-ranked universities, breaking historical socio-economic barriers on the global stage.",
+      icon: Globe2,
+    },
+    {
+      title: "Direct Benefit Transfer (DBT) & Economic Dignity",
+      description:
+        "100% of stipends and contingency grants are routed directly to scholars' Aadhaar-linked bank accounts via PFMS, eliminating middlemen, institutional delays, and ensuring financial independence throughout their academic journeys.",
+      icon: HeartHandshake,
+    },
+    {
+      title: "Preserving Indigenous Knowledge & Culture",
+      description:
+        "MoTA's research grants encourage scholars to conduct academic research into tribal languages, ethno-medicine, indigenous forest conservation, and cultural anthropology, bringing valuable traditional wisdom into mainstream scientific discourse.",
+      icon: BookOpen,
+    },
+    {
+      title: "Grassroots-to-Doctorate Pipeline",
+      description:
+        "Connecting grassroots educational initiatives like Eklavya Model Residential Schools (EMRS) with premier national institutions (IITs, IIMs, AIIMS, Central Universities) and international research fellowships.",
+      icon: Award,
+    },
+  ];
+
   const problems = [
     {
-      title: "Manual Scrutiny",
-      description: "Paper-heavy physical and manual verification bottlenecks created backlogs, requiring weeks of visual inspection per application.",
+      title: "Manual Scrutiny Bottlenecks",
+      description: "Paper-heavy physical and manual verification created backlogs, requiring weeks of visual inspection per application.",
     },
     {
       title: "Repeated Correspondence",
@@ -33,15 +75,15 @@ export default function AboutUsPage() {
     },
     {
       title: "Excessive Verification Effort",
-      description: "Officers spent over 60% of their operational hours cross-referencing basic certificate numbers and checking image clarity manually.",
+      description: "Officers spent over 60% of operational hours cross-referencing basic certificate numbers and checking image clarity manually.",
     },
     {
       title: "Processing Delays",
-      description: "Multi-layered paper workflows stretched typical application turnaround times up to 90+ days, delaying scholar funding.",
+      description: "Multi-layered paper workflows stretched typical application turnaround times up to 90+ days, delaying critical scholar funding.",
     },
     {
-      title: "Limited Visibility",
-      description: "Students had zero real-time insight into whether their file was pending at university, desk officer, or ministry finance divisions.",
+      title: "Limited Real-Time Visibility",
+      description: "Students had zero insight into whether their file was pending at university, desk officer, or ministry finance divisions.",
     },
     {
       title: "Managing Scheme-Specific Requirements",
@@ -117,47 +159,95 @@ export default function AboutUsPage() {
         {/* Page Top Heading */}
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <span className="text-xs font-bold text-mota-green dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-            About TribalScholar
+            About TribalScholar & Ministry Mandate
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            AI-Enabled Scholarship & Fellowship Management
+            Empowering Scheduled Tribes Through Education
           </h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Empowering Scheduled Tribe students through modern, transparent, and technology-driven education administration.
+            Promoting social justice, educational equity, and academic excellence for Scheduled Tribe communities across India.
           </p>
         </div>
 
-        {/* SECTION 1: About the Initiative */}
-        <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-4">
-          <div className="flex items-center space-x-2 text-mota-navy dark:text-emerald-400">
-            <Landmark className="w-5 h-5 flex-shrink-0" />
-            <span className="text-xs font-bold uppercase tracking-wider">Section 1</span>
+        {/* Dedicated Section: About Ministry of Tribal Affairs (MoTA) & Societal Upliftment */}
+        <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-xs space-y-6">
+          <div className="flex items-center space-x-3 text-mota-navy dark:text-emerald-400">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+              <Landmark className="w-6 h-6" />
+            </div>
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-mota-green dark:text-emerald-400 block">
+                Government of India
+              </span>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+                About the Ministry of Tribal Affairs (MoTA)
+              </h2>
+            </div>
           </div>
+
+          <div className="text-sm text-slate-700 dark:text-slate-300 space-y-4 leading-relaxed">
+            <p>
+              The <strong>Ministry of Tribal Affairs (MoTA)</strong> was constituted as an independent Ministry in 1999 to provide a focused approach toward the integrated socio-economic development of the Scheduled Tribes (STs)—the most marginalized and historically disadvantaged communities in India.
+            </p>
+            <p>
+              Under <strong>Article 46 of the Constitution of India</strong>, the State bears a solemn directive mandate to <em>&quot;promote with special care the educational and economic interests of the weaker sections of the people, and in particular, of the Scheduled Castes and the Scheduled Tribes, and to protect them from social injustice and all forms of exploitation.&quot;</em>
+            </p>
+            <p>
+              Education is the single most powerful catalyst for socio-economic mobility. For generations, tribal communities faced systemic hurdles, including geographic isolation in forested and hilly terrains, economic hardship, language barriers, and lack of institutional infrastructure. MoTA counters these systemic inequities through a targeted financial and institutional support ecosystem that covers every stage of educational progress:
+            </p>
+          </div>
+
+          {/* Social Upliftment Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            {socialImpactPillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-slate-50 dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2.5"
+                >
+                  <div className="flex items-center space-x-2.5 text-mota-navy dark:text-emerald-400">
+                    <Icon className="w-5 h-5 flex-shrink-0 text-mota-green dark:text-emerald-400" />
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      {pillar.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-900 dark:text-emerald-200 leading-relaxed">
+            <strong>Impact on Society:</strong> By providing full fellowships and direct bank transfers, MoTA removes the financial compulsion for tribal youths to discontinue their studies for menial wages. Over 18,000 scholars have completed doctoral and postgraduate degrees, creating a vibrant cadre of tribal role models, scientists, professors, and policy influencers who reinvest their knowledge into community upliftment.
+          </div>
+        </section>
+
+        {/* About the Digital Initiative */}
+        <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-4">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-            About the Initiative
+            About the Digital Initiative
           </h2>
           <div className="text-sm text-slate-700 dark:text-slate-300 space-y-3 leading-relaxed">
             <p>
-              TribalScholar delivers the <strong>end-to-end digitization of scholarship and fellowship schemes</strong> for the <strong>Ministry of Tribal Affairs (MoTA)</strong>, Government of India.
+              TribalScholar delivers the <strong>end-to-end digitization of scholarship and fellowship schemes</strong> for the Ministry of Tribal Affairs (MoTA).
             </p>
             <p>
-              The Ministry implements flagship initiatives including the <em>National Fellowship for Scheduled Tribes (NFST)</em> for Ph.D. research in premier Indian institutions and the <em>National Overseas Scholarship (NOS)</em> for postgraduate studies in top-ranked international universities. This portal replaces disjointed legacy procedures with a unified, high-availability architecture tailored to the aspirations of tribal students nationwide.
+              The platform manages major central initiatives including the <em>National Fellowship for Scheduled Tribes (NFST)</em> for M.Phil. and Ph.D. research across recognized Indian universities, and the <em>National Overseas Scholarship (NOS)</em> for postgraduate studies in top-ranked international institutions. TribalScholar unifies these complex schemes under a single, secure, and accessible portal.
             </p>
           </div>
         </section>
 
-        {/* SECTION 2: The Problem */}
+        {/* Challenges in Traditional Administration */}
         <section className="space-y-6">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div className="flex items-center space-x-2 text-amber-700 dark:text-amber-400">
-              <AlertOctagon className="w-5 h-5 flex-shrink-0" />
-              <span className="text-xs font-bold uppercase tracking-wider">Section 2</span>
-            </div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
-              The Problem
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              Challenges in Traditional Administration
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              Traditional scholarship administration faced several operational bottlenecks that created hardship for students and administrative burdens for officers.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+              Key operational bottlenecks that previously created hardship for students and administrative burdens for verification officials.
             </p>
           </div>
 
@@ -181,11 +271,11 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        {/* SECTION 3: Our Solution */}
+        {/* The TribalScholar Solution */}
         <section className="bg-gradient-to-br from-emerald-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 rounded-2xl border border-emerald-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-4">
           <div className="flex items-center space-x-2 text-mota-green dark:text-emerald-400">
             <Sparkles className="w-5 h-5 flex-shrink-0" />
-            <span className="text-xs font-bold uppercase tracking-wider">Section 3</span>
+            <span className="text-xs font-bold uppercase tracking-wider">Intelligent Architecture</span>
           </div>
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
             Our Solution
@@ -200,17 +290,13 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        {/* SECTION 4: What We Enable */}
+        {/* What We Enable */}
         <section className="space-y-6">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div className="flex items-center space-x-2 text-mota-navy dark:text-emerald-400">
-              <Cpu className="w-5 h-5 flex-shrink-0" />
-              <span className="text-xs font-bold uppercase tracking-wider">Section 4</span>
-            </div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
               What We Enable
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
               An end-to-end digital lifecycle transforming scholarship delivery from registration to post-selection management.
             </p>
           </div>
@@ -255,17 +341,13 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        {/* SECTION 5: Transparency and Security */}
+        {/* Transparency and Security */}
         <section className="space-y-6">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div className="flex items-center space-x-2 text-emerald-700 dark:text-emerald-400">
-              <Lock className="w-5 h-5 flex-shrink-0" />
-              <span className="text-xs font-bold uppercase tracking-wider">Section 5</span>
-            </div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
               Transparency and Security
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
               Enterprise governance and ethical AI principles protecting public funds and scholar rights.
             </p>
           </div>

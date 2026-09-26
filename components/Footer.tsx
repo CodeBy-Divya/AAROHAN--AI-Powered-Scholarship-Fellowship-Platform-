@@ -79,6 +79,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/notices" className="hover:text-emerald-400 transition-colors">
+                  Official Notices & Circulars
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="hover:text-emerald-400 transition-colors">
                   About MoTA Initiative
                 </Link>

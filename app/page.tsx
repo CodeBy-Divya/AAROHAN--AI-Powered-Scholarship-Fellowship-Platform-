@@ -129,7 +129,7 @@ export default function HomePage() {
       title: "NFST Application Window for Academic Year 2026-27 is Now Active",
       description:
         "ST scholars registered for regular full-time Ph.D. degrees in recognized institutions can submit online applications. Ensure your caste certificate is issued by a competent revenue magistrate.",
-      link: "/scholarships",
+      link: "/notices",
     },
     {
       id: 2,
@@ -138,7 +138,7 @@ export default function HomePage() {
       title: "Mandatory Aadhaar-Seeded Bank Account for Direct Benefit Transfer (DBT)",
       description:
         "All applicants must ensure their bank accounts are active and linked with NPCI / Aadhaar to enable seamless stipend disbursements under PFMS without intermediate delays.",
-      link: "/guide",
+      link: "/notices",
     },
     {
       id: 3,
@@ -147,7 +147,7 @@ export default function HomePage() {
       title: "National Overseas Scholarship (NOS) - First Tranche Scrutiny Underway",
       description:
         "Applications received before 15 September are under officer scrutiny. Applicants with deficiency notices are advised to upload corrected documents within their 7-day window.",
-      link: "/guide",
+      link: "/notices",
     },
   ];
 
@@ -411,10 +411,10 @@ export default function HomePage() {
             </h2>
           </div>
           <Link
-            href="/guide"
+            href="/notices"
             className="text-xs font-bold text-mota-navy dark:text-emerald-400 hover:underline flex items-center space-x-1"
           >
-            <span>Check All Circulars</span>
+            <span>View All Notices & Circulars</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
