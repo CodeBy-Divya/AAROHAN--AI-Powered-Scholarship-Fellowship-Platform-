@@ -1,245 +1,324 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { 
   Landmark, 
   ShieldCheck, 
-  Award, 
-  HelpCircle, 
-  Search, 
+  AlertOctagon, 
+  CheckCircle2, 
+  ArrowRight, 
+  Lock, 
   FileText, 
   Users, 
-  Phone, 
-  Mail, 
-  ChevronDown, 
-  ChevronUp,
-  CheckCircle2,
-  BookOpen
+  Layers, 
+  Cpu, 
+  Sparkles, 
+  Clock, 
+  Eye, 
+  FolderLock, 
+  HelpCircle,
+  PhoneCall
 } from "lucide-react";
 
 export default function AboutUsPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [faqCategory, setFaqCategory] = useState<string>("ALL");
-
-  const toggleFaq = (idx: number) => {
-    setOpenFaq(openFaq === idx ? null : idx);
-  };
-
-  const faqs = [
+  const problems = [
     {
-      category: "general",
-      q: "What is TribalScholar and which ministry administers it?",
-      a: "TribalScholar is the digital scholarship and fellowship management platform developed for the Ministry of Tribal Affairs (MoTA), Government of India under Smart India Hackathon (SIH 2026 Problem Statement 26239). It provides end-to-end administration for flagship Central schemes such as NFST and NOS.",
+      title: "Manual Scrutiny",
+      description: "Paper-heavy physical and manual verification bottlenecks created backlogs, requiring weeks of visual inspection per application.",
     },
     {
-      category: "ai",
-      q: "What is the exact role of AI in document verification?",
-      a: "The AI system is strictly an intelligent assistant and does NOT decide approvals or rejections. It uses Optical Character Recognition (OCR) and computer vision to verify image quality (detecting blur, glare, or cut-offs), extract certificate numbers, and identify potential discrepancies before submission. Final eligibility and approvals are made by authorized Ministry Scrutiny Officers.",
+      title: "Repeated Correspondence",
+      description: "Minor avoidable errors (such as faint revenue seals or slight spelling variations) triggered prolonged back-and-forth letters and emails.",
     },
     {
-      category: "eligibility",
-      q: "Can I apply for both NFST and NOS in the same academic year?",
-      a: "Yes, eligible candidates can submit applications for both schemes if they meet the respective criteria. However, under Government of India guidelines, a scholar can only avail financial benefits from one active Central fellowship or scholarship scheme at any given time.",
+      title: "Excessive Verification Effort",
+      description: "Officers spent over 60% of their operational hours cross-referencing basic certificate numbers and checking image clarity manually.",
     },
     {
-      category: "eligibility",
-      q: "What is the family income ceiling for the National Fellowship (NFST)?",
-      a: "Under the revised NFST guidelines, there is no mandatory ceiling on annual family income for research scholars pursuing regular full-time Ph.D. degrees. However, in cases of identical merit, preference is given to scholars from lower annual income brackets (< Rs. 6.00 Lakhs).",
+      title: "Processing Delays",
+      description: "Multi-layered paper workflows stretched typical application turnaround times up to 90+ days, delaying scholar funding.",
     },
     {
-      category: "documents",
-      q: "What should I do if my income or caste certificate is flagged as deficient?",
-      a: "Log into your Student Dashboard and locate the 'Your Next Step' card. Click 'Fix Document Now' to inspect the specific reason (such as a faint revenue seal or name discrepancy). You have a 7-day grace period to re-scan and upload a clear document without losing your submission priority.",
+      title: "Limited Visibility",
+      description: "Students had zero real-time insight into whether their file was pending at university, desk officer, or ministry finance divisions.",
     },
     {
-      category: "dbt",
-      q: "How are scholarship stipends disbursed to selected scholars?",
-      a: "Stipends and allowances are credited directly into the scholar's bank account through the Public Financial Management System (PFMS) and Direct Benefit Transfer (DBT) using Aadhaar-seeded accounts. No manual cheques or institutional intermediaries are involved.",
-    },
-    {
-      category: "grievance",
-      q: "How can I escalate a query or file a grievance regarding my application?",
-      a: "You can file a formal grievance via the Grievance Redressal desk on the Student Dashboard or contact the National Helpdesk at 1800-11-7788. Every grievance is assigned a unique tracking token and is resolved within 15 working days.",
+      title: "Managing Scheme-Specific Requirements",
+      description: "Different schemes (NFST, NOS, Top Class) have distinct income cutoffs, merit lists, and age rules, complicating uniform administration.",
     },
   ];
 
-  const filteredFaqs = faqs.filter(
-    (item) => faqCategory === "ALL" || item.category === faqCategory
-  );
+  const enablePipeline = [
+    {
+      step: 1,
+      title: "Digital Applications",
+      desc: "Streamlined single-window digital registration with Aadhaar OTP e-KYC and digital document uploads.",
+    },
+    {
+      step: 2,
+      title: "AI-Assisted Verification",
+      desc: "Real-time OCR pre-checks assess certificate clarity, detect cutoff stamps, and highlight potential discrepancies before submission.",
+    },
+    {
+      step: 3,
+      title: "Eligibility & Scrutiny",
+      desc: "Configurable rule engines match candidates against scheme guidelines, assisting scrutiny officers with automated cross-checks.",
+    },
+    {
+      step: 4,
+      title: "Selection",
+      desc: "Merit lists and quota matrices are compiled transparently for Central Selection Committee approvals.",
+    },
+    {
+      step: 5,
+      title: "Communication",
+      desc: "Automated SMS alerts, email notifications, and deficiency resolution windows keep scholars informed in real-time.",
+    },
+    {
+      step: 6,
+      title: "Post-Selection Management",
+      desc: "Continuous fellowship monitoring, annual progress review, digital renewals, and Direct Benefit Transfer (DBT) via PFMS.",
+    },
+  ];
+
+  const securityPillars = [
+    {
+      title: "Role-Based Access Control (RBAC)",
+      desc: "Strict segregation of duties between Applicants, Verification Officers, Scrutiny Officers, and Ministry Administrators.",
+      icon: Users,
+    },
+    {
+      title: "Comprehensive Audit Trails",
+      desc: "Every document inspection, deficiency note, and verification approval is immutably timestamped with officer credentials.",
+      icon: Layers,
+    },
+    {
+      title: "Secure Document Handling",
+      desc: "Encrypted storage for caste certificates, income records, and bank mandates with strict privacy safeguards.",
+      icon: FolderLock,
+    },
+    {
+      title: "Transparent Status Tracking",
+      desc: "End-to-end visibility for scholars into every stage of their application file, from submission to DBT credit.",
+      icon: Eye,
+    },
+    {
+      title: "Human Oversight of AI-Assisted Decisions",
+      desc: "AI never rejects or approves applications autonomously. Machine intelligence solely assists human scrutiny officers who make all final determinations.",
+      icon: ShieldCheck,
+    },
+  ];
 
   return (
-    <div className="bg-[#FAF8F4] dark:bg-slate-950 min-h-[calc(100vh-140px)] py-10 px-4 sm:px-8 transition-colors">
-      <div className="max-w-5xl mx-auto space-y-12">
-        
-        {/* Header Banner */}
+    <div className="bg-[#FAF8F4] dark:bg-slate-950 min-h-screen py-10 px-4 sm:px-8 transition-colors">
+      <div className="max-w-5xl mx-auto space-y-16">
+
+        {/* Page Top Heading */}
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <span className="text-xs font-bold text-mota-green dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-            About the Ministry Initiative
+            About TribalScholar
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Empowering Tribal Education & Research
+            AI-Enabled Scholarship & Fellowship Management
           </h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            The Ministry of Tribal Affairs (MoTA) is dedicated to the holistic advancement of Scheduled Tribes across India, ensuring equitable access to premier higher education, scientific research, and global academic opportunities.
+            Empowering Scheduled Tribe students through modern, transparent, and technology-driven education administration.
           </p>
         </div>
 
-        {/* Institutional Mandate Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-mota-navy text-white flex items-center justify-center">
-              <Landmark className="w-5 h-5 text-emerald-400" />
-            </div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-              Constitutional Mandate
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Enacted under Article 46 of the Constitution of India to promote the educational and economic interests of the Scheduled Tribes with special care, protecting them from social injustice.
+        {/* SECTION 1: About the Initiative */}
+        <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-4">
+          <div className="flex items-center space-x-2 text-mota-navy dark:text-emerald-400">
+            <Landmark className="w-5 h-5 flex-shrink-0" />
+            <span className="text-xs font-bold uppercase tracking-wider">Section 1</span>
+          </div>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+            About the Initiative
+          </h2>
+          <div className="text-sm text-slate-700 dark:text-slate-300 space-y-3 leading-relaxed">
+            <p>
+              TribalScholar delivers the <strong>end-to-end digitization of scholarship and fellowship schemes</strong> for the <strong>Ministry of Tribal Affairs (MoTA)</strong>, Government of India.
+            </p>
+            <p>
+              The Ministry implements flagship initiatives including the <em>National Fellowship for Scheduled Tribes (NFST)</em> for Ph.D. research in premier Indian institutions and the <em>National Overseas Scholarship (NOS)</em> for postgraduate studies in top-ranked international universities. This portal replaces disjointed legacy procedures with a unified, high-availability architecture tailored to the aspirations of tribal students nationwide.
             </p>
           </div>
+        </section>
 
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-800 text-white flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5 text-emerald-300" />
+        {/* SECTION 2: The Problem */}
+        <section className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div className="flex items-center space-x-2 text-amber-700 dark:text-amber-400">
+              <AlertOctagon className="w-5 h-5 flex-shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-wider">Section 2</span>
             </div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-              AI Readiness & Scrutiny
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Transforms manual scrutiny bottlenecks into a proactive digital process: identifying deficient certificates and assisting human officials with evidence-based verification overlays.
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-900 text-white flex items-center justify-center">
-              <Award className="w-5 h-5 text-amber-300" />
-            </div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-              Direct Benefit Transfer
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              100% of fellowship allowances, contingency funds, and tuition fees are transferred directly through PFMS to Aadhaar-seeded accounts, achieving complete financial transparency.
-            </p>
-          </div>
-        </div>
-
-        {/* Problem Statement Context Section */}
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
-          <div className="flex items-center space-x-2">
-            <BookOpen className="w-5 h-5 text-mota-navy dark:text-emerald-400" />
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-              The SIH 2026 Problem Statement 26239
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
+              The Problem
             </h2>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-            Prior to this platform, scholarship administration involved multiple levels of manual verification and paper correspondence. Over 40% of delays were caused by minor, avoidable errors such as faint revenue seals, blurred uploads, and spelling variations in caste certificates. TribalScholar sits on top of the student journey to catch and fix these issues before formal submission, allowing scrutiny officers to process cases in days rather than months.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
-              <span className="font-bold text-slate-900 dark:text-white block">14-Day Average Turnaround</span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400">Reduced from 92 days</span>
-            </div>
-            <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
-              <span className="font-bold text-slate-900 dark:text-white block">94.2% First-Time Pass</span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400">Zero avoidable rejection rate</span>
-            </div>
-            <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
-              <span className="font-bold text-slate-900 dark:text-white block">Explainable Everywhere</span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400">Full audit trail for officers</span>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQs Section */}
-        <div id="faqs" className="space-y-6 scroll-mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                <span>Frequently Asked Questions</span>
-              </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Official clarifications on MoTA scholarship schemes, eligibility, and verification procedures.
-              </p>
-            </div>
-
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-1.5 text-xs">
-              {[
-                { id: "ALL", label: "All Topics" },
-                { id: "ai", label: "AI Verification" },
-                { id: "eligibility", label: "Eligibility" },
-                { id: "documents", label: "Documents" },
-                { id: "dbt", label: "DBT & Bank" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setFaqCategory(tab.id)}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
-                    faqCategory === tab.id
-                      ? "bg-mota-navy dark:bg-emerald-600 text-white"
-                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Traditional scholarship administration faced several operational bottlenecks that created hardship for students and administrative burdens for officers.
+            </p>
           </div>
 
-          {/* Accordion List */}
-          <div className="space-y-3">
-            {filteredFaqs.map((faq, idx) => {
-              const isExpanded = openFaq === idx;
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {problems.map((prob, idx) => (
+              <div
+                key={idx}
+                className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-2xs space-y-2"
+              >
+                <div className="flex items-center space-x-2 text-red-600 dark:text-red-400">
+                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    {prob.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {prob.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION 3: Our Solution */}
+        <section className="bg-gradient-to-br from-emerald-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 rounded-2xl border border-emerald-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-4">
+          <div className="flex items-center space-x-2 text-mota-green dark:text-emerald-400">
+            <Sparkles className="w-5 h-5 flex-shrink-0" />
+            <span className="text-xs font-bold uppercase tracking-wider">Section 3</span>
+          </div>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+            Our Solution
+          </h2>
+          <div className="text-sm text-slate-700 dark:text-slate-300 space-y-3 leading-relaxed">
+            <p className="text-base font-semibold text-slate-900 dark:text-white">
+              A centralized, configurable platform that connects applicants and officials.
+            </p>
+            <p>
+              TribalScholar serves as a single digital bridge bringing scholars, institutional verifiers, scrutiny officers, and ministry administrators into one synchronized ecosystem. The platform standardizes document ingestion, offers intelligent pre-submission validation, automates eligibility rules, and establishes direct communication loops so that no student is left behind due to technical misunderstandings.
+            </p>
+          </div>
+        </section>
+
+        {/* SECTION 4: What We Enable */}
+        <section className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div className="flex items-center space-x-2 text-mota-navy dark:text-emerald-400">
+              <Cpu className="w-5 h-5 flex-shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-wider">Section 4</span>
+            </div>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
+              What We Enable
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              An end-to-end digital lifecycle transforming scholarship delivery from registration to post-selection management.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {enablePipeline.map((step) => (
+              <div
+                key={step.step}
+                className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-2xs space-y-2 relative"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-xs flex items-center justify-center">
+                    0{step.step}
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Stage {step.step}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white pt-1">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Visual Sequence Summary */}
+          <div className="bg-slate-100 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center text-xs font-semibold text-slate-700 dark:text-slate-300 flex flex-wrap items-center justify-center gap-2">
+            <span>Digital Applications</span>
+            <span className="text-slate-400">&rarr;</span>
+            <span>AI-Assisted Verification</span>
+            <span className="text-slate-400">&rarr;</span>
+            <span>Eligibility &amp; Scrutiny</span>
+            <span className="text-slate-400">&rarr;</span>
+            <span>Selection</span>
+            <span className="text-slate-400">&rarr;</span>
+            <span>Communication</span>
+            <span className="text-slate-400">&rarr;</span>
+            <span>Post-Selection Management</span>
+          </div>
+        </section>
+
+        {/* SECTION 5: Transparency and Security */}
+        <section className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div className="flex items-center space-x-2 text-emerald-700 dark:text-emerald-400">
+              <Lock className="w-5 h-5 flex-shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-wider">Section 5</span>
+            </div>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
+              Transparency and Security
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Enterprise governance and ethical AI principles protecting public funds and scholar rights.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {securityPillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xs transition-colors"
+                  className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-2xs space-y-2 flex items-start space-x-3.5"
                 >
-                  <button
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full p-4 text-left flex items-center justify-between space-x-3 text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                  >
-                    <span>{faq.q}</span>
-                    {isExpanded ? (
-                      <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />
-                    )}
-                  </button>
-
-                  {isExpanded && (
-                    <div className="px-4 pb-4 pt-1 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800">
-                      {faq.a}
-                    </div>
-                  )}
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-mota-navy dark:text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                      {pillar.desc}
+                    </p>
+                  </div>
                 </div>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Contact & Support Section */}
-        <div className="bg-slate-100 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* Quick Help & FAQs Redirection */}
+        <div className="bg-slate-100 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-              Still have questions or need assistance?
+              Have Questions Regarding Schemes or Scrutiny Rules?
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400">
-              The MoTA Fellowship & Scholarship Support Desk is available Monday to Friday (9:30 AM to 5:30 PM).
+              Visit our dedicated FAQ center or review the applicant step-by-step guide.
             </p>
           </div>
-
-          <div className="flex flex-wrap gap-3">
-            <div className="flex items-center space-x-2 text-xs bg-white dark:bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">
-              <Phone className="w-3.5 h-3.5 text-emerald-600" />
-              <span>1800-11-7788</span>
-            </div>
-            <div className="flex items-center space-x-2 text-xs bg-white dark:bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">
-              <Mail className="w-3.5 h-3.5 text-emerald-600" />
-              <span>helpdesk-tribalscholar@gov.in</span>
-            </div>
+          <div className="flex items-center space-x-3">
+            <Link
+              href="/guide"
+              className="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-white border border-slate-300 dark:border-slate-700 font-semibold text-xs px-4 py-2 rounded-xl transition-colors"
+            >
+              Applicant Guide
+            </Link>
+            <Link
+              href="/faq"
+              className="bg-mota-navy hover:bg-mota-navy-dark dark:bg-emerald-700 dark:hover:bg-emerald-600 text-white font-bold text-xs px-4 py-2 rounded-xl transition-colors flex items-center space-x-1"
+            >
+              <span>View FAQs</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
 

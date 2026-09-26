@@ -25,7 +25,7 @@ export default function FAQPage() {
       category: "general",
       categoryLabel: "General Portal",
       q: "What is TribalScholar and which ministry administers it?",
-      a: "TribalScholar is the digital scholarship and fellowship management platform developed for the Ministry of Tribal Affairs (MoTA), Government of India under Smart India Hackathon (SIH 2026 Problem Statement 26239). It provides end-to-end administration for flagship Central schemes such as NFST and NOS.",
+      a: "TribalScholar is the digital scholarship and fellowship management platform developed for the Ministry of Tribal Affairs (MoTA), Government of India. It provides end-to-end administration for flagship Central schemes such as NFST and NOS.",
     },
     {
       category: "ai",

@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useAuth } from "@/lib/auth-context";
-import { SCHEMES, Scheme } from "@/lib/data";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -12,367 +11,477 @@ import {
   Search, 
   ShieldCheck, 
   Calendar, 
-  HelpCircle,
-  Award,
   Layers,
-  FileCheck2,
-  BookOpen
+  FileCheck,
+  Eye,
+  AlertTriangle,
+  Send,
+  Bell,
+  Clock,
+  ExternalLink,
+  ChevronRight,
+  Landmark,
+  UserCheck
 } from "lucide-react";
 
 export default function HomePage() {
-  const { language, user, role } = useAuth();
+  const { language } = useAuth();
 
-  // Interactive Eligibility Finder states
-  const [selectedDegree, setSelectedDegree] = useState<string>("phd");
-  const [selectedLocation, setSelectedLocation] = useState<string>("india");
-  const [selectedIncome, setSelectedIncome] = useState<string>("under6");
-  const [filteredSchemes, setFilteredSchemes] = useState<Scheme[]>(SCHEMES);
+  const activeSchemes = [
+    {
+      id: "nfst",
+      name: "National Fellowship for ST (NFST)",
+      fullName: "National Fellowship for Scheduled Tribe Students",
+      type: "Research Fellowship (Ph.D.)",
+      description:
+        "Comprehensive financial assistance for ST scholars pursuing full-time regular M.Phil. and Ph.D. degrees in recognized universities and research institutions across India.",
+      eligibilitySnapshot: [
+        "ST Category Certificate from authorized revenue magistrate",
+        "Confirmed admission in full-time Ph.D. / M.Phil. programme",
+        "UGC-NET / CSIR-NET / GATE qualification or university entrance",
+        "No mandatory income ceiling for full-time research scholars"
+      ],
+      status: "Applications Open - Cycle 2026-27",
+      statusColor: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800",
+      deadline: "15 November 2026",
+      slots: "750 Annual Slots",
+      financialBenefit: "Rs. 35,000/mo (JRF) / Rs. 40,000/mo (SRF) + HRA & Contingency",
+    },
+    {
+      id: "nos",
+      name: "National Overseas Scholarship (NOS)",
+      fullName: "National Overseas Scholarship for ST Candidates",
+      type: "International Study (Masters & Ph.D.)",
+      description:
+        "Prestigious central scholarship facilitating ST students to pursue postgraduate degrees and doctoral research in top 500 QS/THE ranked global universities abroad.",
+      eligibilitySnapshot: [
+        "ST Category Certificate with proof of Indian citizenship",
+        "Minimum 55% aggregate marks in Bachelor's or Master's degree",
+        "Unconditional admission letter from top 500 ranked global institution",
+        "Total family annual income from all sources not exceeding Rs. 8.00 Lakhs"
+      ],
+      status: "Applications Open - Closing Soon",
+      statusColor: "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border-amber-300 dark:border-amber-800",
+      deadline: "31 October 2026",
+      slots: "20 Annual Slots",
+      financialBenefit: "100% Tuition Fees + USD 15,400 / GBP 9,900 Annual Living Allowance",
+    },
+  ];
 
-  const runEligibilityCheck = () => {
-    let result = [...SCHEMES];
-    if (selectedLocation === "abroad") {
-      result = result.filter((s) => s.code === "NOS");
-    } else if (selectedDegree === "phd") {
-      result = result.filter((s) => s.code === "NFST" || s.code === "NOS");
-    } else if (selectedDegree === "ug") {
-      result = result.filter((s) => s.code === "TOPCLASS" || s.code === "PMS-ST");
-    }
-    setFilteredSchemes(result);
-  };
+  const workflowSteps = [
+    { stage: "Apply", label: "Digital Application", desc: "Aadhaar e-KYC registration & certificate upload" },
+    { stage: "Verify", label: "AI Pre-Verification", desc: "Automated OCR quality & data mismatch checks" },
+    { stage: "Scrutiny", label: "Officer Scrutiny", desc: "Desk evaluation & 7-day deficiency redressal" },
+    { stage: "Selection", label: "Committee Selection", desc: "Transparent merit assessment & quota allotment" },
+    { stage: "Award", label: "DBT Disbursal", desc: "Digital sanction & direct bank account transfer" },
+  ];
 
-  const getDashboardHref = () => {
-    if (role === "officer") return "/dashboard/officer";
-    if (role === "ministry") return "/dashboard/ministry";
-    return "/dashboard/applicant";
-  };
+  const keyFeatures = [
+    {
+      title: "AI-Assisted Document Verification",
+      description:
+        "Intelligent pre-submission OCR detects blurred certificates, cut-off seals, expired documents, and name mismatches before official desk scrutiny.",
+      icon: Sparkles,
+      color: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800",
+    },
+    {
+      title: "Eligibility Assessment",
+      description:
+        "Dynamic, rules-driven eligibility filters evaluate age, academic qualifications, tribal category credentials, and income thresholds automatically.",
+      icon: UserCheck,
+      color: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border-blue-200 dark:border-blue-800",
+    },
+    {
+      title: "Application Tracking",
+      description:
+        "End-to-end transparent status timeline allowing applicants and administrators to view live progression across every scrutiny milestone.",
+      icon: Clock,
+      color: "text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 border-purple-200 dark:border-purple-800",
+    },
+    {
+      title: "Deficiency Management",
+      description:
+        "Eliminates outright rejections by offering structured 7-day deficiency rectification windows with targeted feedback directly to applicants.",
+      icon: AlertTriangle,
+      color: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800",
+    },
+    {
+      title: "Transparent Workflow",
+      description:
+        "Every verification decision and status change is logged with timestamped, immutable audit trails with strict human officer oversight.",
+      icon: ShieldCheck,
+      color: "text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 border-teal-200 dark:border-teal-800",
+    },
+    {
+      title: "Digital Communication",
+      description:
+        "Automated multi-channel SMS alerts, email status notifications, and integrated grievance messaging keep applicants continuously informed.",
+      icon: Send,
+      color: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 border-indigo-200 dark:border-indigo-800",
+    },
+  ];
+
+  const importantNotices = [
+    {
+      id: 1,
+      date: "28 September 2026",
+      tag: "NFST Cycle",
+      title: "NFST Application Window for Academic Year 2026-27 is Now Active",
+      description:
+        "ST scholars registered for regular full-time Ph.D. degrees in recognized institutions can submit online applications. Ensure your caste certificate is issued by a competent revenue magistrate.",
+      link: "/scholarships",
+    },
+    {
+      id: 2,
+      date: "24 September 2026",
+      tag: "Mandate Alert",
+      title: "Mandatory Aadhaar-Seeded Bank Account for Direct Benefit Transfer (DBT)",
+      description:
+        "All applicants must ensure their bank accounts are active and linked with NPCI / Aadhaar to enable seamless stipend disbursements under PFMS without intermediate delays.",
+      link: "/guide",
+    },
+    {
+      id: 3,
+      date: "19 September 2026",
+      tag: "NOS Update",
+      title: "National Overseas Scholarship (NOS) - First Tranche Scrutiny Underway",
+      description:
+        "Applications received before 15 September are under officer scrutiny. Applicants with deficiency notices are advised to upload corrected documents within their 7-day window.",
+      link: "/guide",
+    },
+  ];
 
   return (
     <div className="space-y-16 pb-16 bg-[#FAF8F4] dark:bg-slate-950 transition-colors">
-      {/* Hero Section */}
+      
+      {/* 1. Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#0B2545] via-[#0D315D] to-[#0B2545] dark:from-slate-950 dark:via-[#0B2545] dark:to-slate-950 text-white pt-16 pb-20 px-4 sm:px-8 border-b-4 border-[#D98A00]">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FAF8F4_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Hero Content */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Ministry of Tribal Affairs - National Digital Initiative</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-                {language === "hi" ? (
-                  <>
-                    आपके सपने, <span className="text-[#D98A00]">हमारा सहयोग।</span>
-                  </>
-                ) : (
-                  <>
-                    Your Dreams. <br />
-                    <span className="text-[#D98A00]">Our Support.</span>
-                  </>
-                )}
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
-                {language === "hi"
-                  ? "अनुसूचित जनजाति (ST) के छात्रों के लिए भारत एवं विदेशों में उच्च शिक्षा, एम.फिल एवं पी.एचडी शोध हेतु समर्पित एआई-सक्षम राष्ट्रीय छात्रवृत्ति एवं फैलोशिप मंच।"
-                  : "Empowering Scheduled Tribe students to pursue Master's, Ph.D., and premier degree programmes in India & top global universities with automated document verification and direct DBT support."}
-              </p>
-
-              {/* CTAs */}
-              <div className="pt-2 flex flex-wrap gap-4 justify-center lg:justify-start items-center">
-                {user ? (
-                  <Link
-                    href={getDashboardHref()}
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-emerald-900/30 transition-all flex items-center space-x-2 text-sm sm:text-base"
-                  >
-                    <span>Go to My Dashboard ({user.roleTitle})</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                ) : (
-                  <>
-                    <Link
-                      href="/scholarships"
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-emerald-900/30 transition-all flex items-center space-x-2 text-sm sm:text-base"
-                    >
-                      <GraduationCap className="w-5 h-5" />
-                      <span>{language === "hi" ? "छात्रवृत्तियां देखें" : "Explore Scholarships (NFST / NOS)"}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-
-                    <Link
-                      href="/login"
-                      className="bg-white/10 hover:bg-white/20 text-white border border-white/25 font-semibold px-5 py-3.5 rounded-xl transition-all flex items-center space-x-2 text-sm"
-                    >
-                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                      <span>{language === "hi" ? "अधिकारी / लॉगिन" : "Official / Role Login"}</span>
-                    </Link>
-                  </>
-                )}
-              </div>
-
-              {/* Tagline principle pills */}
-              <div className="pt-4 flex flex-wrap gap-2 text-[11px] text-slate-300 font-medium justify-center lg:justify-start">
-                <span className="bg-white/10 px-2.5 py-1 rounded-md">Pre-Submission AI Check</span>
-                <span className="bg-white/10 px-2.5 py-1 rounded-md">Zero Document Rejection</span>
-                <span className="bg-white/10 px-2.5 py-1 rounded-md">Direct DBT to Aadhaar Bank</span>
-              </div>
-            </div>
-
-            {/* Right Column: Hero Interactive Spotlight Card */}
-            <div className="lg:col-span-5">
-              <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-6 text-slate-900 dark:text-white shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
-                      Active Application Cycle 2026-27
-                    </span>
-                  </div>
-                  <span className="text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono font-semibold">
-                    MoTA Live
-                  </span>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 hover:border-emerald-300 transition-colors">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase">National Fellowship (NFST)</span>
-                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">M.Phil & Ph.D. in Indian Universities</h4>
-                      </div>
-                      <span className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded">
-                        750 Slots
-                      </span>
-                    </div>
-                    <div className="mt-2 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
-                      <span>Stipend: <strong className="text-slate-800 dark:text-slate-200">Rs. 35,000/mo + HRA</strong></span>
-                      <span className="text-slate-500 dark:text-slate-400">Deadline: 15 Nov</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 hover:border-amber-300 transition-colors">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase">Overseas Scholarship (NOS)</span>
-                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">Masters & Ph.D. in Top 500 Global Unis</h4>
-                      </div>
-                      <span className="bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded">
-                        20 Slots
-                      </span>
-                    </div>
-                    <div className="mt-2 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
-                      <span>Support: <strong className="text-slate-800 dark:text-slate-200">100% Tuition + Living</strong></span>
-                      <span className="text-amber-700 dark:text-amber-400 font-semibold">Closing Soon</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quick Navigation to Portal Sections */}
-                <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2 text-xs">
-                  <div className="flex items-center justify-between font-semibold text-slate-700 dark:text-slate-300">
-                    <span>Direct Access</span>
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400">Dedicated Modules</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-1.5 text-center">
-                    <Link
-                      href="/scholarships"
-                      className="bg-white dark:bg-slate-700 hover:bg-emerald-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-1.5 px-1 rounded border border-slate-200 dark:border-slate-600 text-[11px] transition-colors"
-                    >
-                      Scholarships
-                    </Link>
-                    <Link
-                      href="/about"
-                      className="bg-white dark:bg-slate-700 hover:bg-blue-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-1.5 px-1 rounded border border-slate-200 dark:border-slate-600 text-[11px] transition-colors"
-                    >
-                      About & FAQs
-                    </Link>
-                    <Link
-                      href="/login"
-                      className="bg-white dark:bg-slate-700 hover:bg-purple-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-1.5 px-1 rounded border border-slate-200 dark:border-slate-600 text-[11px] transition-colors"
-                    >
-                      Login / Roles
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* National Impact Metrics */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 -mt-10 relative z-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 p-6">
-          <div className="border-r border-slate-100 dark:border-slate-800 last:border-none pr-4 text-center sm:text-left">
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total DBT Disbursed</p>
-            <p className="text-2xl sm:text-3xl font-black text-mota-navy dark:text-emerald-400 mt-1">Rs. 482+ Cr</p>
-            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium flex items-center justify-center sm:justify-start mt-0.5">
-              <span>Direct Bank Transfer</span>
-            </p>
+        <div className="max-w-7xl mx-auto relative z-10 text-center space-y-6">
+          
+          <div className="inline-flex items-center space-x-2 bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner mx-auto">
+            <Landmark className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Ministry of Tribal Affairs - Government of India</span>
           </div>
 
-          <div className="border-r border-slate-100 dark:border-slate-800 last:border-none pr-4 text-center sm:text-left">
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">ST Scholars Benefitted</p>
-            <p className="text-2xl sm:text-3xl font-black text-mota-green dark:text-emerald-300 mt-1">18,450+</p>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Across 36 States & UTs</p>
-          </div>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
+            AI-Enabled Scholarship & Fellowship Management System
+          </h1>
 
-          <div className="border-r border-slate-100 dark:border-slate-800 last:border-none pr-4 text-center sm:text-left">
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">AI Readiness Verification</p>
-            <p className="text-2xl sm:text-3xl font-black text-[#D98A00] mt-1">94.2%</p>
-            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-0.5">First-Time Approval Rate</p>
-          </div>
+          <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-3xl mx-auto">
+            A unified digital platform for transparent, efficient and accessible management of scholarships and fellowships for Scheduled Tribe students.
+          </p>
 
-          <div className="text-center sm:text-left">
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Average Processing Time</p>
-            <p className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-slate-200 mt-1">14 Days</p>
-            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-0.5">Reduced from 90+ days</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Flagship Schemes Preview */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div className="space-y-2">
-            <span className="text-xs font-bold text-mota-green dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-              Flagship Programs
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-              Featured Scholarship & Fellowship Schemes
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              Configured with scheme-specific eligibility, merit workflows, and document scrutiny.
-            </p>
-          </div>
-
-          <Link
-            href="/scholarships"
-            className="text-xs font-bold text-mota-navy dark:text-emerald-400 hover:underline flex items-center space-x-1"
-          >
-            <span>View All Schemes & Apply Filters</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {SCHEMES.slice(0, 2).map((scheme) => (
-            <div
-              key={scheme.id}
-              className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 flex flex-col justify-between"
+          {/* Requested 3 Action Buttons */}
+          <div className="pt-4 flex flex-wrap gap-4 justify-center items-center">
+            <Link
+              href="/scholarships"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-emerald-900/30 transition-all flex items-center space-x-2 text-sm sm:text-base"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded-md border ${scheme.badgeColor}`}>
-                    {scheme.type}
-                  </span>
-                  <div className="flex items-center space-x-1.5 text-xs text-slate-500 dark:text-slate-400">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Apply by: <strong>{scheme.deadline}</strong></span>
-                  </div>
-                </div>
+              <GraduationCap className="w-5 h-5" />
+              <span>Explore Scholarships</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
 
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                    {scheme.name} ({scheme.code})
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 italic">{scheme.hindiName}</p>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">{scheme.description}</p>
-                </div>
+            <Link
+              href="/guide"
+              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center space-x-2 text-sm sm:text-base backdrop-blur-xs"
+            >
+              <Search className="w-4 h-4 text-emerald-400" />
+              <span>Check Application Status</span>
+            </Link>
 
-                <div className="grid grid-cols-2 gap-2 text-xs bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                  <div>
-                    <span className="text-slate-500 dark:text-slate-400 block text-[11px]">Level & Program</span>
-                    <strong className="text-slate-800 dark:text-slate-200">{scheme.level}</strong>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 dark:text-slate-400 block text-[11px]">Annual Quota</span>
-                    <strong className="text-slate-800 dark:text-slate-200">{scheme.slots}</strong>
-                  </div>
-                  <div className="col-span-2 pt-1 border-t border-slate-200/60 dark:border-slate-700 mt-1">
-                    <span className="text-slate-500 dark:text-slate-400 block text-[11px]">Financial Support</span>
-                    <strong className="text-emerald-700 dark:text-emerald-400">{scheme.financialBenefit}</strong>
-                  </div>
-                </div>
-              </div>
+            <Link
+              href="/login"
+              className="bg-white text-mota-navy hover:bg-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all flex items-center space-x-2 text-sm sm:text-base shadow-sm"
+            >
+              <ShieldCheck className="w-4 h-4 text-mota-navy" />
+              <span>Login</span>
+            </Link>
+          </div>
 
-              <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <Link
-                  href={`/apply/${scheme.id}`}
-                  className="bg-mota-navy hover:bg-mota-navy-dark dark:bg-emerald-700 dark:hover:bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors flex items-center space-x-1.5"
-                >
-                  <span>Apply Now</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-                <Link
-                  href="/scholarships"
-                  className="text-xs font-semibold text-mota-green dark:text-emerald-400 hover:underline"
-                >
-                  Full Requirements
-                </Link>
-              </div>
-            </div>
-          ))}
+          {/* Trust Highlights */}
+          <div className="pt-6 flex flex-wrap gap-3 text-xs text-slate-300 font-medium justify-center">
+            <span className="bg-white/10 px-3 py-1 rounded-md border border-white/10">Pre-Submission Quality Inspection</span>
+            <span className="bg-white/10 px-3 py-1 rounded-md border border-white/10">Zero Unfair Rejections</span>
+            <span className="bg-white/10 px-3 py-1 rounded-md border border-white/10">Direct DBT via PFMS</span>
+          </div>
+
         </div>
       </section>
 
-      {/* Transparent 8-Step Application Journey */}
+      {/* 2. Active Schemes Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-mota-navy dark:text-emerald-400 uppercase tracking-wider bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
-            Transparent Workflow Architecture
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="text-xs font-bold text-mota-green dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+            Current Application Cycle
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-            The Student & Officer Journey
+            Active Schemes
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            From pre-check to Direct Benefit Transfer (DBT), eliminating opaque delays.
+            Flagship schemes providing direct financial assistance to Scheduled Tribe scholars across India and abroad.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
-          {[
-            { step: 1, title: "Discover", desc: "Explore schemes matching your criteria" },
-            { step: 2, title: "Understand", desc: "Clear guidelines and document checklists" },
-            { step: 3, title: "Prepare", desc: "Gather ST, Income, and Academic records" },
-            { step: 4, title: "AI Verify", desc: "Automated OCR quality and mismatch check" },
-            { step: 5, title: "Apply", desc: "Submit with verified confidence score" },
-            { step: 6, title: "Fix", desc: "Resolve flagged deficiencies within 7 days" },
-            { step: 7, title: "Track", desc: "Live stage progression & officer notes" },
-            { step: 8, title: "Succeed", desc: "Sanction order & direct DBT transfer" },
-          ].map((item) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {activeSchemes.map((scheme) => (
             <div
-              key={item.step}
-              className="bg-white dark:bg-slate-900 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 text-center space-y-2 hover:border-mota-navy dark:hover:border-emerald-500 transition-all shadow-2xs"
+              key={scheme.id}
+              className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all p-6 sm:p-8 flex flex-col justify-between"
             >
-              <span className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-extrabold inline-flex items-center justify-center">
-                {item.step}
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white">{item.title}</h4>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">{item.desc}</p>
+              <div className="space-y-5">
+                {/* Header & Status */}
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full border ${scheme.statusColor}`}>
+                    {scheme.status}
+                  </span>
+                  <div className="flex items-center space-x-1.5 text-xs text-slate-500 dark:text-slate-400">
+                    <Calendar className="w-3.5 h-3.5 text-mota-green dark:text-emerald-400" />
+                    <span>Deadline: <strong className="text-slate-800 dark:text-slate-200">{scheme.deadline}</strong></span>
+                  </div>
+                </div>
+
+                {/* Scheme Title & Description */}
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {scheme.name}
+                  </h3>
+                  <p className="text-xs font-semibold text-mota-navy dark:text-emerald-400 mt-0.5">
+                    {scheme.type} | {scheme.slots}
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+                    {scheme.description}
+                  </p>
+                </div>
+
+                {/* Financial Benefit Callout */}
+                <div className="bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 p-3.5 rounded-xl">
+                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                    Financial Support
+                  </span>
+                  <p className="text-xs sm:text-sm font-bold text-emerald-800 dark:text-emerald-300 mt-0.5">
+                    {scheme.financialBenefit}
+                  </p>
+                </div>
+
+                {/* Eligibility Snapshot */}
+                <div className="space-y-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Eligibility Snapshot
+                  </h4>
+                  <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                    {scheme.eligibilitySnapshot.map((item, idx) => (
+                      <li key={idx} className="flex items-start space-x-2">
+                        <CheckCircle2 className="w-4 h-4 text-mota-green dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* View Details Action */}
+              <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <Link
+                  href="/scholarships"
+                  className="bg-mota-navy hover:bg-mota-navy-dark dark:bg-emerald-700 dark:hover:bg-emerald-600 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-colors flex items-center space-x-1.5 shadow-2xs"
+                >
+                  <span>View Details</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+
+                <Link
+                  href="/guide"
+                  className="text-xs font-semibold text-mota-green dark:text-emerald-400 hover:underline flex items-center space-x-1"
+                >
+                  <span>Check Requirements</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Quick FAQs Teaser */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-8 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-          Frequently Asked Questions
-        </h2>
-        <p className="text-xs text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-          Need help understanding eligibility, document formats, or DBT payments?
-        </p>
-        <Link
-          href="/about#faqs"
-          className="inline-flex items-center space-x-2 bg-mota-navy hover:bg-mota-navy-dark dark:bg-slate-800 dark:hover:bg-slate-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-colors"
-        >
-          <span>Read Full FAQ Directory & Guidelines</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+      {/* 3. How the platform works (Visual and short) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-bold text-mota-navy dark:text-emerald-400 uppercase tracking-wider bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+            Transparent Workflow
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+            How the Platform Works
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            A seamless, five-stage pipeline connecting applicants directly with scrutiny officers.
+          </p>
+        </div>
+
+        {/* Short & Visual Pipeline: Apply → Verify → Scrutiny → Selection → Award */}
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+            {workflowSteps.map((step, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center space-y-3 relative group">
+                {/* Step Circle */}
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-mota-navy dark:border-emerald-400 flex items-center justify-center text-mota-navy dark:text-emerald-400 font-extrabold text-lg shadow-xs group-hover:scale-105 transition-transform">
+                  {idx + 1}
+                </div>
+
+                <div>
+                  <span className="text-xs font-black uppercase tracking-wider text-mota-navy dark:text-emerald-400 block">
+                    {step.stage}
+                  </span>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+                    {step.label}
+                  </h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+
+                {/* Connecting arrow for larger screens */}
+                {idx < workflowSteps.length - 1 && (
+                  <div className="hidden md:block absolute -right-3 top-5 text-slate-300 dark:text-slate-700 pointer-events-none">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
+            <Link
+              href="/guide"
+              className="inline-flex items-center space-x-1.5 text-xs font-bold text-mota-navy dark:text-emerald-400 hover:underline"
+            >
+              <span>View In-Depth Application Timeline & Document Guidelines</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
       </section>
+
+      {/* 4. Key Features (6 cards) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-bold text-mota-green dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+            Platform Capabilities
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+            Key Features
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            Built to eliminate administrative bottlenecks, protect scholar rights, and expedite disbursements.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {keyFeatures.map((feat, idx) => {
+            const Icon = feat.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-2xs hover:shadow-md transition-all space-y-3"
+              >
+                <div className={`w-12 h-12 rounded-xl border flex items-center justify-center ${feat.color}`}>
+                  <Icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {feat.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {feat.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 5. Important Notices (2-3 latest announcements) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="space-y-1">
+            <span className="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <Bell className="w-3.5 h-3.5" />
+              <span>Announcements & Circulars</span>
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+              Important Notices
+            </h2>
+          </div>
+          <Link
+            href="/guide"
+            className="text-xs font-bold text-mota-navy dark:text-emerald-400 hover:underline flex items-center space-x-1"
+          >
+            <span>Check All Circulars</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {importantNotices.map((notice) => (
+            <div
+              key={notice.id}
+              className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-2xs space-y-3 flex flex-col justify-between"
+            >
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="font-semibold text-slate-400">{notice.date}</span>
+                  <span className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded font-bold">
+                    {notice.tag}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white hover:text-mota-navy transition-colors">
+                  {notice.title}
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {notice.description}
+                </p>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                <Link
+                  href={notice.link}
+                  className="text-xs font-semibold text-mota-navy dark:text-emerald-400 hover:underline flex items-center space-x-1"
+                >
+                  <span>Read Full Notice</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Bottom Call to Action */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="bg-mota-navy dark:bg-slate-900 text-white rounded-2xl p-8 sm:p-10 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-2 text-center md:text-left">
+            <h3 className="text-xl sm:text-2xl font-black">
+              Ready to submit or verify an application?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+              Access the scholarship portal now to explore available schemes, check eligibility guidelines, or manage applications.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/scholarships"
+              className="bg-white hover:bg-slate-100 text-mota-navy font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition-colors shadow-sm"
+            >
+              Explore Scholarships
+            </Link>
+            <Link
+              href="/login"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition-colors shadow-sm"
+            >
+              Login to Portal
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

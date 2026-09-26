@@ -42,10 +42,11 @@ export default function Header() {
     return "/dashboard/applicant";
   };
 
-  // Strictly ordered: Home, About Us, Scholarships, FAQ, Contact Us
+  // Strictly ordered: Home, About Us, Guide, Scholarships, FAQ, Contact Us
   const navLinks = [
     { href: "/", label: language === "hi" ? "मुख्य पृष्ठ" : "Home" },
     { href: "/about", label: language === "hi" ? "हमारे बारे में" : "About Us" },
+    { href: "/guide", label: language === "hi" ? "मार्गदर्शिका" : "Guide" },
     { href: "/scholarships", label: language === "hi" ? "छात्रवृत्तियां" : "Scholarships" },
     { href: "/faq", label: language === "hi" ? "सामान्य प्रश्न" : "FAQ" },
     { href: "/contact", label: language === "hi" ? "संपर्क करें" : "Contact Us" },
@@ -67,7 +68,7 @@ export default function Header() {
             </span>
             <span className="hidden md:inline text-slate-400">|</span>
             <span className="hidden md:inline text-emerald-400 font-semibold tracking-wide">
-              {language === "hi" ? "डीबीटी सक्षम राष्ट्रीय पोर्टल (SIH-26239)" : "DBT Enabled National Portal (SIH-26239)"}
+              {language === "hi" ? "डीबीटी सक्षम राष्ट्रीय पोर्टल" : "DBT Enabled National Portal"}
             </span>
           </div>
 

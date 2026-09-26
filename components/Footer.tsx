@@ -27,9 +27,9 @@ export default function Footer() {
                 ? "जनजातीय कार्य मंत्रालय, भारत सरकार द्वारा अनुसूचित जनजाति के विद्यार्थियों के लिए उच्च शिक्षा एवं विदेशी अध्ययन हेतु समर्पित डिजिटल छात्रवृत्ति एवं फैलोशिप पोर्टल।"
                 : "Dedicated digital scholarship and fellowship portal by the Ministry of Tribal Affairs, Government of India, empowering Scheduled Tribe students in higher education & research."}
             </p>
-            <div className="flex items-center space-x-2 text-[11px] text-amber-300 dark:text-amber-400 font-medium">
+            <div className="flex items-center space-x-2 text-[11px] text-emerald-400 font-medium">
               <Award className="w-3.5 h-3.5" />
-              <span>Smart Education - SIH Problem 26239</span>
+              <span>Empowering ST Higher Education & Research</span>
             </div>
           </div>
 
@@ -74,13 +74,23 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-emerald-400 transition-colors">
-                  About MoTA & SIH Initiative
+                <Link href="/guide" className="hover:text-emerald-400 transition-colors">
+                  Application Guide & Requirements
                 </Link>
               </li>
               <li>
-                <Link href="/about#faqs" className="hover:text-emerald-400 transition-colors">
+                <Link href="/about" className="hover:text-emerald-400 transition-colors">
+                  About MoTA Initiative
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-emerald-400 transition-colors">
                   Frequently Asked Questions (FAQs)
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-emerald-400 transition-colors">
+                  Contact Us & Grievance Desk
                 </Link>
               </li>
               <li>
