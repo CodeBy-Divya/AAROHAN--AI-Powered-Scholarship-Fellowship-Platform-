@@ -12,6 +12,7 @@ import {
   Mail, 
   KeyRound, 
   ArrowRight, 
+  ArrowLeft,
   CheckCircle2, 
   Lock, 
   Sparkles,
@@ -35,6 +36,7 @@ export default function LoginPage() {
   const [regTribe, setRegTribe] = useState("");
   const [regState, setRegState] = useState("Jharkhand");
   const [regAadhaar, setRegAadhaar] = useState("");
+  const [regEmail, setRegEmail] = useState("");
 
   const handleRoleSelect = (roleKey: "applicant" | "officer" | "ministry") => {
     setActiveRole(roleKey);
@@ -93,7 +95,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Role Tabs */}
+        {/* Role Selector */}
         <div className="bg-slate-100 dark:bg-slate-800/80 p-2.5 grid grid-cols-3 gap-2 border-b border-slate-200 dark:border-slate-800">
           <button
             type="button"
@@ -170,192 +172,228 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Login or Register Toggle for Students */}
-          {activeRole === "applicant" && (
-            <div className="flex border-b border-slate-200 dark:border-slate-800 pb-1">
-              <button
-                type="button"
-                onClick={() => setActiveTab("login")}
-                className={`pb-2 text-xs font-bold mr-4 border-b-2 transition-colors ${
-                  activeTab === "login"
-                    ? "border-emerald-600 text-emerald-800 dark:text-emerald-400"
-                    : "border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-                }`}
-              >
-                Sign In to Existing Account
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab("register")}
-                className={`pb-2 text-xs font-bold border-b-2 transition-colors ${
-                  activeTab === "register"
-                    ? "border-emerald-600 text-emerald-800 dark:text-emerald-400"
-                    : "border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-                }`}
-              >
-                New Applicant Registration (ST)
-              </button>
-            </div>
-          )}
-
           {activeTab === "login" ? (
-            /* Login Form */
-            <form onSubmit={handleLoginSubmit} className="space-y-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                  Registered Email Address / MoTA User ID
-                </label>
-                <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
-                  />
-                </div>
+            /* Sign In Section */
+            <div className="space-y-5">
+              <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
+                <h2 className="text-base font-bold text-slate-900 dark:text-white">
+                  Sign In to Existing Account
+                </h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  Enter your registered credentials to access your official portal dashboard.
+                </p>
               </div>
 
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    Password / Access Code
-                  </label>
-                  <a href="#forgot" className="text-[11px] text-mota-navy dark:text-emerald-400 hover:underline">
-                    Forgot Password?
-                  </a>
-                </div>
-                <div className="relative">
-                  <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="rounded border-slate-300 text-mota-navy focus:ring-mota-navy"
-                  />
-                  <span>Remember this device for 30 days</span>
-                </label>
-                <span className="flex items-center text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
-                  <Lock className="w-3 h-3 mr-1" /> 256-Bit SSL
-                </span>
-              </div>
-
-              <button
-                type="submit"
-                className={`w-full py-2.5 rounded-xl text-white font-bold text-sm transition-all shadow-md flex items-center justify-center space-x-2 ${
-                  activeRole === "applicant"
-                    ? "bg-mota-green hover:bg-mota-green-light"
-                    : activeRole === "officer"
-                    ? "bg-mota-navy hover:bg-mota-navy-dark"
-                    : "bg-purple-800 hover:bg-purple-900"
-                }`}
-              >
-                <span>Sign In to {activeRole === "applicant" ? "Student Dashboard" : activeRole === "officer" ? "Official Console" : "Ministry Dashboard"}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
-          ) : (
-            /* Student Registration Form */
-            <form onSubmit={handleLoginSubmit} className="space-y-3.5">
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                  Full Name (As per Matriculation / ST Certificate)
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Pooja Xalxo"
-                  value={regName}
-                  onChange={(e) => setRegName(e.target.value)}
-                  className="w-full px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Scheduled Tribe Community
+                    Registered Email Address / MoTA User ID
                   </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Oraon, Santhal, Gond"
-                    value={regTribe}
-                    onChange={(e) => setRegTribe(e.target.value)}
-                    className="w-full px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white"
-                  />
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    />
+                  </div>
                 </div>
+
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Domicile State
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
+                      Password / Access Code
+                    </label>
+                    <a href="#forgot" className="text-[11px] text-mota-navy dark:text-emerald-400 hover:underline">
+                      Forgot Password?
+                    </a>
+                  </div>
+                  <div className="relative">
+                    <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <input
+                      type="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="rounded border-slate-300 text-mota-navy focus:ring-mota-navy"
+                    />
+                    <span>Remember this device for 30 days</span>
                   </label>
-                  <select
-                    value={regState}
-                    onChange={(e) => setRegState(e.target.value)}
-                    className="w-full px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white"
+                  <span className="flex items-center text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
+                    <Lock className="w-3 h-3 mr-1" /> 256-Bit SSL
+                  </span>
+                </div>
+
+                <button
+                  type="submit"
+                  className={`w-full py-2.5 rounded-xl text-white font-bold text-sm transition-all shadow-md flex items-center justify-center space-x-2 ${
+                    activeRole === "applicant"
+                      ? "bg-mota-green hover:bg-mota-green-light"
+                      : activeRole === "officer"
+                      ? "bg-mota-navy hover:bg-mota-navy-dark"
+                      : "bg-purple-800 hover:bg-purple-900"
+                  }`}
+                >
+                  <span>Sign In to {activeRole === "applicant" ? "Student Dashboard" : activeRole === "officer" ? "Official Console" : "Ministry Dashboard"}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+
+              {/* Distinct New Registration Prompt for Students (Separated, Not Side-by-Side) */}
+              {activeRole === "applicant" && (
+                <div className="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800 text-center space-y-1.5">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    First-time Scheduled Tribe applicant without an account?
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("register")}
+                    className="inline-flex items-center space-x-1.5 text-xs font-bold text-mota-green dark:text-emerald-400 hover:underline"
                   >
-                    <option value="Jharkhand">Jharkhand</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Chhattisgarh">Chhattisgarh</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Assam">Assam</option>
-                    <option value="Tripura">Tripura</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Sikkim">Sikkim</option>
-                  </select>
+                    <span>Register as New ST Applicant</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
+              )}
+            </div>
+          ) : (
+            /* Dedicated Registration View */
+            <div className="space-y-5">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <div>
+                  <h2 className="text-base font-bold text-slate-900 dark:text-white">
+                    New Applicant Registration (ST)
+                  </h2>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    Create your student profile with Aadhaar and tribal community details.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("login")}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center space-x-1"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Back to Sign In</span>
+                </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <form onSubmit={handleLoginSubmit} className="space-y-3.5">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Aadhaar Last 4 Digits
+                    Full Name (As per Matriculation / ST Certificate)
                   </label>
                   <input
                     type="text"
-                    maxLength={4}
                     required
-                    placeholder="XXXX"
-                    value={regAadhaar}
-                    onChange={(e) => setRegAadhaar(e.target.value)}
-                    className="w-full px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white"
+                    placeholder="e.g. Pooja Xalxo"
+                    value={regName}
+                    onChange={(e) => setRegName(e.target.value)}
+                    className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="name@email.com"
-                    className="w-full px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white"
-                  />
-                </div>
-              </div>
 
-              <button
-                type="submit"
-                className="w-full py-2.5 bg-mota-green hover:bg-mota-green-light rounded-xl text-white font-bold text-sm transition-all shadow-md flex items-center justify-center space-x-2"
-              >
-                <span>Create Applicant Profile & Proceed</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      Scheduled Tribe Community
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Oraon, Santhal, Gond"
+                      value={regTribe}
+                      onChange={(e) => setRegTribe(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      Domicile State
+                    </label>
+                    <select
+                      value={regState}
+                      onChange={(e) => setRegState(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    >
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      Aadhaar Last 4 Digits
+                    </label>
+                    <input
+                      type="text"
+                      maxLength={4}
+                      required
+                      placeholder="XXXX"
+                      value={regAadhaar}
+                      onChange={(e) => setRegAadhaar(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="name@email.com"
+                      value={regEmail}
+                      onChange={(e) => setRegEmail(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-2.5 bg-mota-green hover:bg-mota-green-light rounded-xl text-white font-bold text-sm transition-all shadow-md flex items-center justify-center space-x-2"
+                >
+                  <span>Create Applicant Profile & Proceed</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 text-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Already have an account?{" "}
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("login")}
+                    className="font-bold text-mota-navy dark:text-emerald-400 hover:underline"
+                  >
+                    Sign In to Existing Account
+                  </button>
+                </p>
+              </div>
+            </div>
           )}
 
         </div>
