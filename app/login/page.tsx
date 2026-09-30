@@ -9,14 +9,15 @@ import {
   User, 
   ShieldCheck, 
   Building2, 
-  Mail, 
   KeyRound, 
   ArrowRight, 
   ArrowLeft,
   CheckCircle2, 
   Lock, 
   Sparkles,
-  GraduationCap
+  GraduationCap,
+  ShieldAlert,
+  Hash
 } from "lucide-react";
 
 export default function LoginPage() {
@@ -26,29 +27,29 @@ export default function LoginPage() {
   const [activeRole, setActiveRole] = useState<"applicant" | "officer" | "ministry">("applicant");
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
 
-  // Form states
-  const [email, setEmail] = useState("student@demo.in");
-  const [password, setPassword] = useState("Student@2026");
+  // Privacy-safe credentials (NO Name, NO Email, NO Phone, NO Aadhaar, NO Govt ID)
+  const [username, setUsername] = useState("ST-2026-8821");
+  const [password, setPassword] = useState("Scholar@2026");
   const [rememberMe, setRememberMe] = useState(true);
 
-  // Student registration states
-  const [regName, setRegName] = useState("");
-  const [regTribe, setRegTribe] = useState("");
+  // Privacy-safe student registration states (NO Name, NO Email, NO Phone, NO Aadhaar, NO Govt ID)
+  const [regUsername, setRegUsername] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regPin, setRegPin] = useState("");
+  const [regTribe, setRegTribe] = useState("Oraon");
   const [regState, setRegState] = useState("Jharkhand");
-  const [regAadhaar, setRegAadhaar] = useState("");
-  const [regEmail, setRegEmail] = useState("");
 
   const handleRoleSelect = (roleKey: "applicant" | "officer" | "ministry") => {
     setActiveRole(roleKey);
     setActiveTab("login");
     if (roleKey === "applicant") {
-      setEmail("student@demo.in");
-      setPassword("Student@2026");
+      setUsername("ST-2026-8821");
+      setPassword("Scholar@2026");
     } else if (roleKey === "officer") {
-      setEmail("officer@demo.in");
+      setUsername("OFFICER-771");
       setPassword("Officer@2026");
     } else {
-      setEmail("ministry@demo.in");
+      setUsername("MINISTRY-01");
       setPassword("Ministry@2026");
     }
   };
@@ -90,12 +91,12 @@ export default function LoginPage() {
           </h1>
           <p className="text-xs text-slate-300 max-w-md mx-auto">
             {language === "hi"
-              ? "कृपया अपनी भूमिका का चयन करें (आवेदक / सत्यापन अधिकारी / मंत्रालय)"
-              : "Role-Based Authentication for Applicants, Verification Officials, and Ministry Executives"}
+              ? "सुरक्षित पोर्टल लॉगिन (उपयोगकर्ता आईडी एवं पासवर्ड द्वारा)"
+              : "Secure Role-Based Portal Access using Username & Security Key"}
           </p>
         </div>
 
-        {/* Role Selector */}
+        {/* Role Selector Tabs */}
         <div className="bg-slate-100 dark:bg-slate-800/80 p-2.5 grid grid-cols-3 gap-2 border-b border-slate-200 dark:border-slate-800">
           <button
             type="button"
@@ -158,7 +159,7 @@ export default function LoginPage() {
                   Instant Demo Login
                 </p>
                 <p className="text-[11px] text-amber-800 dark:text-amber-400">
-                  Pre-seeded persona for {activeRole === "applicant" ? "Pooja Xalxo (Scholar)" : activeRole === "officer" ? "Dr. Arvind Meena (Officer)" : "Smt. R. Ananthalakshmi (Ministry)"}
+                  Quick access for {activeRole === "applicant" ? "ST Scholar Workspace" : activeRole === "officer" ? "Official Scrutiny Console" : "Ministry Executive Dashboard"}
                 </p>
               </div>
             </div>
@@ -173,29 +174,30 @@ export default function LoginPage() {
           </div>
 
           {activeTab === "login" ? (
-            /* Sign In Section */
+            /* Sign In Section - Strictly NO Aadhaar, NO Govt ID, NO Name, NO Email, NO Phone */
             <div className="space-y-5">
               <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
                 <h2 className="text-base font-bold text-slate-900 dark:text-white">
                   Sign In to Existing Account
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Enter your registered credentials to access your official portal dashboard.
+                  Enter your assigned Portal User ID and password to access your dashboard.
                 </p>
               </div>
 
               <form onSubmit={handleLoginSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Registered Email Address / MoTA User ID
+                    Portal Username / User ID
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                     <input
-                      type="email"
+                      type="text"
                       required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="e.g. ST-2026-8821 or scholar_username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
                     />
                   </div>
@@ -204,10 +206,10 @@ export default function LoginPage() {
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
-                      Password / Access Code
+                      Password / Security Key
                     </label>
                     <a href="#forgot" className="text-[11px] text-mota-navy dark:text-emerald-400 hover:underline">
-                      Forgot Password?
+                      Reset Password?
                     </a>
                   </div>
                   <div className="relative">
@@ -215,6 +217,7 @@ export default function LoginPage() {
                     <input
                       type="password"
                       required
+                      placeholder="Enter password..."
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
@@ -230,7 +233,7 @@ export default function LoginPage() {
                       onChange={(e) => setRememberMe(e.target.checked)}
                       className="rounded border-slate-300 text-mota-navy focus:ring-mota-navy"
                     />
-                    <span>Remember this device for 30 days</span>
+                    <span>Remember this session</span>
                   </label>
                   <span className="flex items-center text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
                     <Lock className="w-3 h-3 mr-1" /> 256-Bit SSL
@@ -252,7 +255,7 @@ export default function LoginPage() {
                 </button>
               </form>
 
-              {/* Distinct New Registration Prompt for Students (Separated, Not Side-by-Side) */}
+              {/* Dedicated Registration Prompt for Students (Zero PII collected) */}
               {activeRole === "applicant" && (
                 <div className="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800 text-center space-y-1.5">
                   <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -270,7 +273,7 @@ export default function LoginPage() {
               )}
             </div>
           ) : (
-            /* Dedicated Registration View */
+            /* Dedicated Registration View - Strictly NO Aadhaar, NO Govt ID, NO Name, NO Email, NO Phone */
             <div className="space-y-5">
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
                 <div>
@@ -278,7 +281,7 @@ export default function LoginPage() {
                     New Applicant Registration (ST)
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Create your student profile with Aadhaar and tribal community details.
+                    Create your secure portal login credentials.
                   </p>
                 </div>
                 <button
@@ -291,19 +294,62 @@ export default function LoginPage() {
                 </button>
               </div>
 
+              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-800 text-[11px] text-emerald-900 dark:text-emerald-300">
+                <strong>Privacy Safeguard:</strong> This portal does not collect personal contact numbers, government ID cards, or Aadhaar numbers for initial account registration.
+              </div>
+
               <form onSubmit={handleLoginSubmit} className="space-y-3.5">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Full Name (As per Matriculation / ST Certificate)
+                    Choose Desired Portal User ID / Username
                   </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Pooja Xalxo"
-                    value={regName}
-                    onChange={(e) => setRegName(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
-                  />
+                  <div className="relative">
+                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. scholar_pooja or ST_researcher"
+                      value={regUsername}
+                      onChange={(e) => setRegUsername(e.target.value)}
+                      className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      Create Password
+                    </label>
+                    <div className="relative">
+                      <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                      <input
+                        type="password"
+                        required
+                        placeholder="Create password..."
+                        value={regPassword}
+                        onChange={(e) => setRegPassword(e.target.value)}
+                        className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      4-Digit Security PIN
+                    </label>
+                    <div className="relative">
+                      <Hash className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                      <input
+                        type="password"
+                        maxLength={4}
+                        required
+                        placeholder="e.g. 7821"
+                        value={regPin}
+                        onChange={(e) => setRegPin(e.target.value)}
+                        className="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -311,18 +357,25 @@ export default function LoginPage() {
                     <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       Scheduled Tribe Community
                     </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Oraon, Santhal, Gond"
+                    <select
                       value={regTribe}
                       onChange={(e) => setRegTribe(e.target.value)}
                       className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
-                    />
+                    >
+                      <option value="Oraon">Oraon (Kurukh)</option>
+                      <option value="Santhal">Santhal</option>
+                      <option value="Gond">Gond</option>
+                      <option value="Munda">Munda</option>
+                      <option value="Bodo">Bodo</option>
+                      <option value="Bhil">Bhil</option>
+                      <option value="Khasi">Khasi</option>
+                      <option value="Ho">Ho</option>
+                      <option value="Other">Other Recognized ST</option>
+                    </select>
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Domicile State
+                      State of Origin / Domicile
                     </label>
                     <select
                       value={regState}
@@ -342,41 +395,11 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Aadhaar Last 4 Digits
-                    </label>
-                    <input
-                      type="text"
-                      maxLength={4}
-                      required
-                      placeholder="XXXX"
-                      value={regAadhaar}
-                      onChange={(e) => setRegAadhaar(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="name@email.com"
-                      value={regEmail}
-                      onChange={(e) => setRegEmail(e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 rounded-lg dark:bg-slate-800 dark:text-white focus:ring-1 focus:ring-mota-navy"
-                    />
-                  </div>
-                </div>
-
                 <button
                   type="submit"
                   className="w-full py-2.5 bg-mota-green hover:bg-mota-green-light rounded-xl text-white font-bold text-sm transition-all shadow-md flex items-center justify-center space-x-2"
                 >
-                  <span>Create Applicant Profile & Proceed</span>
+                  <span>Generate Portal Access &amp; Proceed</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </form>
@@ -389,7 +412,7 @@ export default function LoginPage() {
                     onClick={() => setActiveTab("login")}
                     className="font-bold text-mota-navy dark:text-emerald-400 hover:underline"
                   >
-                    Sign In to Existing Account
+                    Sign In with User ID
                   </button>
                 </p>
               </div>

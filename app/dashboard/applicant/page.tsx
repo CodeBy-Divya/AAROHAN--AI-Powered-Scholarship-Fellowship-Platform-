@@ -47,8 +47,7 @@ export default function ApplicantDashboard() {
   };
 
   return (
-    <div className="bg-[#FAF8F4] dark:bg-slate-950 min-h-[calc(100vh-140px)] py-8 px-4 sm:px-8 transition-colors">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="space-y-8 max-w-7xl mx-auto">
         
         {/* Welcome Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
@@ -416,8 +415,6 @@ export default function ApplicantDashboard() {
 
           </div>
         </div>
-
-      </div>
 
       {/* Fix Document Upload Modal */}
       {showUploadModal && (
