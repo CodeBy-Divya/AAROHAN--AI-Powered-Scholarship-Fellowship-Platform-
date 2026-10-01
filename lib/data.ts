@@ -12,7 +12,7 @@ export interface Scheme {
   eligibility: string[];
   documentsRequired: string[];
   deadline: string;
-  status: "Open" | "Closing Soon" | "Under Scrutiny";
+  status: "Open" | "Closing Soon" | "Under Scrutiny" | "Closed";
   badgeColor: string;
   description: string;
 }
@@ -130,6 +130,33 @@ export const SCHEMES: Scheme[] = [
     badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-300",
     description: "The largest foundational scholarship enabling lakhs of tribal boys and girls to stay in higher secondary and undergraduate education.",
   },
+  {
+    id: "prematric-2025",
+    code: "PRE-MATRIC",
+    name: "Pre-Matric Scholarship Scheme for ST Students (Class IX & X)",
+    hindiName: "कक्षा 9 और 10 के अनुसूचित जनजाति के छात्रों के लिए प्री-मैट्रिक छात्रवृत्ति",
+    type: "Post-Matric",
+    level: "Class 9 & Class 10 (Secondary)",
+    coverage: "Centrally Sponsored Scheme across All States & UTs",
+    financialBenefit: "Day Scholars: ₹3,500/year | Hostellers: ₹7,000/year (Direct DBT via PFMS)",
+    slots: "Demand driven (All eligible students covered)",
+    familyIncomeLimit: "Total Family Income ≤ ₹2.50 Lakhs per annum",
+    eligibility: [
+      "Must belong to Scheduled Tribe (ST) community",
+      "Regular student studying in Class IX or X in Government / recognized school",
+      "Family income from all sources does not exceed ₹2.50 Lakhs per annum",
+    ],
+    documentsRequired: [
+      "ST Category Certificate",
+      "Parental Income Certificate",
+      "Previous Class Marksheet",
+      "Bank Account details / Passbook",
+    ],
+    deadline: "31 January 2026 (Applications Closed)",
+    status: "Closed",
+    badgeColor: "bg-slate-100 text-slate-700 border-slate-300",
+    description: "Supports tribal children at secondary level to arrest high school dropout rates and promote progression to higher studies.",
+  },
 ];
 
 export interface UserProfile {
@@ -142,6 +169,8 @@ export interface UserProfile {
   tribe?: string;
   state?: string;
   district?: string;
+  gender?: string;
+  phone?: string;
   aadhaarLast4?: string;
   institution?: string;
   course?: string;

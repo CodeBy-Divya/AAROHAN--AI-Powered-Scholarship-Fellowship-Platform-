@@ -13,6 +13,14 @@ interface AuthContextType {
   highContrast: boolean;
   setHighContrast: (contrast: boolean) => void;
   login: (roleKey: "applicant" | "officer" | "ministry") => void;
+  registerApplicant: (details: {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    contact: string;
+    state: string;
+    password?: string;
+  }) => void;
   logout: () => void;
   isAuthModalOpen: boolean;
   openAuthModal: (preferredRole?: "applicant" | "officer" | "ministry") => void;
@@ -33,8 +41,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Load persisted session from localStorage
   useEffect(() => {
     try {
+      const customUserStr = localStorage.getItem("tribalscholar_custom_user");
       const storedRole = localStorage.getItem("tribalscholar_role") as "applicant" | "officer" | "ministry" | null;
-      if (storedRole && DEMO_USERS[storedRole]) {
+      if (storedRole === "applicant" && customUserStr) {
+        setUser(JSON.parse(customUserStr));
+      } else if (storedRole && DEMO_USERS[storedRole]) {
         setUser(DEMO_USERS[storedRole]);
       }
       const storedLang = localStorage.getItem("tribalscholar_lang") as "en" | "hi" | null;
@@ -50,9 +61,46 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(selectedUser);
       try {
         localStorage.setItem("tribalscholar_role", roleKey);
+        localStorage.removeItem("tribalscholar_custom_user");
       } catch {
         // ignore
       }
+    }
+    setIsAuthModalOpen(false);
+  };
+
+  const registerApplicant = (details: {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    contact: string;
+    state: string;
+    password?: string;
+  }) => {
+    const isEmail = details.contact.includes("@");
+    const newUser: UserProfile = {
+      id: `ST-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`,
+      name: `${details.firstName} ${details.lastName}`.trim(),
+      email: isEmail ? details.contact : `${details.firstName.toLowerCase()}.${details.lastName.toLowerCase()}@tribalscholar.in`,
+      phone: isEmail ? "" : details.contact,
+      gender: details.gender,
+      role: "applicant",
+      roleTitle: "Registered ST Scholar",
+      state: details.state,
+      category: "Scheduled Tribe (ST)",
+      tribe: "Recognized ST",
+      district: "Tribal District",
+      institution: "Applicant / Scholar",
+      course: "Higher Education / Research",
+      aadhaarLast4: "••••",
+      readinessScore: 75,
+    };
+    setUser(newUser);
+    try {
+      localStorage.setItem("tribalscholar_role", "applicant");
+      localStorage.setItem("tribalscholar_custom_user", JSON.stringify(newUser));
+    } catch {
+      // ignore
     }
     setIsAuthModalOpen(false);
   };
@@ -61,6 +109,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     try {
       localStorage.removeItem("tribalscholar_role");
+      localStorage.removeItem("tribalscholar_custom_user");
     } catch {
       // ignore
     }
@@ -96,6 +145,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         highContrast,
         setHighContrast,
         login,
+        registerApplicant,
         logout,
         isAuthModalOpen,
         openAuthModal,
