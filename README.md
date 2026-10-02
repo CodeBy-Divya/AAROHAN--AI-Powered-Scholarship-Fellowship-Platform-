@@ -1,658 +1,322 @@
 <div align="center">
-# AAROHAN
- 
-### Rise Beyond. Reach Further.
- 
-**AI-Powered Scholarship & Fellowship Platform for Scheduled Tribe Students**
- 
-Smart India Hackathon 2026 · Problem Statement **SIH26239** · Ministry of Tribal Affairs
- 
-![Theme](https://img.shields.io/badge/Theme-Smart%20Education-1f6f5c)
-![Category](https://img.shields.io/badge/Category-Software-0b2545)
-![Status](https://img.shields.io/badge/Status-Hackathon%20Prototype-e0a030)
- 
+
+# 🌄 AAROHAN
+### *Rise Beyond. Reach Further.*
+
+**AI-powered scholarship & fellowship platform for Scheduled Tribe students**
+
+![SIH 2026](https://img.shields.io/badge/SIH%202026-SIH26239-0b2545?style=for-the-badge)
+![Ministry](https://img.shields.io/badge/Ministry%20of%20Tribal%20Affairs-1f6f5c?style=for-the-badge)
+![Theme](https://img.shields.io/badge/Theme-Smart%20Education-1f6f5c?style=flat-square)
+![Category](https://img.shields.io/badge/Category-Software-0b2545?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Hackathon%20Prototype-e0a030?style=flat-square)
+
+> **Don't just process scholarship applications. Prevent application failures before submission.**
+
+[Why](#-1-why-did-we-build-this) · [What](#-2-what-is-aarohan) · [How](#-3-how-does-it-work) · [Tech](#-4-what-is-our-tech-stack) · [Run](#-5-how-do-we-run-it) · [Team](#-6-who-is-on-the-team) · [Future](#-7-whats-next)
+
 </div>
 
-## Contents
- 
-[Overview](#2-project-overview) · [Problem](#3-the-problem) · [Solution](#4-our-solution) · [Innovation](#5-core-idea) · [Features](#6-key-features) · [Journey](#7-user-journey) · [Roles](#8-who-uses-it) · [Architecture](#9-technical-architecture) · [Tech Stack](#10-technology-stack) · [AI](#11-how-we-use-ai) · [OCR](#12-ocr-and-document-checking) · [Eligibility](#13-explainable-eligibility) · [Readiness](#14-application-readiness) · [Fix My Application](#15-fix-my-application) · [Human Review](#16-humans-stay-in-charge) · [Security](#17-security-and-privacy) · [Database](#18-database) · [API](#19-api) · [Structure](#20-project-structure) · [Team](#21-team) · [SIH Info](#22-sih-information) · [Demo](#23-demo-flow) · [Difference](#24-why-aarohan-is-different) · [Status](#25-current-status) · [Setup](#26-setup) · [Env](#27-environment-variables) · [Testing](#28-testing) · [Future](#29-future-scope) · [Limits](#30-limitations) · [Vision](#31-our-vision)
- 
 ---
- 
-## 2. Project Overview
- 
-**AAROHAN** is a scholarship and fellowship platform for Scheduled Tribe (ST) students. It helps students, verifying officers and the Ministry of Tribal Affairs. It covers the full journey in the problem statement: application, document upload, eligibility check, scrutiny, selection, communication, and support after selection.
- 
-AAROHAN does **not** replace the National Scholarship Portal. It sits on top as a helper. It guides students, checks documents, and supports officers in their decisions.
- 
-**The student journey**
- 
-> Discover → Understand → Prepare → Verify → Apply → Fix → Track → Succeed
- 
-**Our main idea**
- 
-> *Don't just process scholarship applications. Prevent application failures before submission.*
- 
-| Who | How AAROHAN helps |
-|---|---|
-| **Students** | Find the right scholarship, understand the rules, fix document problems before submitting, and track the application in their own language. |
-| **Officers / Verifiers** | See a short AI summary, the extracted data, proof and confidence for every case. Less repeated manual work. |
-| **Ministry / Admin** | See where applicants get stuck, which problems repeat, and how to improve the process. |
- 
----
- 
-## 3. The Problem
- 
-Many eligible students miss scholarships or lose time because of avoidable problems.
- 
+
+## ❓ 1. Why did we build this?
+
+Many eligible ST students miss scholarships or lose months because of **avoidable problems**, not because they are ineligible.
+
 | Problem | What happens |
 |---|---|
 | Hard to find the right scholarship | Eligible students never apply |
-| Eligibility rules are unclear | Students apply wrongly or give up |
-| Documents are missing, blurry, wrong or expired | Deficiency notices and delays |
-| Names or dates do not match across documents | Extra rounds of checking |
+| Eligibility rules are unclear | Wrong applications, or students give up |
+| Documents are blurry, missing, wrong or expired | Deficiency notices and delays |
+| Names or dates don't match across documents | Extra rounds of checking |
 | Officers check the same things by hand | Heavy workload, slow results |
-| Status only says "Processing" | Students worry and keep asking |
-| Language and internet problems | Students in remote areas are left out |
-| The Ministry cannot see where the process fails | Same problems repeat every year |
+| Status only says *"Processing"* | Students worry and keep asking |
+| Language and low-internet barriers | Remote-area students are left out |
+| Ministry can't see where the process fails | Same problems repeat every year |
 | Little help after selection | Renewals and reports are missed |
- 
-These match the official problem statement: AI and document intelligence, eligibility checks, human oversight, communication, and end-to-end management after selection.
- 
+
+These map directly to **SIH26239**: AI and document intelligence, eligibility checks, human oversight, communication, and end-to-end management after selection.
+
 ---
- 
-## 4. Our Solution
- 
-AAROHAN has four parts. They work as one flow, not as separate tools.
- 
-| Part | What it includes |
+
+## 💡 2. What is AAROHAN?
+
+A helper layer on top of the National Scholarship Portal. It does **not** replace NSP. It guides students, checks documents, and supports officers.
+
+```mermaid
+flowchart LR
+    A[Discover] --> B[Understand] --> C[Prepare] --> D[Verify] --> E[Apply] --> F[Fix] --> G[Track] --> H[Succeed]
+```
+
+### 🎯 Core idea: Detect → Explain → Fix → Recheck
+Most systems find problems **after** submission. AAROHAN finds them **before**: missing, blurry, wrong-type or expired documents, name or date-of-birth mismatch, incomplete form, missing signature or page.
+
+### Who benefits
+
+| Role | How AAROHAN helps |
 |---|---|
-| **Discover & Understand** | Scholarship finder, matching, clear eligibility, readiness score, application help |
-| **Prepare & Verify** | Document reading (OCR), document type detection, quality check, mismatch detection, problem fixing |
-| **Review & Track** | Officer review with AI help, case summary, human checks, status timeline, messages |
-| **Access & Improve** | Many languages, accessibility, low-internet mode, Ministry analytics, process insights, post-selection support |
- 
-**How they connect:** eligibility and document results create the *readiness score*. Problems found become *Fix My Application* steps. Verified proof feeds the *officer's case summary*. Officer results and repeated problems feed *Ministry analytics*. The analytics create *advice to improve the process*, which helps future students.
- 
+| **Student** | Finds the right scheme, understands the rules, fixes document issues before submitting, tracks status in their own language |
+| **Officer / Verifier** | Sees an AI case summary, extracted data, proof and confidence. Less repeated manual work |
+| **Ministry / Admin** | Sees KPIs, bottlenecks and repeated problems. Manages scheme rules. Views the audit trail |
+
+### ✨ Key features
+
+| Area | Features |
+|---|---|
+| **Discover & Understand** | Scholarship finder with reasons, explainable eligibility, readiness score, guided application, how-to videos and FAQs |
+| **Prepare & Verify** | OCR (printed, handwritten, multilingual), document classification, quality check, structured extraction, mismatch detection, **Fix My Application** |
+| **Review & Track** | Officer verification queue, AI case summary, human-in-the-loop review, plain-language status timeline, notifications |
+| **Access & Improve** | English and Hindi (more later), screen-reader and keyboard support, voice, low-bandwidth mode, mobile document scanning |
+| **Ministry & Support** | Analytics funnel, state and district trends, process insights, grievance workflow, post-selection and renewal tracking, audit logs |
+| **Saathi (Scholarship Copilot)** | RAG assistant that answers **only** from official documents, with sources |
+
+### 🧩 Explainable eligibility (example)
+
+Eligibility comes from **official rules stored in the database**, never from an AI guess.
+
+| Requirement | Student's value | Result | Proof |
+|---|---|---|---|
+| ST category | ST | Met | Category certificate |
+| Academic qualification | Eligible course | Met | Marksheet |
+| Income limit | Within limit | Met | Income certificate |
+
+If a rule isn't met, we say so kindly, show the requirement and the student's value, and suggest other schemes that may fit.
+
+### 📊 Application Readiness (example: 86%)
+
+An open estimate from five visible factors: eligibility completeness, document completeness, document quality, profile consistency, application completeness. It answers: *"If I submit now, how likely am I to face an avoidable deficiency?"* It is **not** government approval.
+
+### 🛠️ Fix My Application (example)
+
+- **Problem:** Income certificate could not be verified with confidence.
+- **Why:** The photo is partly blurred.
+- **Fix:** Retake in good light, keep the whole page in view, avoid shadows, upload a clear image or PDF.
+- **Recheck:** Checks re-run automatically and the readiness score updates.
+
 ---
- 
-## 5. Core Idea
- 
-> **Prevent scholarship application failures before they happen.**
- 
-Most systems find problems **after** the student submits. AAROHAN finds them **before**.
- 
-```
-Detect  →  Explain  →  Fix  →  Recheck
-```
- 
-Problems we catch early: missing document · blurry document · wrong document type · expired document · name mismatch · date of birth mismatch · incomplete form · missing signature · missing page.
- 
-For each problem, AAROHAN tells the student what went wrong, why, and exactly how to fix it.
- 
----
- 
-## 6. Key Features
- 
-| Feature | What it does | Who benefits |
-|---|---|---|
-| Scholarship Discovery | Shows schemes that match the student, with reasons | Student |
-| Explainable Eligibility | Checks each rule and shows the result with proof | Student, Officer |
-| Scholarship Readiness | Gives a clear "application readiness estimate" | Student |
-| Application Assistance | Guided form with help on each step | Student |
-| AI Document Intelligence | Full pipeline to read and check documents | Student, Officer |
-| OCR | Reads printed, handwritten and multilingual text | Student, Officer |
-| Document Classification | Detects what type of document was uploaded | Student, Officer |
-| Document Quality Check | Scores blur, brightness, crop, glare, rotation | Student |
-| Structured Data Extraction | Pulls fields with confidence, page and location | Officer |
-| Mismatch Detection | Flags possible differences between documents | Student, Officer |
-| Deficiency Resolution | Tracks problems and re-submission | Student, Officer |
-| Fix My Application | Detect, explain, fix, recheck | Student |
-| Human-in-the-Loop Verification | Sends unsure cases to officers | Officer |
-| AI-Assisted Officer Review | Shows evidence and a suggested next step | Officer |
-| AI Case Summary | One-screen summary of a case | Officer |
-| Transparent Tracking | Timeline in plain language | Student |
-| Scholarship Copilot | Assistant that knows the student's own application | Student |
-| RAG Information Assistant | Answers only from official documents, with sources | Student |
-| Multilingual Support | English and Hindi first, more languages later | Student |
-| Accessibility | Keyboard use, screen readers, high contrast, text size | Student |
-| Voice Assistance | Optional voice input and output | Student |
-| Low-Bandwidth Mode | Small uploads, retry queue, local drafts | Student |
-| Mobile Document Scanning | Camera capture, crop, rotate, quality check | Student |
-| How-to-Apply Guidance | Short videos, steps, common mistakes, FAQs | Student |
-| Deadline Intelligence | Calendar and reminders using official dates only | Student |
-| Notifications | In-app, email and SMS through a provider layer | All |
-| Grievance Workflow | Report, track and resolve issues | Student, Officer |
-| Post-Selection Management | Award details, renewals, reports, milestones | Student, Ministry |
-| Ministry Analytics | Funnel, state and district trends, KPIs | Ministry |
-| Process Intelligence | Turns repeated problems into advice | Ministry |
-| Deficiency Intelligence | Groups deficiency and rejection reasons | Ministry |
-| Audit Logs | Records every important action | Officer, Ministry |
-| Security & Role-Based Access | Each role sees only what it needs | All |
- 
-**Proposed extensions (all Planned):** DigiLocker and API Setu checks, QR code and digital signature checks, tamper-suspicion signals, duplicate claim detection across schemes, an NSP sync and PFMS/DBT payment **simulator**, and a Flutter offline-first mobile app with Sarvam AI voice. These signals never accuse a student. They only send the case to a human.
- 
----
- 
-## 7. User Journey
- 
+
+## 📸 Screenshots
+
+- **Landing:** entry screen with one-tap demo and a sample student
+- **Student Dashboard:** personalized scholarship matches and profile completeness
+- **Scholarship Finder:** search and filter schemes, with eligibility reasons
+- **Explainable Eligibility:** every rule checked against the student's profile
+- **Saathi Copilot:** assistant that explains schemes and documents, never decides eligibility
+- **Application Tracking:** status timeline, deficiency alerts and Fix My Application guidance (Hindi UI)
+- **Officer Dashboard:** live verification queue with scrutiny and selection overview
+- **Ministry Analytics:** aggregate KPIs and deficiency insights, with no personal data
+
+<img width="1600" height="1520" alt="WhatsApp Image 2026-09-30 at 5 34 34 PM (1)" src="https://github.com/user-attachments/assets/ae1bbe0f-9a17-44c5-a89b-ec6746aff6d5" />
+
+## ⚙️ 3. How does it work?
+
+### 🏗️ System architecture
+
 ```mermaid
 flowchart TD
-    A[Student opens AAROHAN] --> B[Discover scholarship]
-    B --> C[Check eligibility]
-    C --> D[Prepare application]
-    D --> E[Upload documents]
-    E --> F[AI and OCR checks]
-    F --> G{Problem found?}
-    G -- Yes --> H[Fix My Application]
-    H --> I[Upload again and recheck]
-    I --> F
-    G -- No --> J[Application readiness]
-    J --> K[Submit]
-    K --> L[Officer verification]
-    L --> M{Low confidence or conflict?}
-    M -- Yes --> N[Mandatory human review]
-    M -- No --> O[Routine verification]
-    N --> P[Selection]
-    O --> P
-    P --> Q[Track status]
-    Q --> R[Post-selection and fellowship management]
-```
- 
----
- 
-## 8. Who Uses It
- 
-| Role | Main screens | What they can do |
-|---|---|---|
-| **Student / Applicant** | Dashboard, Finder, Document Center, Readiness, Copilot | Find schemes, check eligibility, upload or scan documents, fix problems, submit, track, raise grievances, manage tasks after selection |
-| **Officer / Verifier** | Verification queue, case file, evidence viewer | See the queue, inspect documents and OCR results, read the AI summary, approve, reject, ask for correction, escalate, add notes |
-| **Ministry / Admin** | Analytics, scheme and rules management, audit logs | See KPIs and trends, find bottlenecks, set scheme rules, view the audit trail, monitor the system |
- 
-Each role has its own screens and its own permissions.
- 
----
- 
-## 9. Technical Architecture
- 
-```mermaid
-flowchart TD
-    subgraph Client
-        FE[Web app - Next.js / React]
-        MOB[Mobile-first camera and Lite Mode]
-    end
-    FE --> API[Backend API - FastAPI]
-    MOB --> API
-    API --> SVC[Application services]
-    SVC --> RULES[Rules engine]
-    SVC --> AI[AI services: explanation, summary, Copilot]
-    SVC --> OCR[Document and OCR services]
-    SVC --> JOBS[Background job queue]
+    FE["Web App<br/>Next.js / React"] --> API["Backend API<br/>FastAPI"]
+    MOB["Mobile-first camera<br/>+ Lite Mode"] --> API
+    API --> RULES["Rules Engine<br/>(eligibility)"]
+    API --> AI["AI Services<br/>explain · summarize · Copilot"]
+    API --> OCR["Document + OCR Services"]
+    API --> JOBS["Background Job Queue"]
     JOBS --> OCR
-    RULES --> DB[(PostgreSQL)]
+    RULES --> DB[("PostgreSQL + pgvector")]
     AI --> DB
     OCR --> DB
-    OCR --> STORE[(Private file storage)]
-    DB --> AN[Analytics and process insights]
+    OCR --> STORE[("Private File Storage")]
+    DB --> AN["Analytics & Process Insights"]
     AN --> FE
 ```
- 
-**Why this design:** the UI has no business logic, rules are stored in the database, and slow work (OCR) runs in the background so the screen never freezes.
- 
----
- 
-## 10. Technology Stack
- 
-"Planned" means the technology is our target. Change it to "Implemented" only after checking the code.
- 
-| Layer | Technology | Purpose | Status |
-|---|---|---|---|
-| Frontend | Next.js, React, TypeScript | User interface | Planned (verify) |
-| Styling | Tailwind CSS | Design system | Planned (verify) |
-| Backend | Python, FastAPI | APIs and AI services | Planned (verify) |
-| Database | PostgreSQL | Relational data | Planned (verify) |
-| Storage | Supabase Storage or S3-compatible | Private documents | Planned |
-| OCR | PaddleOCR | Printed and multilingual text | Planned |
-| OCR fallback | Tesseract | Backup OCR | Planned |
-| Handwriting | TrOCR | Handwritten text | Planned |
-| Image processing | OpenCV, Pillow | Clean up images before OCR | Planned |
-| AI | Configurable LLM provider (Gemini, OpenAI or similar) | Explanations, summaries, Copilot | Planned |
-| RAG | pgvector | Search official documents | Planned |
-| Mobile app | Flutter, SQLite | Offline-first app | Proposed |
-| Voice | Sarvam AI | Indian-language voice | Proposed |
- 
----
- 
-## 11. How We Use AI
- 
-**One simple rule: the AI never decides eligibility.**
- 
-```
-AI            → reads, explains, classifies, summarizes
-Rules engine  → decides eligibility
-Human officer → makes the final decision
-```
- 
-**Eligibility**
- 
+
+**Design choices:** no business logic in the UI, rules live in the database, and slow work (OCR) runs in the background so the screen never freezes.
+
+### 🔑 Golden rule: the AI never decides eligibility
+
+| Component | Role |
+|---|---|
+| **AI** | Reads, explains, classifies, summarizes |
+| **Rules engine** | Decides eligibility from official rules |
+| **Human officer** | Makes the final decision |
+
+### 📄 Document intelligence pipeline
+
 ```mermaid
 flowchart LR
-    A[Student profile] --> C[Rules engine]
-    B[Official scheme rules] --> C
-    C --> D[Eligibility result]
-    D --> E[AI explanation]
+    A[Upload] --> B[Clean image] --> C[Classify] --> D[OCR] --> E[Extract fields] --> F[Validate] --> G[Match across docs] --> H[Confidence score] --> I{Confident?}
+    I -- Yes --> J[Verified data]
+    I -- No --> K[Human review]
 ```
- 
-**Documents**
- 
-```mermaid
-flowchart LR
-    A[Document] --> B[Clean image] --> C[Classify] --> D[OCR] --> E[Extract fields] --> F[Normalize] --> G[Validate] --> H[Match across documents] --> I[Confidence score] --> J[Human review]
-```
- 
-**Scholarship Copilot (RAG)**
- 
-```mermaid
-flowchart LR
-    A[Official documents] --> B[Split into chunks] --> C[Embeddings] --> D[Vector search] --> E[Relevant context] --> F[LLM] --> G[Answer with source]
-```
- 
-**Copilot rules**
-- Use only the retrieved official information.
-- Never invent eligibility rules, deadlines or amounts.
-- Never approve or reject an application.
-- If unsure, say: *"I couldn't verify this from the available official information."*
-- If document checking is unsure, ask for human review.
-**Why this is better:** rules can be audited, answers come with sources, uncertainty is visible, and humans keep the final say.
- 
-**Demo AI Mode:** if no AI service is available, the app uses fixed sample outputs so the demo still works. These are always labelled as demo data.
- 
----
- 
-## 12. OCR and Document Checking
- 
-```mermaid
-flowchart TD
-    A[Upload] --> B[Check file type and size]
-    B --> C[Convert PDF or image]
-    C --> D[Clean image: rotate, straighten, remove noise, improve contrast]
-    D --> E[Detect document type]
-    E --> F[Detect layout]
-    F --> G{Printed or handwritten?}
-    G -- Printed --> H[PaddleOCR]
-    H -->|low confidence| I[Tesseract backup]
-    G -- Handwritten --> J[TrOCR on text-line areas]
-    H --> K[Extract fields]
-    I --> K
-    J --> K
-    K --> L[Normalize values]
-    L --> M[Validate]
-    M --> N[Match across documents]
-    N --> O[Confidence score]
-    O --> P{Confident?}
-    P -- No --> Q[Human review]
-    P -- Yes --> R[Verified data]
-```
- 
+
 | Tool | Job |
 |---|---|
 | **PaddleOCR** | Main OCR for printed and multilingual text, with text boxes |
-| **Tesseract** | Backup OCR and language-specific reading |
-| **TrOCR** | Handwritten text, used only on cropped handwriting lines |
-| **OpenCV** | Straighten, fix perspective, remove shadows, improve contrast |
-| **Pillow** | Resize, convert and compress images |
- 
-**Good to know**
-- The original document is never changed. We store the cleaned OCR copy separately.
-- Every extracted field has a **value, confidence, page, box location and method**.
-- The quality score checks blur, size, brightness, contrast, crop, glare, shadows, rotation and duplicate pages. It always shows the reason for the score.
-- The OCR engine sits behind one service (`OCRService`), so any engine can be swapped later.
----
- 
-## 13. Explainable Eligibility
- 
-Eligibility comes from **official rules stored in the database**. It does not come from an AI guess, and it is not hardcoded in the UI.
- 
-| Requirement | Your information | Result | Proof |
-|---|---|---|---|
-| ST category | ST | ✓ | Category certificate |
-| Academic qualification | Eligible course | ✓ | Marksheet |
-| Income limit | Within limit | ✓ | Income certificate |
-| Course | Eligible course | ✓ | Application |
- 
-Every result tells the student:
-1. What we checked
-2. Why they seem eligible or not
-3. What is still missing
-4. What to do next
-If a rule is not met, we say so kindly. We show the requirement, the student's value, and other schemes that may fit. We never invent rules.
- 
----
- 
-## 14. Application Readiness
- 
-**Application Readiness: 86%**
-*This is an estimate to help the student. It is not government approval.*
- 
-| Factor | Question |
-|---|---|
-| Eligibility completeness | Do we have all information needed for the rules? |
-| Document completeness | How many required documents are uploaded? |
-| Document quality | Are documents clear and complete? |
-| Profile consistency | Do names and dates match across documents? |
-| Application completeness | Is the form fully filled? |
- 
-The score is calculated in the open from these five factors, and each factor is shown. It answers one question: *"If I submit now, how likely am I to face an avoidable deficiency?"*
- 
----
- 
-## 15. Fix My Application
- 
-```
-Detect → Explain → Fix → Recheck
-```
- 
-**Example**
- 
-- **Problem:** Your income certificate could not be verified with confidence.
-- **Why:** The photo is partly blurred.
-- **How to fix:**
-  1. Retake the photo in good light.
-  2. Keep the whole page in view.
-  3. Avoid shadows.
-  4. Upload a clear image or PDF.
-- **Upload again:** Checks run again by themselves and the readiness score updates.
----
- 
-## 16. Humans Stay in Charge
- 
-AI helps officers. It does not replace them.
- 
+| **Tesseract** | Backup OCR when confidence is low |
+| **TrOCR** | Handwriting, on cropped text-line areas only |
+| **OpenCV / Pillow** | Straighten, remove shadows, improve contrast, resize, compress |
+
+- The **original document is never changed**. A cleaned OCR copy is stored separately.
+- Every extracted field stores **value, confidence, page, box location and method**.
+- The quality score checks blur, brightness, contrast, crop, glare, shadows, rotation and duplicate pages, and always shows the reason.
+
+### 🧑‍⚖️ Humans stay in charge
+
 | AI confidence | What happens |
 |---|---|
 | High | Routine verification queue |
 | Medium | Officer review |
 | Low, or documents conflict | Mandatory human review |
- 
-For every case, an officer can see:
-- the original document
-- the OCR text
-- the extracted fields and confidence
-- the page and box location of each value
-- the rule that was used
-- all earlier actions
-Differences between documents are shown as **"Potential inconsistency – human review required"**. We never call it fraud.
- 
----
- 
-## 17. Security and Privacy
- 
+
+Officers see the original document, OCR text, fields with confidence, box locations, the rule used and all earlier actions. Differences are labelled **"Potential inconsistency – human review required"**. We never call it fraud.
+
+### 🤖 Saathi (Scholarship Copilot) rules
+Uses only retrieved official information · never invents rules, deadlines or amounts · never approves or rejects · if unsure, says *"I couldn't verify this from the available official information."*
+
+**Demo AI Mode:** if no AI service is available, fixed sample outputs are used, always labelled as demo data.
+
+### 🔐 Security and privacy
+
 | Area | What we do |
 |---|---|
-| Access | Role-based access, least privilege |
-| Login | Secure sessions or tokens, safe password hashing |
-| Authorization | Checked on every API call |
-| Documents | Private storage and short-lived signed links |
+| Access | Role-based access, least privilege, checked on every API call |
+| Documents | Private storage, short-lived signed links |
 | Uploads | File type and size checks, malware-scan hook |
-| Network | HTTPS only |
-| Abuse | Rate limiting and input validation |
-| Secrets | Kept in environment variables, never in frontend code |
+| Network & abuse | HTTPS only, rate limiting, input validation |
+| Secrets | Environment variables only, never in frontend code |
 | Accountability | Audit log for important actions |
-| Data | Only needed personal data. Demo mode uses fake data only |
- 
+| Data | Only needed personal data. Demo mode uses fake data |
+
+### 🗄️ Data and API (target design)
+
+- **Database:** `users`, `student_profiles`, `scholarships`, `scholarship_rules`, `applications`, `documents`, `document_extractions`, `document_quality_results`, `document_mismatches`, `eligibility_results`, `deficiencies`, `ai_reviews`, `officer_reviews`, `application_timeline`, `grievances`, `notifications`, `audit_logs`, `fellowship_records`, `knowledge_chunks` and more.
+- **Main routes:** `/auth` · `/scholarships` · `/eligibility/check` · `/applications/{id}/readiness` · `/documents/upload` · `/documents/{id}/ocr|verify|quality|mismatch` · `/ai/chat` · `/ai/case-summary` · `/grievances` · `/admin/analytics` · `/admin/audit-logs`
+
 ---
- 
-## 18. Database
- 
-Main tables: `users`, `roles`, `student_profiles`, `officer_profiles`, `scholarships`, `scholarship_rules`, `eligibility_rules`, `applications`, `application_steps`, `documents`, `document_types`, `document_extractions`, `document_quality_results`, `document_mismatches`, `eligibility_results`, `deficiencies`, `notifications`, `grievances`, `audit_logs`, `ai_reviews`, `officer_reviews`, `application_timeline`, `fellowship_records`, `knowledge_documents`, `knowledge_chunks`, `system_settings`.
- 
-```mermaid
-erDiagram
-    USERS ||--o| STUDENT_PROFILES : has
-    USERS ||--o| OFFICER_PROFILES : has
-    SCHOLARSHIPS ||--o{ SCHOLARSHIP_RULES : defines
-    STUDENT_PROFILES ||--o{ APPLICATIONS : submits
-    SCHOLARSHIPS ||--o{ APPLICATIONS : receives
-    APPLICATIONS ||--o{ DOCUMENTS : contains
-    DOCUMENT_TYPES ||--o{ DOCUMENTS : classifies
-    DOCUMENTS ||--o{ DOCUMENT_EXTRACTIONS : yields
-    DOCUMENTS ||--o{ DOCUMENT_QUALITY_RESULTS : scored_by
-    APPLICATIONS ||--o{ DOCUMENT_MISMATCHES : flags
-    APPLICATIONS ||--o{ ELIGIBILITY_RESULTS : evaluated_by
-    APPLICATIONS ||--o{ DEFICIENCIES : raises
-    APPLICATIONS ||--o{ AI_REVIEWS : summarized_by
-    APPLICATIONS ||--o{ OFFICER_REVIEWS : reviewed_by
-    APPLICATIONS ||--o{ APPLICATION_TIMELINE : tracks
-    APPLICATIONS ||--o| FELLOWSHIP_RECORDS : leads_to
-    USERS ||--o{ AUDIT_LOGS : performs
-    USERS ||--o{ NOTIFICATIONS : receives
-    USERS ||--o{ GRIEVANCES : raises
-    KNOWLEDGE_DOCUMENTS ||--o{ KNOWLEDGE_CHUNKS : split_into
-```
- 
----
- 
-## 19. API
- 
-This is the target design. Mark a route **Implemented** only after you confirm it exists.
- 
-| Route | Purpose | Status |
+
+## 🧰 4. What is our tech stack?
+
+| Layer | Technology | Purpose |
 |---|---|---|
-| `/auth`, `/users`, `/students` | Login and profiles | Planned |
-| `/scholarships`, `/scholarships/{id}` | Find and view schemes | Planned |
-| `/eligibility/check` | Rule-based eligibility | Planned |
-| `/applications`, `/applications/{id}` | Applications | Planned |
-| `/applications/{id}/readiness` | Readiness score | Planned |
-| `/documents/upload` | Upload and start processing | Planned |
-| `/documents/{id}/ocr`, `/verify`, `/quality`, `/mismatch` | Document checks | Planned |
-| `/ai/chat`, `/ai/case-summary` | Copilot and officer summary | Planned |
-| `/notifications`, `/grievances` | Messages and complaints | Planned |
-| `/admin/applications`, `/admin/analytics`, `/admin/audit-logs` | Officer and Ministry tools | Planned |
- 
+| **Frontend** | Next.js, React, TypeScript | User interface |
+| **Styling** | Tailwind CSS | Design system |
+| **Backend** | Python, FastAPI | APIs and AI services |
+| **Database** | PostgreSQL | Relational data |
+| **RAG** | pgvector | Search official documents |
+| **Storage** | Supabase Storage / S3-compatible | Private documents |
+| **OCR** | PaddleOCR, Tesseract, TrOCR | Printed, backup, handwritten |
+| **Image processing** | OpenCV, Pillow | Clean images before OCR |
+| **AI / LLM** | Configurable provider (Gemini, OpenAI or similar) | Explanations, summaries, Copilot |
+| **Proposed** | Flutter + SQLite, Sarvam AI | Offline-first app, Indian-language voice |
+
 ---
- 
-## 20. Project Structure
- 
-This is the target layout. Replace it with your real folders (run `tree /F` in PowerShell).
- 
+
+ 5. How do we run it?
+
+```bash
+# 1. Clone
+git clone https://github.com/<your-org>/aarohan.git
+cd aarohan
+
+# 2. Backend
+cd backend
+python -m venv venv && source venv/bin/activate     # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env                                 # add your keys
+uvicorn app.main:app --reload                        # http://localhost:8000
+
+# 3. Frontend (new terminal)
+cd frontend
+npm install
+cp .env.example .env.local
+npm run dev                                          # http://localhost:3000
 ```
-frontend/       Web app: pages, components, features, translations
-backend/        FastAPI app: api, models, schemas, services, rules, ai, ocr, workers
-database/       Migrations and seed data
-docs/           Architecture, API, AI and demo notes
-tests/          Unit, integration and end-to-end tests
-demo_assets/    Fake demo documents and data
+
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection |
+| `STORAGE_URL` / `STORAGE_KEY` | Private document storage |
+| `LLM_API_KEY` | AI provider key |
+| `DEMO_AI_MODE=true` | Use labelled sample outputs if no AI key is available |
+
+### 📁 Project structure
+
+```text
+aarohan/
+├── frontend/                  # Next.js + React + TypeScript + Tailwind
+│   ├── app/
+│   │   ├── (student)/         # Dashboard, Finder, Applications, Saathi, Profile
+│   │   ├── (officer)/         # Dashboard, Queue, Scrutiny, Selection, Grievances
+│   │   └── (ministry)/        # Analytics, Audit Trail, Integrations
+│   ├── components/            # Reusable UI (cards, timeline, readiness, uploader)
+│   ├── lib/                   # API client, i18n (English/Hindi), helpers
+│   └── public/                # Icons, images, fonts
+├── backend/                   # Python + FastAPI
+│   ├── app/
+│   │   ├── main.py            # App entry point
+│   │   ├── api/               # Routes: auth, scholarships, eligibility, documents, admin
+│   │   ├── rules/             # Deterministic eligibility engine
+│   │   ├── ocr/               # OCRService: PaddleOCR, Tesseract, TrOCR, OpenCV
+│   │   ├── ai/                # Explanations, case summary, Saathi (RAG)
+│   │   ├── services/          # Readiness, mismatch detection, notifications
+│   │   ├── models/            # Database models
+│   │   ├── schemas/           # Request and response schemas
+│   │   └── core/              # Config, security, audit logging
+│   ├── tests/
+│   └── requirements.txt
+├── .env.example
+└── README.md
 ```
- 
+
+###  Demo flow (for judges)
+
+1. Log in as **Student** → find a scholarship → see eligibility with proof
+2. Upload a blurry income certificate → **Fix My Application** explains and guides
+3. Re-upload → readiness score rises
+4. Submit → log in as **Officer** → read the AI case summary and evidence
+5. Log in as **Ministry** → view analytics and repeated-problem insights
+
 ---
- 
-## 21. Team
+
+## 👥 6. Who is on the team?
 
 | Role | Name | Technical Contribution |
 |---|---|---|
-| **Team Leader** | **Divya** | AI/ML, System Architecture, End-to-End Integration & Team Coordination |
-| **AI/ML Engineer** | **Sara Sahni** | OCR, Document Intelligence & AI-based Document Verification |
-| **AI/ML Engineer** | **Rishabh Kumar Singh** | Eligibility Intelligence, Application Readiness & AI-assisted Analysis |
-| **Backend Engineer** | **Ayush Kumar Gupta** | Backend APIs, Database Design & Application Workflow |
-| **Backend Engineer** | **Shubham Raj** | Backend Services, API Integration & System Workflow |
-| **AI/ML Engineer** | **Vyom Soni** | OCR, NLP, Information Extraction & Document Mismatch Detection |
- 
+| Team Leader | **Divya** | AI/ML, System Architecture, End-to-End Integration and Team Coordination |
+| AI/ML Engineer | **Sara Sahni** | OCR, Document Intelligence and AI-based Document Verification |
+| AI/ML Engineer | **Rishabh Kumar Singh** | Eligibility Intelligence, Application Readiness and AI-assisted Analysis |
+| Backend Engineer | **Ayush Kumar Gupta** | Backend APIs, Database Design and Application Workflow |
+| Backend Engineer | **Shubham Raj** | Backend Services, API Integration and System Workflow |
+| AI/ML Engineer | **Vyom Soni** | OCR, NLP, Information Extraction and Document Mismatch Detection |
+
 ---
- 
-## 22. SIH Information
- 
-| Field | Details |
-|---|---|
-| Hackathon | Smart India Hackathon 2026 |
-| Problem Statement ID | SIH26239 |
-| Organization | Ministry of Tribal Affairs |
-| Theme | Smart Education |
-| Category | Software |
-| Project | AAROHAN |
-| Type | AI-powered Scholarship & Fellowship Platform |
- 
+
+## 🔭 7. What's next?
+
+### Future scope
+- **DigiLocker / API Setu** verification, QR code and digital-signature checks
+- Tamper-suspicion signals and **duplicate-claim detection** across schemes *(these only route cases to a human, they never accuse a student)*
+- **NSP sync** and PFMS/DBT payment **simulator**
+- **Flutter offline-first app** with Indian-language voice (Sarvam AI)
+- More regional and tribal languages
+- Smarter Ministry advice from repeated deficiency patterns
+
+### How can we improve it?
+- Train OCR and handwriting models on real Indian document samples
+- Tune confidence thresholds with officer feedback
+- Expand the scheme rule library with state-level scholarships
+- Add SMS and IVR for students with limited internet
+
+### Limitations
+- Readiness score is an estimate, not government approval
+- Some features are planned and not yet implemented
+- Demo uses fake data only
+
 ---
- 
-## 23. Demo Flow
- 
-1. A student opens AAROHAN and picks a language.
-2. The student finds a matching scholarship.
-3. The student checks eligibility and sees every rule explained.
-4. The student starts the application.
-5. The student uploads documents.
-6. OCR reads them and extracts the fields.
-7. The system finds a name mismatch.
-8. **Fix My Application** explains what happened and how to fix it.
-9. The student uploads a corrected document.
-10. Readiness goes up (for example, to 96%).
-11. An officer opens the case and sees the AI summary, proof, confidence and timeline.
-12. A low-confidence document goes to mandatory human review.
-13. The Ministry dashboard shows the most common application problems.
-14. Process intelligence suggests a fix, such as clearer income-certificate guidance.
-All demo data is fake. Demo users: Demo Student, Demo Officer, Demo Ministry Admin.
- 
----
- 
-## 24. Why AAROHAN Is Different
- 
-| What we do | Why it matters |
-|---|---|
-| Scholarship Readiness | Students know their chances before submitting |
-| Explainable Eligibility | Students see reasons, not just "eligible" |
-| Preventive Document Checks | Problems are caught early |
-| Fix My Application | Clear steps to correct mistakes |
-| Confidence-aware Human Review | Unsure cases always reach a human |
-| Evidence-based Officer Review | Every AI suggestion links to proof |
-| Deficiency Intelligence | Repeated problems are counted and grouped |
-| Process Intelligence | Bottlenecks turn into advice |
-| Multilingual and Accessible UX | More students can use it |
-| Low-Bandwidth Support | Works with weak internet |
-| Post-Selection Journey | Help continues after selection |
- 
-**From application processing to application readiness.**
- 
----
- 
-## 25. Current Status
- 
-Update this table from your real code.
- 
-| Feature | Status |
-|---|---|
-| Scholarship discovery and eligibility | Planned (verify) |
-| Rules engine stored in database | Planned (verify) |
-| Application form and drafts | Planned (verify) |
-| Document upload | Planned (verify) |
-| OCR (PaddleOCR, Tesseract, TrOCR) | Planned (verify) |
-| Quality score and mismatch detection | Planned (verify) |
-| Readiness score and Fix My Application | Planned (verify) |
-| Officer queue and case file | Planned (verify) |
-| Audit logs and timeline | Planned (verify) |
-| Ministry analytics and process insights | Planned (verify) |
-| Copilot and RAG | Planned |
-| English and Hindi | Planned (verify) |
-| Voice, Lite Mode, mobile scanning | Planned |
-| Post-selection management | Planned |
-| DigiLocker, tamper signals, duplicate checks, PFMS simulator, Flutter app | Proposed |
- 
-**Implemented:** _fill in_ · **In Progress:** _fill in_ · **Planned:** the rest.
- 
----
- 
-## 26. Setup
- 
-These commands are a template for Windows PowerShell. Change them to match your real scripts.
- 
-**You need:** Git, Node.js 20+, Python 3.11+, PostgreSQL 15+ (with pgvector for RAG), and Tesseract installed and added to `PATH`.
- 
-```powershell
-# 1. Get the code
-git clone <your-repository-url>
-cd <repository-folder>
- 
-# 2. Backend
-cd backend
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-Copy-Item ..\.env.example ..\.env    # then edit .env
-uvicorn app.main:app --reload --port 8000
- 
-# 3. Frontend (open a new terminal)
-cd frontend
-npm install
-npm run dev
-```
- 
-**Database:** create a PostgreSQL database, set `DATABASE_URL`, run the migrations (for example `alembic upgrade head`), then load demo data from `database/seeds`.
- 
-**OCR:** PaddleOCR and TrOCR download their models the first time they run, so you need internet once. If they are missing, the system falls back to Tesseract.
- 
-**AI:** set `AI_API_KEY`. If you leave it empty, the app runs in **Demo AI Mode**.
- 
-**Build:** `npm run build`
- 
----
- 
-## 27. Environment Variables
- 
-Copy `.env.example` to `.env`. Never commit real values.
- 
-| Variable | What it is for |
-|---|---|
-| `DATABASE_URL` | PostgreSQL connection |
-| `AI_API_KEY` | AI provider key (backend only) |
-| `STORAGE_URL` | File storage address |
-| `STORAGE_KEY` | File storage key |
-| `AUTH_SECRET` | Signs login sessions or tokens |
-| `OCR_SERVICE_URL` | OCR service address, if run separately |
-| `EMAIL_API_KEY` | Email provider key for notifications |
- 
----
- 
-## 28. Testing
- 
-| Type | What it covers | Status |
-|---|---|---|
-| Unit | Eligibility rules, normalization, scoring, validation | Planned (verify) |
-| Integration | Upload, OCR pipeline, submission, officer workflow | Planned |
-| UI / End-to-end | Login, eligibility, upload, submission, tracking | Planned |
-| Security | Unauthorized access, role escalation, document access | Planned |
- 
-```powershell
-cd backend; pytest
-cd frontend; npm test
-```
- 
----
- 
-## 29. Future Scope
- 
-- More Indian languages
-- Better voice assistance
-- Stronger anomaly detection
-- More scholarship schemes
-- Richer analytics
-- Better offline support
-- Improved document models
-- Links to other government systems, only where officially allowed
----
- 
-## 30. Limitations
- 
-AAROHAN is a **hackathon prototype**. It is not ready for production use.
-- Demo data is fake.
-- OCR accuracy depends on document quality and language.
-- The readiness score is an estimate, not an approval.
-- Government integrations are simulated or proposed unless officially allowed and built.
-- The system supports officers. It never replaces them.
----
- 
-## 31. Our Vision
- 
-> AAROHAN aims to make scholarship access simpler for students, verification more efficient for officials, and decision-making more transparent for the Ministry.
- 
-**Discover → Understand → Prepare → Verify → Apply → Fix → Track → Succeed**
- 
-**Prevent scholarship application failures before they happen.**
- 
+
+<div align="center">
+
+**Smart India Hackathon 2026 · SIH26239 · Ministry of Tribal Affairs**
+
+*AAROHAN: because every eligible student deserves to be found.*
+
+</div>
