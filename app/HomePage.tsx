@@ -158,13 +158,18 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-gradient-to-b from-[#0B2545] via-[#0D315D] to-[#0B2545] dark:from-slate-950 dark:via-[#0B2545] dark:to-slate-950 text-white pt-16 pb-20 px-4 sm:px-8 border-b-4 border-[#D98A00]">
         <div className="max-w-7xl mx-auto relative z-10 text-center space-y-6">
           
-          <div className="inline-flex items-center space-x-2 bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner mx-auto">
-            <Landmark className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Ministry of Tribal Affairs - Government of India</span>
+          <div className="flex flex-col items-center justify-center space-y-3">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-white p-2 shadow-2xl border-2 border-emerald-400/40 flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="Aarohan Official Logo" className="w-full h-full object-contain" />
+            </div>
+            <div className="inline-flex items-center space-x-2 bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner mx-auto">
+              <Landmark className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Aarohan: Ministry of Tribal Affairs - Government of India</span>
+            </div>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
-            AI-Enabled Scholarship & Fellowship Management System
+            Aarohan: AI-Enabled Scholarship &amp; Fellowship Management System
           </h1>
 
           <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-3xl mx-auto">

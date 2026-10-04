@@ -18,7 +18,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("tribalscholar_theme") as Theme | null;
+      const stored = (localStorage.getItem("aarohan_theme") || localStorage.getItem("tribalscholar_theme")) as Theme | null;
       if (stored === "dark" || stored === "light") {
         setThemeState(stored);
         if (stored === "dark") {
@@ -39,7 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     try {
-      localStorage.setItem("tribalscholar_theme", newTheme);
+      localStorage.setItem("aarohan_theme", newTheme);
     } catch {
       // ignore
     }

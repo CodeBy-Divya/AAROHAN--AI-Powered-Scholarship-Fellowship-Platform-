@@ -1,4 +1,4 @@
-# TribalScholar: AI-Enabled Scholarship and Fellowship Management System
+# Aarohan: AI-Enabled Scholarship and Fellowship Management System
 
 Unified Digital Portal for the Ministry of Tribal Affairs (MoTA), Government of India.
 
@@ -60,7 +60,7 @@ An integrated, intelligent digital workflow that:
 
 ## About This Application
 
-**TribalScholar** is the production-ready implementation addressing Problem Statement 26239. It bridges students and government officials through an accessible, high-performance web interface designed according to Government of India web standards.
+**Aarohan** is the production-ready implementation addressing Problem Statement 26239. It bridges students and government officials through an accessible, high-performance web interface designed according to Government of India web standards.
 
 The application serves three primary user personas:
 1. **Scheduled Tribe Students / Scholars**: Discover schemes, verify qualification eligibility, test document uploads against AI readability checks, submit applications, track real-time progress, and resolve deficiency notices.
@@ -134,7 +134,7 @@ SC-ST Portal/
 ├── next-env.d.ts                   # Next.js TypeScript declarations
 ├── README.md                       # Complete project documentation
 ├── Problem_Statement.md            # Original SIH 26239 problem statement brief
-├── TribalScholar_Master_Build_Spec.md # Complete architectural and UI specification
+├── Aarohan_Master_Build_Spec.md       # Complete architectural and UI specification
 │
 ├── app/                            # Next.js 14 App Router
 │   ├── layout.tsx                  # Root layout (Header, Chatbot, Footer, Context Providers)
@@ -185,12 +185,12 @@ To download and set up this repository locally:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/<your-username>/tribalscholar-portal.git
+   git clone https://github.com/<your-username>/aarohan-portal.git
    ```
 
 2. **Navigate to the project root**:
    ```bash
-   cd tribalscholar-portal
+   cd aarohan-portal
    ```
    *(Or on Windows, navigate to your designated workspace folder, e.g., `cd "e:\SC-ST Portal"`).*
 

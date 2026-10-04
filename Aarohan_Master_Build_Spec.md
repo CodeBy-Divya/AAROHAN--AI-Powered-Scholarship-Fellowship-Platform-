@@ -1,4 +1,4 @@
-# TribalScholar — Master Build Spec (SIH 2026 · SIH26239)
+# Aarohan — Master Build Spec (SIH 2026 · SIH26239)
 
 > Paste this whole file into your AI coding tool (Antigravity / Cursor / Claude Code) as the first message.
 > Work through it phase by phase. Do not skip the acceptance checks.

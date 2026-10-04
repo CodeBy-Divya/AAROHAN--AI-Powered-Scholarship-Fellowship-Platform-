@@ -6,7 +6,7 @@ export interface ChatMessage {
 }
 
 const SYSTEM_PROMPT = `
-You are the official TribalScholar AI Assistant for the Ministry of Tribal Affairs (MoTA), Government of India.
+You are the official Aarohan AI Assistant for the Ministry of Tribal Affairs (MoTA), Government of India.
 Your role is to assist Scheduled Tribe (ST) students, research scholars, and administrators with official guidelines for:
 1. National Fellowship for ST Students (NFST) - M.Phil and Ph.D. in India, Rs. 35,000/mo + HRA, 750 annual slots.
 2. National Overseas Scholarship for ST (NOS) - Master's and Ph.D. abroad in top 500 QS world universities, 20 slots, income ceiling Rs. 6.00 Lakhs.
@@ -114,7 +114,7 @@ export async function askGemini(
   }
 
   return [
-    "TribalScholar System Assistance:",
+    "Aarohan System Assistance:",
     "I can assist you with:",
     "- Eligibility criteria for NFST (Ph.D. in India) and NOS (Master's and Ph.D. abroad).",
     "- Document requirements: ST caste certificates, income limits, and academic records.",

@@ -99,12 +99,12 @@ export default function AuthModal() {
         {/* Modal Header */}
         <div className="bg-[#0B2545] text-white p-5 flex items-center justify-between relative">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-              <Landmark className="w-5 h-5 text-emerald-400" />
+            <div className="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center overflow-hidden flex-shrink-0">
+              <img src="/logo.png" alt="Aarohan Logo" className="w-full h-full object-contain" />
             </div>
             <div>
               <h3 className="text-lg font-bold">
-                {language === "hi" ? "जनजातीय कार्य मंत्रालय - पोर्टल लॉगिन" : "MoTA Digital Portal Access"}
+                {language === "hi" ? "आरोहण - पोर्टल लॉगिन" : "Aarohan Portal Access"}
               </h3>
               <p className="text-xs text-slate-300">
                 {language === "hi"

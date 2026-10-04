@@ -159,13 +159,13 @@ export default function DashboardLayout({
 
           {/* Logo & Scholarship Portal Name */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#0B2545] dark:bg-slate-800 flex items-center justify-center text-emerald-400 shadow-xs border border-slate-700">
-              <Landmark className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center p-1 shadow-xs border border-slate-200 dark:border-slate-700 overflow-hidden flex-shrink-0">
+              <img src="/logo.png" alt="Aarohan Logo" className="w-full h-full object-contain" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
                 <span className="text-lg font-black tracking-tight text-[#0B2545] dark:text-white">
-                  Tribal<span className="text-emerald-700 dark:text-emerald-400">Scholar</span>
+                  Aarohan
                 </span>
                 <span className="hidden sm:inline-block bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                   MoTA Official

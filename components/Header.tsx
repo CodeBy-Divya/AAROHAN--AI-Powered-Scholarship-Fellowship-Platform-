@@ -138,17 +138,21 @@ export default function Header() {
 
       {/* Main Official Banner & Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
-        {/* Ministry Brand & Landmark Icon */}
+        {/* Ministry Brand & Official Aarohan Logo */}
         <Link href="/" className="flex items-center space-x-3.5 group">
-          <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-mota-navy dark:text-emerald-400 shadow-inner flex-shrink-0 group-hover:border-mota-navy transition-colors">
-            <Landmark className="w-6 h-6 text-mota-navy dark:text-emerald-400" />
+          <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center shadow-xs flex-shrink-0 group-hover:border-mota-navy transition-colors overflow-hidden">
+            <img
+              src="/logo.png"
+              alt="Aarohan Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <div className="flex items-center space-x-2">
               <span className="text-xl sm:text-2xl font-black tracking-tight text-mota-navy dark:text-white">
-                Tribal<span className="text-mota-green dark:text-emerald-400">Scholar</span>
+                Aarohan
               </span>
-              <span className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-300 dark:border-slate-700 uppercase tracking-wider">
+              <span className="bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800 uppercase tracking-wider">
                 MoTA Official
               </span>
             </div>

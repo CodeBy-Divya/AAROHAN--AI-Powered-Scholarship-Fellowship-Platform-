@@ -73,7 +73,7 @@ export default function ContactPage() {
               Official Email Inquiries
             </h3>
             <div className="space-y-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              <p>General Support: <strong>helpdesk-tribalscholar@gov.in</strong></p>
+              <p>General Support: <strong>helpdesk-aarohan@gov.in</strong></p>
               <p>NFST Division: <strong>nfst-scholarship@gov.in</strong></p>
               <p>NOS Overseas Cell: <strong>nos-mota@gov.in</strong></p>
             </div>

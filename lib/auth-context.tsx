@@ -41,14 +41,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Load persisted session from localStorage
   useEffect(() => {
     try {
-      const customUserStr = localStorage.getItem("tribalscholar_custom_user");
-      const storedRole = localStorage.getItem("tribalscholar_role") as "applicant" | "officer" | "ministry" | null;
+      const customUserStr = localStorage.getItem("aarohan_custom_user") || localStorage.getItem("tribalscholar_custom_user");
+      const storedRole = (localStorage.getItem("aarohan_role") || localStorage.getItem("tribalscholar_role")) as "applicant" | "officer" | "ministry" | null;
       if (storedRole === "applicant" && customUserStr) {
         setUser(JSON.parse(customUserStr));
       } else if (storedRole && DEMO_USERS[storedRole]) {
         setUser(DEMO_USERS[storedRole]);
       }
-      const storedLang = localStorage.getItem("tribalscholar_lang") as "en" | "hi" | null;
+      const storedLang = (localStorage.getItem("aarohan_lang") || localStorage.getItem("tribalscholar_lang")) as "en" | "hi" | null;
       if (storedLang) setLanguage(storedLang);
     } catch {
       // ignore
@@ -60,8 +60,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (selectedUser) {
       setUser(selectedUser);
       try {
-        localStorage.setItem("tribalscholar_role", roleKey);
-        localStorage.removeItem("tribalscholar_custom_user");
+        localStorage.setItem("aarohan_role", roleKey);
+        localStorage.removeItem("aarohan_custom_user");
       } catch {
         // ignore
       }
@@ -81,7 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const newUser: UserProfile = {
       id: `ST-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`,
       name: `${details.firstName} ${details.lastName}`.trim(),
-      email: isEmail ? details.contact : `${details.firstName.toLowerCase()}.${details.lastName.toLowerCase()}@tribalscholar.in`,
+      email: isEmail ? details.contact : `${details.firstName.toLowerCase()}.${details.lastName.toLowerCase()}@aarohan.in`,
       phone: isEmail ? "" : details.contact,
       gender: details.gender,
       role: "applicant",
@@ -97,8 +97,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
     setUser(newUser);
     try {
-      localStorage.setItem("tribalscholar_role", "applicant");
-      localStorage.setItem("tribalscholar_custom_user", JSON.stringify(newUser));
+      localStorage.setItem("aarohan_role", "applicant");
+      localStorage.setItem("aarohan_custom_user", JSON.stringify(newUser));
     } catch {
       // ignore
     }
@@ -108,6 +108,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null);
     try {
+      localStorage.removeItem("aarohan_role");
+      localStorage.removeItem("aarohan_custom_user");
       localStorage.removeItem("tribalscholar_role");
       localStorage.removeItem("tribalscholar_custom_user");
     } catch {
@@ -127,7 +129,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const handleSetLanguage = (lang: "en" | "hi") => {
     setLanguage(lang);
     try {
-      localStorage.setItem("tribalscholar_lang", lang);
+      localStorage.setItem("aarohan_lang", lang);
     } catch {
       // ignore
     }

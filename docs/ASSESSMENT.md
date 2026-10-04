@@ -3,7 +3,7 @@
 ## 1. Current State Assessment
 - **Existing Files**: 
   - `Problem_Statement.md`: Ministry of Tribal Affairs (MoTA) Smart Education SIH Problem Statement (26239).
-  - `TribalScholar_Master_Build_Spec.md`: Complete blueprint detailing user journeys, roles, OCR pipelines, and acceptance criteria.
+  - `Aarohan_Master_Build_Spec.md`: Complete blueprint detailing user journeys, roles, OCR pipelines, and acceptance criteria.
 - **Runtimes Detected**:
   - Node.js `v24.15.0`
   - npm `11.12.1`

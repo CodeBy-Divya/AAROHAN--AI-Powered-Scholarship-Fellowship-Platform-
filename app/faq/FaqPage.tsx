@@ -220,7 +220,7 @@ export default function FaqPage() {
     {
       q: "What is the exact role of AI in document verification, and does machine learning make final approval or rejection decisions?",
       answerIntro:
-        "The AI component in TribalScholar is strictly designed as an intelligent pre-verification assistant that supports human oversight, adhering strictly to NITI Aayog's National Strategy for Artificial Intelligence and Ethical Governance standards.",
+        "The AI component in Aarohan is strictly designed as an intelligent pre-verification assistant that supports human oversight, adhering strictly to NITI Aayog's National Strategy for Artificial Intelligence and Ethical Governance standards.",
       points: [
         {
           heading: "Pre-Submission Quality Inspection",

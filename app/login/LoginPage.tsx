@@ -178,16 +178,16 @@ export default function LoginPage() {
         
         {/* Banner Header */}
         <div className="bg-[#0B2545] text-white p-6 sm:p-8 text-center space-y-2 relative">
-          <div className="w-12 h-12 rounded-2xl bg-white/10 mx-auto flex items-center justify-center">
-            <Landmark className="w-6 h-6 text-emerald-400" />
+          <div className="w-14 h-14 rounded-2xl bg-white p-1.5 mx-auto flex items-center justify-center shadow-md overflow-hidden">
+            <img src="/logo.png" alt="Aarohan Logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-xl sm:text-2xl font-black">
-            {language === "hi" ? "जनजातीय कार्य मंत्रालय - पोर्टल लॉगिन" : "Ministry of Tribal Affairs Portal Access"}
+            {language === "hi" ? "आरोहण - पोर्टल लॉगिन" : "Aarohan Portal Access"}
           </h1>
           <p className="text-xs text-slate-300 max-w-md mx-auto">
             {language === "hi"
               ? "सुरक्षित पोर्टल लॉगिन एवं अनुसूचित जनजाति आवेदक पंजीकरण"
-              : "Secure Portal Authentication and Scheduled Tribe Applicant Registration"}
+              : "Ministry of Tribal Affairs - Secure Authentication and ST Registration"}
           </p>
         </div>
 

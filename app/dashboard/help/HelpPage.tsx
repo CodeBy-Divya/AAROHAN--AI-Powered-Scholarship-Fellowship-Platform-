@@ -75,7 +75,7 @@ export default function HelpPage() {
             <Mail className="w-4 h-4" />
           </div>
           <h3 className="text-xs font-bold text-slate-900 dark:text-white">Scholarship Support Email</h3>
-          <p className="text-xs font-bold text-slate-800 dark:text-slate-200 break-all">helpdesk-tribalscholar@gov.in</p>
+          <p className="text-xs font-bold text-slate-800 dark:text-slate-200 break-all">helpdesk-aarohan@gov.in</p>
           <p className="text-[11px] text-slate-500 dark:text-slate-400">Guaranteed 48-Hour Response SLA</p>
         </div>
 

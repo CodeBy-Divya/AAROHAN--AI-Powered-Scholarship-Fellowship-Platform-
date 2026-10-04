@@ -23,7 +23,7 @@ export default function Chatbot() {
     {
       id: "initial-1",
       sender: "bot",
-      text: "Namaste! I am the TribalScholar AI Assistant for the Ministry of Tribal Affairs. How can I assist you with scholarship guidelines, eligibility, or document verification today?",
+      text: "Namaste! I am the Aarohan AI Assistant for the Ministry of Tribal Affairs. How can I assist you with scholarship guidelines, eligibility, or document verification today?",
       timestamp: "Just now",
     },
   ]);
@@ -36,7 +36,7 @@ export default function Chatbot() {
 
   useEffect(() => {
     try {
-      const storedKey = localStorage.getItem("tribalscholar_gemini_key") || process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
+      const storedKey = localStorage.getItem("aarohan_gemini_key") || localStorage.getItem("tribalscholar_gemini_key") || process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
       if (storedKey) {
         setApiKey(storedKey);
       }
@@ -53,7 +53,7 @@ export default function Chatbot() {
 
   const handleSaveApiKey = () => {
     try {
-      localStorage.setItem("tribalscholar_gemini_key", apiKey.trim());
+      localStorage.setItem("aarohan_gemini_key", apiKey.trim());
       setApiKeySavedNotice(true);
       setTimeout(() => setApiKeySavedNotice(false), 2000);
       setShowSettings(false);
@@ -113,7 +113,7 @@ export default function Chatbot() {
         <button
           onClick={() => setIsOpen(true)}
           className="bg-mota-navy hover:bg-mota-navy-dark text-white p-3.5 sm:px-4 sm:py-3.5 rounded-full shadow-2xl flex items-center space-x-2 border-2 border-amber-400 group transition-all hover:scale-105"
-          title="Open TribalScholar AI Assistant"
+          title="Open Aarohan AI Assistant"
         >
           <Bot className="w-5 h-5 text-amber-400 group-hover:rotate-12 transition-transform" />
           <span className="text-xs font-bold hidden sm:inline tracking-wide">
@@ -133,7 +133,7 @@ export default function Chatbot() {
               </div>
               <div>
                 <h3 className="text-xs font-bold tracking-tight">
-                  TribalScholar AI Assistant
+                  Aarohan AI Assistant
                 </h3>
                 <p className="text-[10px] text-emerald-400 flex items-center gap-1 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>

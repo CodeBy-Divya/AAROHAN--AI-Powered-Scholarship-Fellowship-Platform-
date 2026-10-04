@@ -15,11 +15,11 @@ export default function Footer() {
           {/* Col 1: About */}
           <div className="space-y-4 md:col-span-1">
             <div className="flex items-center space-x-2.5">
-              <div className="w-8 h-8 rounded-lg bg-slate-800 dark:bg-slate-900 border border-slate-700 dark:border-slate-800 flex items-center justify-center">
-                <Landmark className="w-4 h-4 text-emerald-400" />
+              <div className="w-9 h-9 rounded-lg bg-white dark:bg-slate-900 border border-slate-700 dark:border-slate-800 p-1 flex items-center justify-center overflow-hidden flex-shrink-0">
+                <img src="/logo.png" alt="Aarohan Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-lg font-bold text-white tracking-tight">
-                Tribal<span className="text-emerald-400">Scholar</span>
+                Aarohan
               </span>
             </div>
             <p className="text-xs text-slate-300 dark:text-slate-400 leading-relaxed">
@@ -118,7 +118,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-3.5 h-3.5 text-emerald-400" />
-                <span>helpdesk-tribalscholar@gov.in</span>
+                <span>helpdesk-aarohan@gov.in</span>
               </div>
               <div className="flex items-start space-x-2">
                 <Shield className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />

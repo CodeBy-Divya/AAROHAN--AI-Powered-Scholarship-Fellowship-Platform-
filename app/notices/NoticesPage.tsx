@@ -79,7 +79,7 @@ export default function NoticesPage() {
       title: "Citizen's Charter Directive on Time-Bound Disposal of Scholarship Inquiries and Grievance Appeals",
       issuingAuthority: "Grievance Redressal Cell, Ministry of Tribal Affairs",
       summary:
-        "In accordance with Government of India Citizen's Charter standards, the Ministry mandates that all student inquiries, university verification delays, and grievance appeals filed on the TribalScholar portal or CPGRAMS must be acknowledged within 48 hours and definitively disposed of within a maximum turnaround of 15 working days.",
+        "In accordance with Government of India Citizen's Charter standards, the Ministry mandates that all student inquiries, university verification delays, and grievance appeals filed on the Aarohan portal or CPGRAMS must be acknowledged within 48 hours and definitively disposed of within a maximum turnaround of 15 working days.",
       attachmentName: "Citizen's Charter & Service Level Agreement Circular (PDF)",
       attachmentSize: "198 KB",
       href: "/contact",

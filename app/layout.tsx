@@ -6,8 +6,29 @@ import AuthModal from "@/components/AuthModal";
 import PublicShell from "@/components/PublicShell";
 
 export const metadata: Metadata = {
-  title: "TribalScholar - AI-Enabled Scholarship & Fellowship Portal | MoTA",
+  metadataBase: new URL("https://aarohan.tribal.gov.in"),
+  title: "Aarohan - AI-Enabled Scholarship & Fellowship Portal | MoTA",
   description: "Official digital scholarship and fellowship management platform for Scheduled Tribe students by Ministry of Tribal Affairs, Government of India.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Aarohan - AI-Enabled Scholarship & Fellowship Portal | MoTA",
+    description: "Official digital scholarship and fellowship management platform for Scheduled Tribe students by Ministry of Tribal Affairs, Government of India.",
+    url: "https://aarohan.tribal.gov.in",
+    siteName: "Aarohan Portal",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 1000,
+        alt: "Aarohan - Ministry of Tribal Affairs Official Scholarship Portal",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

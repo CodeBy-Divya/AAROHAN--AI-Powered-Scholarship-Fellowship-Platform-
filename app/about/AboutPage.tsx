@@ -159,7 +159,7 @@ export default function AboutPage() {
         {/* Page Top Heading */}
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <span className="text-xs font-bold text-mota-green dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-            About TribalScholar & Ministry Mandate
+            About Aarohan & Ministry Mandate
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Empowering Scheduled Tribes Through Education
@@ -232,10 +232,10 @@ export default function AboutPage() {
           </h2>
           <div className="text-sm text-slate-700 dark:text-slate-300 space-y-3 leading-relaxed">
             <p>
-              TribalScholar delivers the <strong>end-to-end digitization of scholarship and fellowship schemes</strong> for the Ministry of Tribal Affairs (MoTA).
+              Aarohan delivers the <strong>end-to-end digitization of scholarship and fellowship schemes</strong> for the Ministry of Tribal Affairs (MoTA).
             </p>
             <p>
-              The platform manages major central initiatives including the <em>National Fellowship for Scheduled Tribes (NFST)</em> for M.Phil. and Ph.D. research across recognized Indian universities, and the <em>National Overseas Scholarship (NOS)</em> for postgraduate studies in top-ranked international institutions. TribalScholar unifies these complex schemes under a single, secure, and accessible portal.
+              The platform manages major central initiatives including the <em>National Fellowship for Scheduled Tribes (NFST)</em> for M.Phil. and Ph.D. research across recognized Indian universities, and the <em>National Overseas Scholarship (NOS)</em> for postgraduate studies in top-ranked international institutions. Aarohan unifies these complex schemes under a single, secure, and accessible portal.
             </p>
           </div>
         </section>
@@ -271,7 +271,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* The TribalScholar Solution */}
+        {/* The Aarohan Solution */}
         <section className="bg-gradient-to-br from-emerald-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 rounded-2xl border border-emerald-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-4">
           <div className="flex items-center space-x-2 text-mota-green dark:text-emerald-400">
             <Sparkles className="w-5 h-5 flex-shrink-0" />
@@ -285,7 +285,7 @@ export default function AboutPage() {
               A centralized, configurable platform that connects applicants and officials.
             </p>
             <p>
-              TribalScholar serves as a single digital bridge bringing scholars, institutional verifiers, scrutiny officers, and ministry administrators into one synchronized ecosystem. The platform standardizes document ingestion, offers intelligent pre-submission validation, automates eligibility rules, and establishes direct communication loops so that no student is left behind due to technical misunderstandings.
+              Aarohan serves as a single digital bridge bringing scholars, institutional verifiers, scrutiny officers, and ministry administrators into one synchronized ecosystem. The platform standardizes document ingestion, offers intelligent pre-submission validation, automates eligibility rules, and establishes direct communication loops so that no student is left behind due to technical misunderstandings.
             </p>
           </div>
         </section>

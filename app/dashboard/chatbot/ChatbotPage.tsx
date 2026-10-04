@@ -22,7 +22,7 @@ export default function ChatbotPage() {
       id: "welcome-1",
       sender: "bot",
       text: [
-        "Welcome to the TribalScholar AI Assistant Workspace.",
+        "Welcome to the Aarohan AI Assistant Workspace.",
         "",
         "I am trained on official Ministry of Tribal Affairs (MoTA) guidelines to assist Scheduled Tribe scholars with:",
         "- Fellowship & Scholarship Schemes (NFST, NOS, Top Class Education).",
@@ -45,7 +45,7 @@ export default function ChatbotPage() {
   // Load API key from local storage if previously saved
   useEffect(() => {
     try {
-      const savedKey = localStorage.getItem("tribalscholar_gemini_key");
+      const savedKey = localStorage.getItem("aarohan_gemini_key") || localStorage.getItem("tribalscholar_gemini_key");
       if (savedKey) setApiKey(savedKey);
     } catch {
       // ignore
@@ -55,7 +55,7 @@ export default function ChatbotPage() {
   const handleSaveApiKey = (key: string) => {
     setApiKey(key);
     try {
-      localStorage.setItem("tribalscholar_gemini_key", key);
+      localStorage.setItem("aarohan_gemini_key", key);
     } catch {
       // ignore
     }
@@ -136,7 +136,7 @@ export default function ChatbotPage() {
           </div>
           <div>
             <h1 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center space-x-2">
-              <span>TribalScholar AI Assistant</span>
+              <span>Aarohan AI Assistant</span>
               <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-800">
                 {apiKey ? "Gemini Live" : "Local Engine"}
               </span>
