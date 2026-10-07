@@ -36,6 +36,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
   const { user, role, logout } = useAuth();
+  const isChatbotPage = pathname === "/dashboard/chatbot";
 
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
@@ -311,9 +312,9 @@ export default function DashboardLayout({
       )}
 
       {/* Main Content Area (Offset by sidebar on desktop) */}
-      <div className="lg:pl-64 flex flex-col min-h-screen">
+      <div className={`lg:pl-64 flex flex-col ${isChatbotPage ? "h-screen max-h-screen overflow-hidden" : "min-h-screen"}`}>
         {/* Header */}
-        <header className="sticky top-0 z-30 h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 flex items-center justify-between shadow-xs">
+        <header className="sticky top-0 z-30 h-16 flex-shrink-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 flex items-center justify-between shadow-xs">
           {/* Left: Mobile hamburger & Logo with Portal Name */}
           <div className="flex items-center space-x-3">
             <button
@@ -504,12 +505,18 @@ export default function DashboardLayout({
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 sm:p-8">
+        <main
+          className={`flex-1 ${
+            isChatbotPage
+              ? "p-0 min-h-0 h-full flex flex-col overflow-hidden"
+              : "p-4 sm:p-8"
+          }`}
+        >
           {children}
         </main>
 
         {/* One-Line Footer */}
-        <footer className="h-10 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 sm:px-8 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+        <footer className="h-10 flex-shrink-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 sm:px-8 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
           <p className="truncate">
             (c) 2026 Ministry of Tribal Affairs, Government of India. All rights reserved.
           </p>

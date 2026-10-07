@@ -10,11 +10,13 @@ export default function PublicShell({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
 
+  const isChatbotPage = pathname === "/dashboard/chatbot";
+
   if (isDashboard) {
     return (
       <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
         {children}
-        <Chatbot />
+        {!isChatbotPage && <Chatbot />}
       </div>
     );
   }
