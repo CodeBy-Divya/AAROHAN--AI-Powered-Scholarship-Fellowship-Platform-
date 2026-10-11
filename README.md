@@ -9,7 +9,8 @@ Aarohan is an AI-enabled scholarship management platform built for the Ministry 
 - **Category**: Software
 - **Theme**: Smart Education
 
-<img width="1376" height="768" alt="image" src="public/screenshots/architecture_diagram.png" />
+<img width="1620" height="997" alt="Home" src="public/screenshots/Home.jpg" />
+<div align="center"><p><em> Figure 1: Public Portal </em></p></div>
 
 ---
 
@@ -132,7 +133,22 @@ Aarohan resolves these bottlenecks by shifting quality assurance to the moment o
   - Strictly zero emojis across all 24 code files, page templates, icons, labels, and documentation.
   - Preserves the official circular Ministry of Tribal Affairs emblem (`/logo.png`).
 
+<img width="1919" height="1001" alt="image" src="public/screenshots/Scholarship.jpg" />
+<div align="center"><p><em>Figure 2: Central Scholarship Scheme Directory & Eligibility Criteria</em></p></div>
 
+<img width="1919" height="1002" alt="image" src="public/screenshots/Dashboard-1.jpg" />
+<div align="center"><p><em>Figure 3: Scholar Dashboard</em></p></div>
+
+
+<img width="1919" height="1001" alt="image" src="public/screenshots/AI Assistant.jpg" />
+<div align="center"><p><em>Figure 4: AI Assistant Console with Voice Dictation & Scheme Guidance</em></p></div>
+
+
+## System Architecture
+The architecture unifies the entire scholarship lifecycle into a transparent, multi-tier data pipeline connecting applicants, scrutiny officers, and ministry administrators. Deterministic rules engines validate scheme eligibility and cross-document record consistency prior to submission, while scrutiny desks leverage split-screen verification to accelerate approvals and eliminate processing bottlenecks.
+
+<img width="1376" height="768" alt="Aarohan System Architecture and Data Flow" src="public/screenshots/architecture_diagram.jpg" />
+<div align="center"><p><em>Figure 5: System Architecture & Data Flow Pipeline </em></p></div>
 
 ## Technology Stack
 

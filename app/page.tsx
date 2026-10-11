@@ -155,32 +155,66 @@ export default function HomePage() {
     <div className="space-y-16 pb-16 bg-[#FAF8F4] dark:bg-slate-950 transition-colors">
       
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0B2545] via-[#0D315D] to-[#0B2545] dark:from-slate-950 dark:via-[#0B2545] dark:to-slate-950 text-white pt-16 pb-20 px-4 sm:px-8 border-b-4 border-[#D98A00]">
-        <div className="max-w-7xl mx-auto relative z-10 text-center space-y-6">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#030e1a] via-[#081e36] to-[#041324] text-white pt-16 sm:pt-20 pb-16 sm:pb-22 px-4 sm:px-8 border-b-4 border-[#D98A00]">
+        
+        {/* Dynamic Animated Ambient Orbs */}
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none animate-gentle-drift"></div>
+        <div className="absolute top-1/3 -right-20 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-teal-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        {/* High-Tech Geometric Dot-Matrix Grid with Radial Mask */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-30 [background-image:radial-gradient(#ffffff18_1px,transparent_1px)] [background-size:24px_24px]"
+          style={{
+            maskImage: "radial-gradient(circle at center, black 40%, transparent 85%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 85%)"
+          }}
+        ></div>
+
+        <div className="max-w-4xl mx-auto relative z-10 text-center space-y-6 sm:space-y-7">
           
-          <div className="flex flex-col items-center justify-center space-y-3">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-white p-2 shadow-2xl border-2 border-emerald-400/40 flex items-center justify-center overflow-hidden">
-              <img src="/logo.png" alt="Aarohan Official Logo" className="w-full h-full object-contain" />
+          {/* Centered Floating Emblem and Government Accreditation */}
+          <div className="flex flex-col items-center justify-center space-y-3.5 sm:space-y-4">
+            
+            {/* Emblem with Floating and Breathing Glow Ring */}
+            <div className="relative group">
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-amber-500 rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500 animate-pulse-glow"></div>
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-white p-2.5 shadow-2xl border-2 border-emerald-400/50 flex items-center justify-center overflow-hidden animate-float-slow">
+                <img src="/logo.png" alt="Aarohan Official Emblem" className="w-full h-full object-contain" />
+              </div>
             </div>
-            <div className="inline-flex items-center space-x-2 bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner mx-auto">
-              <Landmark className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Aarohan: Ministry of Tribal Affairs - Government of India</span>
+
+            {/* Accreditation Badges */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+              <div className="inline-flex items-center space-x-2 bg-emerald-950/80 border border-emerald-400/40 text-emerald-300 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-inner backdrop-blur-md">
+                <Landmark className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>Ministry of Tribal Affairs - Government of India</span>
+              </div>
+              <span className="inline-flex items-center space-x-1.5 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold px-3.5 py-1.5 rounded-full backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>Session 2026-27 Active</span>
+              </span>
             </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
-            Aarohan: AI-Enabled Scholarship &amp; Fellowship Management System
-          </h1>
+          {/* Headline & Description */}
+          <div className="space-y-3 max-w-3xl mx-auto">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
+              Aarohan: AI-Enabled Scholarship &amp; Fellowship Management System
+            </h1>
+            <p className="text-base sm:text-xl font-bold bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300 bg-clip-text text-transparent">
+              Empowering Scheduled Tribe Scholars Across India &amp; Abroad
+            </p>
+            <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed max-w-2xl mx-auto pt-1">
+              A unified digital platform for transparent, efficient, and accessible scholarship administration. Pre-submission document inspection prevents avoidable rejections, while transparent merit scrutiny routes stipends directly via PFMS Direct Benefit Transfer (DBT).
+            </p>
+          </div>
 
-          <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-3xl mx-auto">
-            A unified digital platform for transparent, efficient and accessible management of scholarships and fellowships for Scheduled Tribe students.
-          </p>
-
-          {/* Requested 3 Action Buttons */}
-          <div className="pt-4 flex flex-wrap gap-4 justify-center items-center">
+          {/* Action Buttons */}
+          <div className="pt-3 flex flex-wrap gap-4 justify-center items-center">
             <Link
               href="/scholarships"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-emerald-900/30 transition-all flex items-center space-x-2 text-sm sm:text-base"
+              className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black px-7 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-xl shadow-emerald-950/50 hover:shadow-emerald-700/60 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center space-x-2 text-sm sm:text-base cursor-pointer"
             >
               <GraduationCap className="w-5 h-5" />
               <span>Explore Scholarships</span>
@@ -188,27 +222,12 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href="/guide"
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center space-x-2 text-sm sm:text-base backdrop-blur-xs"
-            >
-              <Search className="w-4 h-4 text-emerald-400" />
-              <span>Check Application Status</span>
-            </Link>
-
-            <Link
               href="/login"
-              className="bg-white text-mota-navy hover:bg-slate-100 font-bold px-6 py-3.5 rounded-xl transition-all flex items-center space-x-2 text-sm sm:text-base shadow-sm"
+              className="bg-white text-[#0B2545] hover:bg-slate-100 font-black px-7 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl transition-all flex items-center space-x-2 text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
             >
-              <ShieldCheck className="w-4 h-4 text-mota-navy" />
+              <ShieldCheck className="w-5 h-5 text-[#0B2545]" />
               <span>Login</span>
             </Link>
-          </div>
-
-          {/* Trust Highlights */}
-          <div className="pt-6 flex flex-wrap gap-3 text-xs text-slate-300 font-medium justify-center">
-            <span className="bg-white/10 px-3 py-1 rounded-md border border-white/10">Pre-Submission Quality Inspection</span>
-            <span className="bg-white/10 px-3 py-1 rounded-md border border-white/10">Zero Unfair Rejections</span>
-            <span className="bg-white/10 px-3 py-1 rounded-md border border-white/10">Direct DBT via PFMS</span>
           </div>
 
         </div>

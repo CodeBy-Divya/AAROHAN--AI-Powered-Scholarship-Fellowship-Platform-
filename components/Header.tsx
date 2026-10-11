@@ -42,12 +42,11 @@ export default function Header() {
     return "/dashboard/applicant";
   };
 
-  // Strictly ordered: Home, About Us, Guide, Scholarships, FAQ, Contact Us
   const navLinks = [
     { href: "/", label: language === "hi" ? "मुख्य पृष्ठ" : "Home" },
     { href: "/about", label: language === "hi" ? "हमारे बारे में" : "About Us" },
-    { href: "/guide", label: language === "hi" ? "मार्गदर्शिका" : "Guide" },
     { href: "/scholarships", label: language === "hi" ? "छात्रवृत्तियां" : "Scholarships" },
+    { href: "/guide", label: language === "hi" ? "मार्गदर्शिका" : "Guide" },
     { href: "/faq", label: language === "hi" ? "सामान्य प्रश्न" : "FAQ" },
     { href: "/contact", label: language === "hi" ? "संपर्क करें" : "Contact Us" },
   ];
