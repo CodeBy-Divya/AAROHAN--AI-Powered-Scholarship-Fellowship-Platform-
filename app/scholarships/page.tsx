@@ -363,19 +363,21 @@ export default function ScholarshipsPage() {
                         <span className="text-[11px] text-slate-400">Applications closed for this academic cycle</span>
                       </div>
                     ) : (
-                      <div className="flex items-center justify-between w-full">
+                      <div className="flex flex-wrap items-center justify-between gap-2 w-full">
                         <Link
-                          href={user ? `/apply/${scheme.id}` : `/login?redirect=/apply/${scheme.id}`}
+                          href={
+                            user
+                              ? `/dashboard/apply/${scheme.id}`
+                              : `/login?mode=register&redirect=${encodeURIComponent(`/dashboard/apply/${scheme.id}`)}`
+                          }
                           className="bg-mota-navy hover:bg-mota-navy-dark dark:bg-emerald-700 dark:hover:bg-emerald-600 text-white text-xs font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center space-x-1.5 shadow-xs"
                         >
                           <span>Apply Now</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
-
                         {!user && (
-                          <span className="text-[11px] text-amber-700 dark:text-amber-400 font-medium flex items-center space-x-1">
-                            <Lock className="w-3 h-3 inline" />
-                            <span>Login mandatory to apply</span>
+                          <span className="text-[11px] text-amber-700 dark:text-amber-400 font-semibold flex items-center space-x-1">
+                            <span>Registration / Sign In mandatory to apply</span>
                           </span>
                         )}
                       </div>

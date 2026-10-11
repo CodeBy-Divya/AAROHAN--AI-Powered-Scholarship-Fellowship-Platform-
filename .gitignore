@@ -25,13 +25,13 @@
 .env.development.local
 .env.test.local
 .env.production.local
+!.env.example
 
 # Vercel deployment
 .vercel
 
 # TypeScript
 *.tsbuildinfo
-next-env.d.ts
 
 # Debug and runtime logs
 npm-debug.log*
@@ -50,6 +50,7 @@ lerna-debug.log*
 ehthumbs.db
 Thumbs.db
 Desktop.ini
+desktop.ini
 
 # IDE and code editor configurations
 .idea/
@@ -68,3 +69,5 @@ Desktop.ini
 *.orig
 *.pid
 .cache/
+.antigravity/
+.system_generated/

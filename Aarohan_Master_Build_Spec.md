@@ -309,7 +309,7 @@ Works in Hindi + English. Mock provider returns deterministic answers built from
 
 **Pages:** Landing, Scholarship Explorer, Scholarship Details (+ How to Apply video/steps/common mistakes), Resources, FAQs, Help; Login/Register; Dashboard; Profile; Scholarship Finder; Eligibility Checker; Application Form; Document Center; Scanner; Readiness; Fix My Application; Timeline; Notifications; Copilot; Learning Hub; Grievance; Post-selection; Settings.
 
-**Dashboard = "What should I do next?"** Big **Your Next Step** card (e.g. "Upload a clearer income certificate" → [Fix now]), Application Health widget (86% Ready with ✓/⚠ items), deadlines, recommended schemes, document checklist (✓ ⚠ ○), notifications.
+**Dashboard = "What should I do next?"** Big **Your Next Step** card (e.g. "Upload a clearer income certificate" -> [Fix now]), Application Health widget (86% Ready with verified/attention items), deadlines, recommended schemes, document checklist (verified / attention / pending), notifications.
 
 **Timeline:** Started → Submitted → Document verification → Eligibility verification → Scrutiny → Selection → Final decision → Scholarship management; each step has date, status, responsible stage, plain-language explanation, next action. Never just "Processing".
 

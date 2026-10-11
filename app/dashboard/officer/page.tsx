@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth-context";
 import { DEMO_APPLICATIONS, ApplicationRecord } from "@/lib/data";
 import { 
@@ -26,6 +26,50 @@ export default function OfficerDashboardPage() {
   const [activeReviewApp, setActiveReviewApp] = useState<ApplicationRecord | null>(null);
   const [deficiencyFeedback, setDeficiencyFeedback] = useState<string>("");
   const [actionNotice, setActionNotice] = useState<string | null>(null);
+
+  // Sync applications submitted from localStorage
+  useEffect(() => {
+    try {
+      const storedStr = localStorage.getItem("aarohan_applications");
+      if (storedStr) {
+        const stored = JSON.parse(storedStr);
+        if (Array.isArray(stored) && stored.length > 0) {
+          const mapped: ApplicationRecord[] = stored.map((item: any, idx: number) => {
+            const schemeCode = item.scheme?.includes("(")
+              ? item.scheme.split("(")[1]?.replace(")", "").trim()
+              : "ST-SCHEME";
+            return {
+              id: item.id || `app-${idx + 200}`,
+              applicationNumber: item.id || `MOTA/ST/2026/0${Math.floor(1000 + Math.random() * 9000)}`,
+              schemeId: "topclass-2026",
+              schemeCode: schemeCode,
+              schemeName: item.scheme || "ST Higher Education Scholarship",
+              studentName: "Pooja Xalxo",
+              tribe: "Oraon (Jharkhand)",
+              state: "Jharkhand",
+              stage: "Document Scrutiny" as const,
+              stageStep: 2,
+              readinessScore: 94,
+              submittedAt: item.dateSubmitted || "Today",
+              lastUpdated: "Today",
+              deficiencyCount: 0,
+              aiConfidence: 96,
+              stCategoryVerified: true,
+              incomeVerified: true,
+              admissionVerified: true,
+              priorityFlag: true,
+            };
+          });
+
+          const storedIds = new Set(mapped.map((m) => m.id));
+          const rest = DEMO_APPLICATIONS.filter((d) => !storedIds.has(d.id));
+          setApplications([...mapped, ...rest]);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   // Filter applications
   const filteredApps = applications.filter((app) => {

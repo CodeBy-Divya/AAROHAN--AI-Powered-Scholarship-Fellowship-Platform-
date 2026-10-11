@@ -6,6 +6,7 @@ import { DEMO_USERS, UserProfile } from "@/lib/data";
 interface AuthContextType {
   user: UserProfile | null;
   role: "applicant" | "officer" | "ministry" | null;
+  isHydrated: boolean;
   language: "en" | "hi";
   setLanguage: (lang: "en" | "hi") => void;
   fontSize: "normal" | "large" | "xlarge";
@@ -32,6 +33,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [isHydrated, setIsHydrated] = useState<boolean>(false);
   const [language, setLanguage] = useState<"en" | "hi">("en");
   const [fontSize, setFontSize] = useState<"normal" | "large" | "xlarge">("normal");
   const [highContrast, setHighContrast] = useState<boolean>(false);
@@ -47,11 +49,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(JSON.parse(customUserStr));
       } else if (storedRole && DEMO_USERS[storedRole]) {
         setUser(DEMO_USERS[storedRole]);
+      } else {
+        setUser(null);
       }
       const storedLang = (localStorage.getItem("aarohan_lang") || localStorage.getItem("tribalscholar_lang")) as "en" | "hi" | null;
       if (storedLang) setLanguage(storedLang);
     } catch {
-      // ignore
+      setUser(null);
+    } finally {
+      setIsHydrated(true);
     }
   }, []);
 
@@ -140,6 +146,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         role: user ? user.role : null,
+        isHydrated,
         language,
         setLanguage: handleSetLanguage,
         fontSize,

@@ -369,6 +369,22 @@ export default function ChatbotPage() {
     }
   }, []);
 
+  // Auto-populate query if redirected from Scholarship cards
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryParam = urlParams.get("query");
+        if (queryParam) {
+          setInputPrompt(queryParam);
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }, []);
+
   const handleSaveApiKey = (key: string) => {
     setApiKey(key);
     try {

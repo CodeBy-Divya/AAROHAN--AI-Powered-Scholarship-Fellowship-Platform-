@@ -35,8 +35,15 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, role, logout } = useAuth();
+  const { user, role, logout, isHydrated } = useAuth();
   const isChatbotPage = pathname === "/dashboard/chatbot";
+
+  // Dashboard route guard: redirect unauthenticated users to login
+  useEffect(() => {
+    if (isHydrated && !user) {
+      router.replace(`/login?redirect=${encodeURIComponent(pathname)}`);
+    }
+  }, [isHydrated, user, pathname, router]);
 
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
@@ -171,6 +178,17 @@ export default function DashboardLayout({
       urgent: false,
     },
   ];
+
+  if (!isHydrated || !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 text-xs text-slate-500">
+        <div className="flex flex-col items-center space-y-3">
+          <div className="w-8 h-8 border-3 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="font-semibold text-slate-600 dark:text-slate-300">Checking credentials...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">

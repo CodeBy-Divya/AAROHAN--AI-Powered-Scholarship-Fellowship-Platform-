@@ -1,276 +1,313 @@
-# Aarohan: AI-Enabled Scholarship and Fellowship Management System
+# Aarohan: AI-Enabled Scholarship Management System
+Aarohan is an AI-enabled scholarship management platform built for the Ministry of Tribal Affairs. It prevents avoidable application rejections by pre-verifying student documents before final submission, empowers scrutiny officers with a split-screen verification console, and accelerates Direct Benefit Transfer (DBT) disbursements for Scheduled Tribe scholars nationwide.
 
-Unified Digital Portal for the Ministry of Tribal Affairs (MoTA), Government of India.
+## Problem Statement
 
----
-
-## Table of Contents
-- [Problem Statement (PS) Overview](#problem-statement-ps-overview)
-- [About This Application](#about-this-application)
-- [Key Features](#key-features)
-- [System Architecture and Tech Stack](#system-architecture-and-tech-stack)
-- [Folder Structure](#folder-structure)
-- [How to Clone](#how-to-clone)
-- [How to Run This Project](#how-to-run-this-project)
-- [Role-Based Access and Demo Accounts](#role-based-access-and-demo-accounts)
-- [License and Governance](#license-and-governance)
-
----
-
-## Problem Statement (PS) Overview
-
-### Problem Statement Details
 - **Problem Statement ID**: 26239
 - **Problem Statement Title**: AI-Enabled Scholarship and Fellowship Management System for Scheduled Tribes
 - **Ministry / Department**: Ministry of Tribal Affairs (MoTA), Government of India
 - **Category**: Software
 - **Theme**: Smart Education
-- **Official References**:
-  - Ministry Portal: https://tribal.nic.in/ScholarshiP.aspx
-  - DBT Tribal Portal: https://dbttribal.gov.in/AllScheme.aspx
 
-### Background and Context
-The Ministry of Tribal Affairs implements flagship scholarship and fellowship schemes to provide critical financial assistance to Scheduled Tribe (ST) students pursuing higher education in India and abroad. Major schemes include:
-1. **National Fellowship for Scheduled Tribes (NFST)**: Supporting eligible scholars pursuing regular, full-time M.Phil. and Ph.D. research programmes in recognized Indian universities.
-2. **National Overseas Scholarship (NOS)**: Supporting meritorious ST candidates pursuing Master's and Ph.D. programmes abroad in top-ranked international universities.
-3. **Top Class Education for ST Students**: Degree funding in premier institutions (IITs, IIMs, NITs, AIIMS, NLUs).
-4. **Post-Matric Scholarship for ST Students**: Higher secondary and collegiate education assistance.
-
-### The Problem
-The implementation of these schemes traditionally involves multiple sequential stages: applicant registration, online form filling, certificate submission, institutional bonafide verification, official scrutiny, screening committee selection, communication, and post-selection fellowship disbursement.
-
-Key administrative and operational challenges identified:
-- **Manual Scrutiny Bottlenecks**: High volume of paper and scan verification causing weeks of backlog per cycle.
-- **Repeated Correspondence**: Minor, avoidable errors (faint revenue seals, slight name spelling discrepancies, unreadable stamps) trigger prolonged back-and-forth letters and emails.
-- **Verification Effort**: Desk officers spend over 60% of operational time performing repetitive manual cross-checks.
-- **Processing Delays**: Multi-tier manual workflows previously stretched processing cycles up to 90+ days.
-- **Limited Real-Time Visibility**: Applicants lacked visibility into the exact stage of their file (e.g., whether pending at university, scrutiny desk, or finance division).
-- **Managing Scheme-Specific Requirements**: Each scheme entails distinct qualifying criteria, income ceilings, age limits, and documentation rules requiring configurable administration.
-
-### Expected Solution
-An integrated, intelligent digital workflow that:
-1. Provides a single-window digital application lifecycle (submission, OCR check, scrutiny, selection, and communication).
-2. Automates document verification using configurable scheme-specific rules and computer-vision OCR pre-checks to flag deficiencies before submission.
-3. Supports transparent merit screening and quota allotment while preserving human officer oversight.
-4. Offers dedicated, role-based dashboards for Applicants, Scrutiny Officers, and Ministry Administrators.
-5. Manages deficiency redressal through structured 7-day correction windows without cancelling submission priority.
-6. Connects with Public Financial Management System (PFMS) for direct Direct Benefit Transfer (DBT) disbursal into Aadhaar-seeded accounts.
+<img width="1376" height="768" alt="image" src="public/screenshots/architecture_diagram.png" />
 
 ---
 
-## About This Application
+## Description of Aarohan
 
-**Aarohan** is the production-ready implementation addressing Problem Statement 26239. It bridges students and government officials through an accessible, high-performance web interface designed according to Government of India web standards.
+**Aarohan** (TribalScholar) is a production-ready digital platform built for the Ministry of Tribal Affairs (MoTA) to administer scholarship and fellowship schemes for Scheduled Tribe (ST) students pursuing higher secondary, undergraduate, postgraduate, doctoral, and international studies.
 
-The application serves three primary user personas:
-1. **Scheduled Tribe Students / Scholars**: Discover schemes, verify qualification eligibility, test document uploads against AI readability checks, submit applications, track real-time progress, and resolve deficiency notices.
-2. **Scrutiny and Verification Officers**: Review incoming queues prioritized by AI confidence scores, inspect split-screen document viewer with OCR text extraction, issue targeted deficiency queries, and recommend approvals.
-3. **Ministry Executives and Decision Makers**: Monitor national-level key performance indicators (KPIs), scheme quota utilization, state-wise scholar distribution, and identify operational bottlenecks.
+Aarohan does not aim to replace the National Scholarship Portal (NSP). Instead, it sits directly on top of the applicant journey as an intelligent **readiness, verification, and management layer** designed to eliminate the root cause of scheme processing bottlenecks: **avoidable application failures before submission**.
 
----
+### Guiding Principles
+
+- **Journey Lifecycle**: Discover -> Understand -> Prepare -> Verify -> Apply -> Fix -> Track -> Succeed.
+- **Rules Over Black-Box Models**: Deterministic rules engines decide eligibility and scheme compliance; AI/LLM components only explain the results in plain language; human officers retain final statutory decision authority.
+- **Constructive Tone**: The system never accuses students of fraud; inconsistencies are flagged as *"Potential inconsistency detected - human review required"*.
+- **Total Explainability**: Every check surfaces the observed value, required threshold, confidence score, and specific source document evidence.
+- **Zero Hallucination Guard**: The system never invents guidelines, deadlines, or stipend figures; all responses are strictly grounded in configured ministry scheme rules.
+- **Three Core Personas**:
+  1. Scheduled Tribe Applicant / Scholar
+  2. Scrutiny and Verification Officer (INO / DWO / Ministry Desk Officer)
+  3. Ministry Executive and Policy Administrator
+
+
+## Why We Built This and Who Gets Benefited
+
+### Why We Built This
+
+Traditional scholarship workflows across central and state welfare departments face severe structural bottlenecks:
+
+1. **The Avoidable Rejection Dilemma**:
+   Over 40% of scholarship rejections or delays stem from preventable clerical faults: faint revenue stamps, slightly blurred scans, cut-off seals, or minor name discrepancies between university admission orders and Aadhaar records (for example, "Pooja Xalxo" vs. "Pooja Rameshwar Xalxo"). Under traditional workflows, these result in outright rejection or months of postal correspondence.
+
+2. **The Verification Desk Backlog**:
+   Desk officers spend more than 60% of their working hours manually cross-checking raw scanned certificates against basic form fields, extending verification cycles up to 90 or more days per batch.
+
+3. **The Black-Box Status Problem**:
+   Students historically saw only ambiguous status labels like "Under Processing" without knowing whether their file was pending at their college, district revenue office, state directorate, or central ministry desk.
+
+4. **Lack of Operational Intelligence**:
+   Ministries had no systematic way to identify why applicants in specific regions abandoned forms or frequently submitted deficient income certificates.
+
+Aarohan resolves these bottlenecks by shifting quality assurance to the moment of capture, offering structured 7-day deficiency correction windows, and synchronizing applicant data directly with scrutiny queues.
+
+### Who Gets Benefited
+
+1. **Scheduled Tribe Students and Research Scholars**:
+   - **Discover & Check**: Search central schemes (NFST, NOS, Top Class, PMS-ST) and test eligibility against an explainable rule table.
+   - **Pre-Submission Quality Feedback**: Instant feedback on document clarity (blur, glare, resolution) before submitting.
+   - **Readiness Score**: A transparent 0-100% composite score estimating approval probability.
+   - **Fix My Application Loop**: Resolve flagged defects within a protected 7-day grace period without forfeiting submission priority.
+   - **Direct Benefit Transfer (DBT)**: Seamless fund disbursement via Aadhaar NPCI mapper and PFMS directly into savings accounts.
+
+2. **Scrutiny and Verification Officers**:
+   - **Triage Queues**: Automated triaging into Routine (high confidence >= 90%), Officer Review (70-90%), and Mandatory Human Review (< 70% or hard conflict) queues.
+   - **Side-by-Side Review Desk**: Inspect student metadata alongside the original certificate with bounding-box extraction highlights.
+   - **Structured Deficiency Notices**: Dispatch clear, actionable resubmission instructions with one click.
+   - **Tamper-Evident Audit Trails**: Every verification, approval, deficiency note, and resubmission is permanently logged.
+
+3. **Ministry Administrators and Policy Makers**:
+   - **National Fund Visibility**: Real-time tracking of sanctioned budgets (INR 482+ Cr), scheme quota allocations, and disbursements.
+   - **Regional & Gender Equity Metrics**: Monitor state-wise coverage and maintain female scholar participation above 51%.
+   - **Deficiency Intelligence (Process Improvement Engine)**: Aggregate analysis flags systemic problems (for example, high income-certificate rejection in a specific state) so administrators can publish targeted guidance before application deadlines.
+
 
 ## Key Features
 
-1. **AI-Assisted Document Pre-Verification**
-   - Client-side and server-side OCR simulation that analyzes uploaded certificates (Caste, Income, University Admission, Marksheets) for blurriness, resolution, cutoff seals, and character legibility before final submission.
-   - Prevents unnecessary rejections due to unreadable scans.
+- **In-Dashboard 5-Phase Application Workflow**:
+  - Hosted strictly within the authenticated student workspace at `/dashboard/apply/[schemeId]`.
+  - Structured across 5 standardized Government of India stages: Personal Details, Family Particulars, Academic Enrolment, Bank & DBT Mandate, and Scrutiny Review.
+  - Dedicated file upload dropzones in each phase for ST Caste Certificate, Annual Income Certificate, Previous Marksheets, Admission Order / Fee Receipt, and Bank Passbook.
+  - Automatically pre-fills active student profile information to minimize redundant manual data entry.
 
-2. **Dynamic Multi-Criteria Scheme Directory & Filters**
-   - Searchable scholarship catalog with real-time filters:
-     - Academic Level (Ph.D./M.Phil, Master's, Undergraduate, Class 11-12/Diploma).
-     - Scheme Type (Fellowship, Overseas, Premier Higher Ed, Post-Matric).
-     - Study Destination (India vs. Abroad in Top 500 QS Universities).
-     - Family Annual Income Ceilings.
+- **AI-Assisted Document Intelligence & Scan Quality Pre-Checks**:
+  - Real-time pre-submission scan analysis evaluating blur (Laplacian variance), contrast (grayscale standard deviation), brightness, and document skew.
+  - Alerts applicants to poor-quality scans with actionable fix tips before submission, preventing avoidable scrutiny rejections.
+  - Optical confidence scoring across uploaded certificates to detect and flag unreadable text early.
 
-3. **5-Stage Application Status Timeline**
-   - Standardized milestone progression:
-     `Apply` -> `Verify` -> `Scrutiny` -> `Selection` -> `Award`
-   - Real-time status lookup widget on the Guide page allowing applicants to search by Application ID (e.g., `NFST-2026-8821`, `NOS-2026-4412`).
+- **Cross-Document Name & Record Consistency Verification**:
+  - Token-sort ratio algorithms cross-check student legal name, parental details, date of birth, and institution between application form inputs and uploaded certificates.
+  - Flags potential discrepancies (such as spelling variations or name order changes) as constructive inconsistency notices rather than outright rejections.
 
-4. **Deficiency Resolution Window**
-   - When an officer notes an unreadable seal or discrepancy, the student receives an automated notice with a 7-day grace period to re-upload the specific file without losing queue priority.
+- **Explainable Application Readiness Scoring (0 to 100%)**:
+  - Transparent composite health score estimating the probability of zero-deficiency scrutiny approval.
+  - Computed from 5 weighted factors: Eligibility Rules Completeness (20%), Application Form Completeness (20%), Document Upload Completeness (25%), Scan Quality (15%), and Cross-Document Consistency (20%).
+  - Categorized into clear readiness bands: `Ready to submit` (>= 90%), `Almost ready` (70-89%), and `Needs attention` (< 70%).
 
-5. **Split-Screen Scrutiny Officer Desk**
-   - Side-by-side inspection console displaying applicant metadata alongside the uploaded document with extracted OCR text and highlighted discrepancy overlays.
+- **Self-Service "Fix My Application" Resolution Loop**:
+  - Automatically converts officer-flagged deficiencies into actionable student repair cards.
+  - Displays the specific defect, explains why it was flagged, and provides numbered step-by-step resolution guidance.
+  - Enables instant camera rescanning or file re-uploading with automatic readiness score recalculation and defect resolution.
 
-6. **Ministry Analytics & Executive Dashboard**
-   - Real-time reporting on total funds disbursed via DBT, state/UT quota utilization, average turnaround times, and first-time verification pass rates.
+- **Strict Session Boundaries & Role-Based Route Guards**:
+  - Strict compartmentalization between public marketing pages and authenticated dashboard workspaces.
+  - Prevents active logged-in users from accessing public pages without explicitly signing out, eliminating confusing dual-navigation states.
+  - Automatically redirects unauthenticated guests attempting to apply for any scholarship to `/login?redirect=...`.
 
-7. **Floating AI Assistant (Bottom-Right Corner)**
-   - Context-aware chatbot available on all pages.
-   - Configurable Google Gemini API integration (users can enter their key via the settings drawer).
-   - Built-in intelligent local rule-based fallback running 100% offline if no API key is provided.
+- **Level-1 Scrutiny Officer Verification Console**:
+  - Centralized verification desk located at `/dashboard/officer` with automated queue triaging: Routine (high confidence >= 90%), Officer Review (70-90%), and Mandatory Human Review (< 70% or hard conflict).
+  - Split-screen verification desk displaying student profile particulars alongside original certificate scans and extracted OCR bounding boxes.
+  - One-click deficiency notice dispatch with pre-filled or customizable officer feedback notes.
 
-8. **Accessibility and Government Standards**
-   - Light and Dark theme toggle with persistence.
-   - Text size adjusters (A, A+, A++) and high-contrast accessibility mode.
-   - Bilingual support framework (English / Hindi).
-   - Strictly zero emojis across UI, code, and documentation.
+- **Real-Time Cross-Queue Application Synchronization**:
+  - Newly submitted student applications automatically persist in local state and immediately appear in the student's My Applications registry and the Level-1 Officer review queue without manual page reloads.
 
----
+- **Official Printable Acknowledgement Receipts**:
+  - Replaces raw browser alerts with a formal Government of India / MoTA e-Receipt modal.
+  - Surfaces official application tracking ID, scheme name, student credentials, submission timestamp, scrutiny stage, and sanctioned stipend rate with native `window.print()` support.
 
-## System Architecture and Tech Stack
+- **Full-Height AI Assistant (Aarohan Copilot) with Web Speech**:
+  - Dedicated 100% viewport container (`/dashboard/chatbot`) with an input bar permanently docked above the footer and smooth internal chat transcript scrolling.
+  - Native Web Speech API integration: Speech Synthesis (read-aloud voice feature) and Speech Recognition (voice dictation).
+  - Deep-link contextual handling: clicking "Ask AI Assistant" on any scholarship card automatically routes to the chatbot with the scheme query pre-populated.
+  - Built-in deterministic offline fallback engine ensuring 100% availability even without an external API key.
 
-- **Framework**: Next.js 14 (App Router, Server & Client Components)
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS 3 with `class` dark mode strategy
-- **Icons**: Lucide React (Standard SVG icons)
-- **AI Integration**: Google Gemini API via custom client with offline fallback
-- **State Management**: React Context (`auth-context.tsx`, `theme-context.tsx`)
-- **Compatibility**: Node.js 18.x, 20.x, or later
+- **Direct Benefit Transfer (DBT) & Aadhaar NPCI Mandate Validation**:
+  - Dedicated verification of core banking savings accounts, IFSC codes, bank branch data, and active Aadhaar seeding on the NPCI mapper.
+  - Mandatory PFMS Direct Benefit Transfer consent check ensuring scholarship stipends disburse directly to verified student bank accounts.
 
----
+- **GIGW Accessibility Compliance & Strictly Zero Emojis**:
+  - Adheres to Guidelines for Indian Government Websites (GIGW) with high-contrast color ratios, dynamic text size scalers (A, A+, A++), and a bilingual English/Hindi interface.
+  - Strictly zero emojis across all 24 code files, page templates, icons, labels, and documentation.
+  - Preserves the official circular Ministry of Tribal Affairs emblem (`/logo.png`).
 
-## Folder Structure
 
-```
-SC-ST Portal/
-├── .gitignore                      # Git exclusion rules (dependencies, build, logs, env, OS)
-├── package.json                    # Project metadata, dependencies, and execution scripts
-├── package-lock.json               # Locked dependency tree
-├── tsconfig.json                   # TypeScript compiler configuration (ES2020 target)
-├── tailwind.config.js              # Tailwind styling config (dark mode, custom theme colors)
-├── postcss.config.js               # PostCSS plugin definitions
-├── next-env.d.ts                   # Next.js TypeScript declarations
-├── README.md                       # Complete project documentation
-├── Problem_Statement.md            # Original SIH 26239 problem statement brief
-├── Aarohan_Master_Build_Spec.md       # Complete architectural and UI specification
-│
-├── app/                            # Next.js 14 App Router
-│   ├── layout.tsx                  # Root layout (Header, Chatbot, Footer, Context Providers)
-│   ├── globals.css                 # Global CSS variables, fonts, and Tailwind directives
-│   ├── page.tsx                    # Home page (Hero, Active Schemes, Workflow, Features, Notices)
-│   ├── about/
-│   │   └── page.tsx                # About Us page (5 sections: Initiative, Problem, Solution, Enablement, Security)
-│   ├── guide/
-│   │   └── page.tsx                # Guide page (Eligibility, How It Works, Status Timeline, Document Checklist)
-│   ├── scholarships/
-│   │   └── page.tsx                # Scholarships page (Search, multi-criteria filters, scheme cards)
-│   ├── faq/
-│   │   └── page.tsx                # Dedicated FAQ page (Searchable accordion with category tabs)
-│   ├── contact/
-│   │   └── page.tsx                # Contact Us page (Helplines, MoTA HQ address, grievance ticket generator)
-│   ├── login/
-│   │   └── page.tsx                # Role-based login and registration page with Fast Track Demo buttons
-│   ├── apply/
-│   │   └── [schemeId]/
-│   │       └── page.tsx            # Multi-step dynamic application submission form
-│   └── dashboard/
-│       ├── applicant/
-│       │   └── page.tsx            # Student Dashboard (Action card, readiness meter, document vault)
-│       ├── officer/
-│       │   └── page.tsx            # Scrutiny Officer Console (Queue, split-view OCR inspection desk)
-│       └── ministry/
-│           └── page.tsx            # Ministry Analytics Dashboard (Macro KPIs, quota bars, bottlenecks)
-│
-├── components/                     # Reusable UI Components
-│   ├── Header.tsx                  # Top banner, government strip, navigation links, auth actions
-│   ├── Footer.tsx                  # Government footer, official links, contact information, policies
-│   ├── Chatbot.tsx                 # Floating AI assistant widget with Gemini API and offline fallback
-│   ├── ThemeToggle.tsx             # Sun/Moon light and dark mode switcher
-│   └── AuthModal.tsx               # Quick authentication modal for fast role switching
-│
-└── lib/                            # Shared Logic, Contexts, and Mock Data
-    ├── auth-context.tsx            # Authentication state, active user roles, language, and accessibility
-    ├── theme-context.tsx           # Dark mode state provider synced with localStorage and HTML class
-    ├── data.ts                     # Master dataset for schemes, mock applicants, and officer queues
-    └── gemini.ts                   # Gemini API client with offline intent recognition fallback
-```
 
----
+## Technology Stack
 
-## How to Clone
+| Layer | Selected Technology | Purpose and Architectural Rationale |
+|---|---|---|
+| **App Framework** | **Next.js 14 (App Router)** | Lightweight full-stack React framework providing server-side rendering, client hydration, and unified routing. |
+| **Language** | **TypeScript 5** | Strict static typing across all components, interfaces, routes, and data models. |
+| **Styling** | **Tailwind CSS 3** | Utility-first CSS engine with class dark mode and official MoTA color tokens (Deep Navy `#0B2545`, Forest Green `#1B6B4A`, Golden Warmth `#D98A00`). |
+| **Icons** | **Lucide React** | Clean, accessible SVG icons used consistently across all components in place of emojis. |
+| **AI / Copilot** | **Google Gemini API + Offline Engine** | Cloud generative AI assistant paired with a deterministic local rule-based fallback for 100% offline functionality. |
+| **Speech & Audio** | **Web Speech API** | Native browser SpeechSynthesis (Text-to-Speech) and SpeechRecognition (Dictation) for hands-free interaction. |
+| **State & Persistence** | **React Context & Storage Sync** | Modular state management for authentication (`auth-context`), dark mode (`theme-context`), and application synchronization. |
 
-To download and set up this repository locally:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/<your-username>/aarohan-portal.git
-   ```
-
-2. **Navigate to the project root**:
-   ```bash
-   cd aarohan-portal
-   ```
-   *(Or on Windows, navigate to your designated workspace folder, e.g., `cd "e:\SC-ST Portal"`).*
-
----
-
-## How to Run This Project
+## Quick Start and Installation
 
 ### Prerequisites
-Make sure you have installed on your computer:
-- **Node.js** (v18.17.0 or later recommended; v20.x supported)
-- **npm** (bundled with Node.js) or **yarn** / **pnpm**
 
-Check your installed versions:
+Ensure you have installed:
+- **Node.js**: `v18.17.0` or higher (verified on Node `v24.15.0`)
+- **npm**: `v9.x` or higher (or `yarn` / `pnpm`)
+
+Verify your installed versions:
 ```bash
 node -v
 npm -v
 ```
 
-### 1. Install Dependencies
-Run the following command in the project root:
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/aarohan-portal.git
+cd aarohan-portal
+```
+
+### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
-### 2. Run in Development Mode (Live Hot-Reload)
-To develop and test live code edits:
+### 3. Run Development Server
+
 ```bash
 npm run dev
 ```
-Open your browser and navigate to:
+Open your browser and navigate to `http://localhost:3000`.
+
+### 4. Type Safety Verification
+
+To verify that all TypeScript types compile cleanly:
+```bash
+npx tsc --noEmit
 ```
-http://localhost:3000
+Expected output: Exits with code 0 and zero errors.
+
+### 5. Build and Run Production Server
+
+To compile the optimized production bundle and start the server:
+```bash
+npm run build
+npm start
 ```
-*(If port 3000 is occupied, Next.js will automatically select an available port such as `http://localhost:3001` or you can specify `npx next dev -p 3001`).*
+The production server will be live and accessible at `http://localhost:3000`.
 
-### 3. Build and Run in Production Mode (Recommended for Demos)
-To produce an optimized build and run the high-performance production server:
+### 6. Fast-Track Demo Accounts
 
-1. **Create the production build**:
-   ```bash
-   npm run build
-   ```
-2. **Start the production server**:
-   ```bash
-   npm start
-   ```
-3. Open your browser and navigate to:
-   ```
-   http://localhost:3000
-   ```
+The portal includes pre-configured demo profiles on the login page (`/login`) for evaluation:
 
----
+| Role | Demo Account Name | Designation / Identity | Primary Features |
+|---|---|---|---|
+| **ST Scholar** | Pooja Xalxo | ST Research Scholar (Ph.D.), Oraon Tribe | 5-Phase Application, Readiness Meter, My Applications, DBT Bank Data |
+| **Scrutiny Officer** | Dr. Arvind Meena | Senior Scrutiny Officer, Fellowship Division  | Live Scrutiny Queue, Side-by-Side Review Desk, Deficiency Console |
+| **Ministry Admin** | Joint Secretary | Ministry of Tribal Affairs, New Delhi  | National Analytics (INR 482+ Cr), Quota Bars, Regional Equity Ratios |
 
-## Role-Based Access and Demo Accounts
 
-The portal includes pre-configured demo profiles allowing evaluators to experience the platform from all perspectives without manual account creation:
+## Folder Structure
 
-Navigate to `/login` and select any of the **One-Click Fast Track Demo Login** options:
+```
+SC-ST Portal/
+├── .env.example                    # Sample environment variables
+├── .gitignore                      # Git exclusion rules (dependencies, build artifacts, caches, logs)
+├── Aarohan_Master_Build_Spec.md    # Master architectural specification
+├── Problem_Statement.md            # SIH 26239 problem statement brief
+├── README.md                       # Complete project documentation
+├── next-env.d.ts                   # Next.js TypeScript declarations
+├── package.json                    # Project dependencies and operational scripts
+├── package-lock.json               # Locked dependency tree
+├── postcss.config.js               # PostCSS configuration
+├── tailwind.config.js              # Tailwind CSS configuration with custom theme colors
+├── tsconfig.json                   # TypeScript compiler settings
+│
+├── app/                            # Next.js 14 App Router (All 24 Routes)
+│   ├── globals.css                 # Global CSS variables, fonts, and Tailwind directives
+│   ├── layout.tsx                  # Root HTML wrapper and global context providers
+│   ├── page.tsx                    # Public Home Page
+│   │
+│   ├── about/                      # Public About Us Page
+│   │   └── page.tsx
+│   ├── apply/                      # Public Route Forwarder
+│   │   └── [schemeId]/
+│   │       └── page.tsx            # Safely redirects guests to login and scholars to dashboard
+│   ├── contact/                    # Public Contact Us and Helpdesk Page
+│   │   └── page.tsx
+│   ├── faq/                        # Public Frequently Asked Questions Page
+│   │   └── page.tsx
+│   ├── guide/                      # Public Step-by-Step Guide and Application Flow
+│   │   └── page.tsx
+│   ├── login/                      # Role-Based Login and Registration with Demo Profiles
+│   │   └── page.tsx
+│   ├── notices/                    # Public Circulars and Notifications Page
+│   │   └── page.tsx
+│   ├── scholarships/               # Public Scholarship Explorer Directory
+│   │   └── page.tsx
+│   │
+│   └── dashboard/                  # Authenticated Dashboard Shell
+│       ├── layout.tsx              # Dashboard sidebar, ticking clock, profile dropdown, footer
+│       ├── page.tsx                # Role-based dashboard redirector
+│       ├── applicant/              # Scholar Dashboard Home (Action card, readiness meter)
+│       │   └── page.tsx
+│       ├── applications/           # My Applications List and Printable e-Receipts
+│       │   └── page.tsx
+│       ├── apply/                  # 5-Phase In-Dashboard Scholarship Application Form
+│       │   └── [schemeId]/
+│       │       └── page.tsx
+│       ├── chatbot/                # Pinned Full-Height AI Assistant with Speech Features
+│       │   └── page.tsx
+│       ├── grievances/             # Grievance Lodging and Resolution Tracker
+│       │   └── page.tsx
+│       ├── help/                   # Help Center and Scheme Guidelines Download
+│       │   └── page.tsx
+│       ├── ministry/               # Ministry Executive Analytics Hub
+│       │   └── page.tsx
+│       ├── officer/                # Scrutiny and Verification Officer Console
+│       │   └── page.tsx
+│       ├── profile/                # Scholar Profile, Tribal Identity, and DBT Mandate
+│       │   └── page.tsx
+│       ├── scholarships/           # In-Dashboard Scholarship Directory and Direct Apply Links
+│       │   └── page.tsx
+│       └── status/                 # 5-Stage Application Scrutiny Timeline Tracker
+│           └── page.tsx
+│
+├── components/                     # Shared UI Components
+│   ├── AuthModal.tsx               # Quick authentication modal
+│   ├── Chatbot.tsx                 # Floating assistant component
+│   ├── Footer.tsx                  # Public Government of India footer
+│   ├── Header.tsx                  # Public government header, branding, and navigation
+│   ├── PublicShell.tsx             # Public route session boundary guard
+│   └── ThemeToggle.tsx             # Light and dark theme switcher
+│
+├── docs/                           # Architecture Documentation
+│   └── ASSESSMENT.md               # Technical assessment and roadmap documentation
+│
+├── lib/                            # Application State, Utilities, and Master Data
+│   ├── auth-context.tsx            # Authentication state, session guards, and hydration tracking
+│   ├── data.ts                     # Master scheme catalog, benchmark applications, and officer queues
+│   ├── gemini.ts                   # Google Gemini API client with offline heuristic fallback
+│   └── theme-context.tsx           # Dark mode persistence and HTML class synchronization
+│
+└── public/                         # Static Assets
+    ├── logo.png                    # Official circular Ministry of Tribal Affairs emblem
+    └── favicon.ico                 # Browser favicon
+```
 
-1. **Scheduled Tribe Applicant / Scholar**
-   - **Name**: Pooja Rameshwar
-   - **Role**: `applicant`
-   - **Destination**: `/dashboard/applicant`
-   - **Features**: Live 5-stage application tracker, deficiency action alert, document vault, and readiness meter.
 
-2. **Scrutiny and Verification Officer**
-   - **Name**: Dr. Arvind Kumar
-   - **Role**: `officer`
-   - **Destination**: `/dashboard/officer`
-   - **Features**: Scrutiny queue with AI confidence scores, document inspection desk with OCR text extraction, and deficiency issuance.
+## Future Improvements
 
-3. **Ministry Executive / Administrator**
-   - **Name**: Joint Secretary, Ministry of Tribal Affairs
-   - **Role**: `ministry`
-   - **Destination**: `/dashboard/ministry`
-   - **Features**: National budget metrics (Rs. 482+ Cr disbursed), scheme quota tracking, state-wise breakdowns, and turnaround analytics.
+1. **Direct DigiLocker OAuth2 API Integration**: Establish direct server-to-server OAuth2 connections with DigiLocker to pull digitally signed caste, income, and domicile certificates directly from state revenue issuers, eliminating manual document scanning.
 
----
+2. **Automated Two-Way PFMS Webhook Settlement**: Connect live webhooks with the Public Financial Management System (PFMS) to track real-time transaction reference numbers (UTR) and trigger automated SMS disbursement alerts to scholars.
 
-## License and Governance
+3. **Handwritten Script OCR via TrOCR / PaddleOCR**: Incorporate specialized vision transformer models (TrOCR) to accurately parse handwritten revenue certificates and manual signatures common in remote tribal sub-divisions.
 
-Developed for the **Ministry of Tribal Affairs (MoTA), Government of India**.  
-Designed to uphold Article 46 of the Constitution of India, promoting the educational and economic interests of Scheduled Tribes with equity, efficiency, and transparency.
+4. **Regional Tribal Dialect Multilingual Copilot**: Expand the AI speech synthesis and recognition models to support indigenous tribal languages, including Santhali, Gondi, Bodo, and Mundari, alongside Hindi and English.
+
+5. **Progressive Web App (PWA) with Offline Caching**: Enable local draft caching via IndexedDB and service workers so tribal students in low-connectivity areas can draft and review applications completely offline before submitting once connectivity is restored.
+
+6. **Deficiency Intelligence Feedback Loop**: Connect aggregate verification bottlenecks directly to scheme guidelines, automatically generating actionable recommendations for administrators to clarify confusing criteria before each academic cycle.
